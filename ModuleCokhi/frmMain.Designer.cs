@@ -43,6 +43,11 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtDCUNo = new System.Windows.Forms.TextBox();
             this.pnlComand = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTimeGet = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
@@ -55,11 +60,6 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.timer4 = new System.Windows.Forms.Timer(this.components);
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.pnlSeri.SuspendLayout();
@@ -113,7 +113,7 @@
             this.cmbPortList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cmbPortList.Name = "cmbPortList";
             this.cmbPortList.Size = new System.Drawing.Size(148, 28);
-            this.cmbPortList.TabIndex = 6;
+            this.cmbPortList.TabIndex = 1;
             // 
             // label2
             // 
@@ -128,13 +128,14 @@
             // btnRead
             // 
             this.btnRead.BackColor = System.Drawing.SystemColors.Window;
+            this.btnRead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRead.Image = global::DCU_Cuong_Tool.Properties.Resources.connect_line_icon_236099;
             this.btnRead.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRead.Location = new System.Drawing.Point(21, 51);
+            this.btnRead.Location = new System.Drawing.Point(17, 51);
             this.btnRead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRead.Name = "btnRead";
-            this.btnRead.Size = new System.Drawing.Size(136, 49);
-            this.btnRead.TabIndex = 3;
+            this.btnRead.Size = new System.Drawing.Size(139, 49);
+            this.btnRead.TabIndex = 2;
             this.btnRead.Text = "Mở COM";
             this.btnRead.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRead.UseVisualStyleBackColor = false;
@@ -142,13 +143,14 @@
             // 
             // btnRefresh
             // 
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Image = global::DCU_Cuong_Tool.Properties.Resources.disconnect_line_icon_236081;
             this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRefresh.Location = new System.Drawing.Point(173, 51);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(149, 49);
-            this.btnRefresh.TabIndex = 7;
+            this.btnRefresh.Size = new System.Drawing.Size(139, 49);
+            this.btnRefresh.TabIndex = 3;
             this.btnRefresh.Text = "Đóng COM";
             this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnRefresh.UseVisualStyleBackColor = true;
@@ -180,7 +182,7 @@
             this.txtDCUNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDCUNo.Name = "txtDCUNo";
             this.txtDCUNo.Size = new System.Drawing.Size(197, 26);
-            this.txtDCUNo.TabIndex = 24;
+            this.txtDCUNo.TabIndex = 4;
             this.txtDCUNo.Text = "665544332211";
             // 
             // pnlComand
@@ -205,6 +207,53 @@
             this.pnlComand.Size = new System.Drawing.Size(342, 324);
             this.pnlComand.TabIndex = 35;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(288, 289);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 20);
+            this.label6.TabIndex = 48;
+            this.label6.Text = "Giờ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(288, 249);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(34, 20);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "Giờ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(42, 252);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 20);
+            this.label3.TabIndex = 46;
+            this.label3.Text = "Lần đầu tiên ";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(176, 243);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 26);
+            this.textBox1.TabIndex = 15;
+            this.textBox1.Text = "2";
+            // 
+            // button2
+            // 
+            this.button2.Enabled = false;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Location = new System.Drawing.Point(17, 176);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(139, 52);
+            this.button2.TabIndex = 13;
+            this.button2.Text = "Kết Thúc";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -219,76 +268,83 @@
             this.txtTimeGet.Location = new System.Drawing.Point(176, 289);
             this.txtTimeGet.Name = "txtTimeGet";
             this.txtTimeGet.Size = new System.Drawing.Size(100, 26);
-            this.txtTimeGet.TabIndex = 42;
+            this.txtTimeGet.TabIndex = 16;
             this.txtTimeGet.Text = "2";
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(173, 188);
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(173, 176);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 52);
-            this.button1.TabIndex = 41;
-            this.button1.Text = "Thời gian";
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Bắt đầu";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnGetData
             // 
             this.btnGetData.Enabled = false;
+            this.btnGetData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnGetData.Location = new System.Drawing.Point(173, 118);
             this.btnGetData.Name = "btnGetData";
             this.btnGetData.Size = new System.Drawing.Size(139, 52);
-            this.btnGetData.TabIndex = 40;
+            this.btnGetData.TabIndex = 12;
             this.btnGetData.Text = "Lấy dữ liệu";
             this.btnGetData.UseVisualStyleBackColor = true;
             this.btnGetData.Click += new System.EventHandler(this.btnGetData_Click);
             // 
             // btnChar
             // 
+            this.btnChar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnChar.Location = new System.Drawing.Point(172, 60);
             this.btnChar.Name = "btnChar";
             this.btnChar.Size = new System.Drawing.Size(140, 52);
-            this.btnChar.TabIndex = 37;
+            this.btnChar.TabIndex = 8;
             this.btnChar.Text = "Biểu đồ";
             this.btnChar.UseVisualStyleBackColor = true;
             this.btnChar.Click += new System.EventHandler(this.btnChar_Click);
             // 
             // btnList
             // 
+            this.btnList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnList.Location = new System.Drawing.Point(17, 118);
             this.btnList.Name = "btnList";
             this.btnList.Size = new System.Drawing.Size(140, 52);
-            this.btnList.TabIndex = 36;
+            this.btnList.TabIndex = 11;
             this.btnList.Text = "Danh sách";
             this.btnList.UseVisualStyleBackColor = true;
             this.btnList.Click += new System.EventHandler(this.btnList_Click);
             // 
             // btnNodeOnline
             // 
+            this.btnNodeOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNodeOnline.Location = new System.Drawing.Point(17, 6);
             this.btnNodeOnline.Name = "btnNodeOnline";
             this.btnNodeOnline.Size = new System.Drawing.Size(140, 48);
-            this.btnNodeOnline.TabIndex = 32;
+            this.btnNodeOnline.TabIndex = 5;
             this.btnNodeOnline.Text = "Node online ";
             this.btnNodeOnline.UseVisualStyleBackColor = true;
             this.btnNodeOnline.Click += new System.EventHandler(this.btnNodeOnline_Click);
             // 
             // btnBlackList
             // 
+            this.btnBlackList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBlackList.Location = new System.Drawing.Point(173, 6);
             this.btnBlackList.Name = "btnBlackList";
             this.btnBlackList.Size = new System.Drawing.Size(139, 48);
-            this.btnBlackList.TabIndex = 33;
+            this.btnBlackList.TabIndex = 6;
             this.btnBlackList.Text = "Black list ";
             this.btnBlackList.UseVisualStyleBackColor = true;
             this.btnBlackList.Click += new System.EventHandler(this.btnBlackList_Click);
             // 
             // btnNodeOffline
             // 
+            this.btnNodeOffline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnNodeOffline.Location = new System.Drawing.Point(17, 60);
             this.btnNodeOffline.Name = "btnNodeOffline";
             this.btnNodeOffline.Size = new System.Drawing.Size(140, 52);
-            this.btnNodeOffline.TabIndex = 34;
+            this.btnNodeOffline.TabIndex = 7;
             this.btnNodeOffline.Text = "Node offline";
             this.btnNodeOffline.UseVisualStyleBackColor = true;
             this.btnNodeOffline.Click += new System.EventHandler(this.btnNodeOffline_Click);
@@ -308,13 +364,14 @@
             // btnClearLog
             // 
             this.btnClearLog.BackColor = System.Drawing.Color.LightCoral;
+            this.btnClearLog.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClearLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearLog.Image = global::DCU_Cuong_Tool.Properties.Resources.clear_icon_155649;
             this.btnClearLog.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClearLog.Location = new System.Drawing.Point(73, 564);
             this.btnClearLog.Name = "btnClearLog";
             this.btnClearLog.Size = new System.Drawing.Size(174, 50);
-            this.btnClearLog.TabIndex = 36;
+            this.btnClearLog.TabIndex = 17;
             this.btnClearLog.Text = "Xóa Log ";
             this.btnClearLog.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnClearLog.UseVisualStyleBackColor = false;
@@ -324,52 +381,6 @@
             // 
             this.timer4.Interval = 1000;
             this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
-            // 
-            // button2
-            // 
-            this.button2.Enabled = false;
-            this.button2.Location = new System.Drawing.Point(17, 188);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(139, 52);
-            this.button2.TabIndex = 44;
-            this.button2.Text = "Kết Thúc";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(176, 246);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 26);
-            this.textBox1.TabIndex = 45;
-            this.textBox1.Text = "3";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(42, 252);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(101, 20);
-            this.label3.TabIndex = 46;
-            this.label3.Text = "Lần đầu tiên ";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(288, 249);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 20);
-            this.label4.TabIndex = 47;
-            this.label4.Text = "Giờ";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(288, 295);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 20);
-            this.label6.TabIndex = 48;
-            this.label6.Text = "Giờ";
             // 
             // frmMain
             // 

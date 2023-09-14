@@ -32,15 +32,24 @@ namespace DCU_Cuong_Tool
             }
             else
             {
-                int intTimeIntoTextBox = int.Parse(txtTimeOffSet.Text);
-                if (intTimeIntoTextBox > 1)
-                {
-                    intTimeOffSet = intTimeIntoTextBox;
+                try {
+                    int intTimeIntoTextBox = int.Parse(txtTimeOffSet.Text);
+                    if (intTimeIntoTextBox > 1)
+                    {
+                        intTimeOffSet = intTimeIntoTextBox;
+                    }
+                    else
+                    {
+                        intTimeOffSet = 1;
+                    }
                 }
-                else
+                catch
                 {
                     intTimeOffSet = 1;
+                    // Chuyển đổi không thành công, xử lý khi chuỗi không phải là một số nguyên hợp lệ
+                    MessageBox.Show("Giá trị không hợp lệ!");
                 }
+                
             }
             string date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string connectionString = "Data Source=LocalDB.db;Version=3;";
@@ -56,7 +65,6 @@ namespace DCU_Cuong_Tool
                         {
                             string time = showChart.ToString("D2") + ":00";
                             string startTime = date + " " + time;
-
 
                             if (cbOnline.Checked == true)
                             {

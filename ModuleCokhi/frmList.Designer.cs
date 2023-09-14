@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmList));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.btnNodeBlackList = new System.Windows.Forms.RadioButton();
             this.btnNodeOffline = new System.Windows.Forms.RadioButton();
@@ -37,7 +38,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtgvData = new System.Windows.Forms.DataGridView();
             this.sqLiteCommandBuilder1 = new System.Data.SQLite.SQLiteCommandBuilder();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvData)).BeginInit();
@@ -56,8 +56,16 @@
             this.panel1.Size = new System.Drawing.Size(293, 626);
             this.panel1.TabIndex = 0;
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(34, 51);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(208, 26);
+            this.dateTimePicker1.TabIndex = 8;
+            // 
             // button1
             // 
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(59, 311);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 51);
@@ -124,13 +132,6 @@
             // 
             this.sqLiteCommandBuilder1.DataAdapter = null;
             this.sqLiteCommandBuilder1.QuoteSuffix = "]";
-            // 
-            // dateTimePicker1
-            // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(34, 51);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(208, 26);
-            this.dateTimePicker1.TabIndex = 8;
             // 
             // frmList
             // 
