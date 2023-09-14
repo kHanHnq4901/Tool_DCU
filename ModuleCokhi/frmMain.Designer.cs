@@ -69,6 +69,7 @@
             // 
             // rtbOutput
             // 
+            this.rtbOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.rtbOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rtbOutput.Location = new System.Drawing.Point(0, 0);
@@ -108,6 +109,7 @@
             // cmbPortList
             // 
             this.cmbPortList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbPortList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbPortList.FormattingEnabled = true;
             this.cmbPortList.Location = new System.Drawing.Point(88, 13);
             this.cmbPortList.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -178,6 +180,7 @@
             // 
             // txtDCUNo
             // 
+            this.txtDCUNo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtDCUNo.Location = new System.Drawing.Point(109, 8);
             this.txtDCUNo.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txtDCUNo.Name = "txtDCUNo";
@@ -236,6 +239,7 @@
             // 
             // textBox1
             // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.textBox1.Location = new System.Drawing.Point(176, 243);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 26);
@@ -265,6 +269,7 @@
             // 
             // txtTimeGet
             // 
+            this.txtTimeGet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTimeGet.Location = new System.Drawing.Point(176, 289);
             this.txtTimeGet.Name = "txtTimeGet";
             this.txtTimeGet.Size = new System.Drawing.Size(100, 26);

@@ -119,6 +119,7 @@
             // 
             // txtTimeOffSet
             // 
+            this.txtTimeOffSet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtTimeOffSet.Location = new System.Drawing.Point(37, 84);
             this.txtTimeOffSet.Name = "txtTimeOffSet";
             this.txtTimeOffSet.Size = new System.Drawing.Size(100, 26);
@@ -130,9 +131,10 @@
             this.cbBlackList.AutoSize = true;
             this.cbBlackList.Checked = true;
             this.cbBlackList.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBlackList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbBlackList.Location = new System.Drawing.Point(37, 254);
             this.cbBlackList.Name = "cbBlackList";
-            this.cbBlackList.Size = new System.Drawing.Size(103, 24);
+            this.cbBlackList.Size = new System.Drawing.Size(98, 24);
             this.cbBlackList.TabIndex = 5;
             this.cbBlackList.Text = "Black List";
             this.cbBlackList.UseVisualStyleBackColor = true;
@@ -142,9 +144,10 @@
             this.cbOffline.AutoSize = true;
             this.cbOffline.Checked = true;
             this.cbOffline.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbOffline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbOffline.Location = new System.Drawing.Point(37, 201);
             this.cbOffline.Name = "cbOffline";
-            this.cbOffline.Size = new System.Drawing.Size(81, 24);
+            this.cbOffline.Size = new System.Drawing.Size(76, 24);
             this.cbOffline.TabIndex = 4;
             this.cbOffline.Text = "Offline";
             this.cbOffline.UseVisualStyleBackColor = true;
@@ -154,9 +157,10 @@
             this.cbOnline.AutoSize = true;
             this.cbOnline.Checked = true;
             this.cbOnline.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbOnline.Location = new System.Drawing.Point(37, 141);
             this.cbOnline.Name = "cbOnline";
-            this.cbOnline.Size = new System.Drawing.Size(80, 24);
+            this.cbOnline.Size = new System.Drawing.Size(75, 24);
             this.cbOnline.TabIndex = 3;
             this.cbOnline.Text = "Online";
             this.cbOnline.UseVisualStyleBackColor = true;
@@ -174,9 +178,10 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(3, 10);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(21, 12);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(215, 26);
+            this.dateTimePicker1.Size = new System.Drawing.Size(134, 26);
             this.dateTimePicker1.TabIndex = 1;
             // 
             // frmChar

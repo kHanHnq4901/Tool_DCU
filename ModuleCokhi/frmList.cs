@@ -33,15 +33,15 @@ namespace DCU_Cuong_Tool
                 string query = "";
                 if (btnNodeOnline.Checked == true)
                 {
-                    query = "SELECT * FROM HIS_ONLINE WHERE CREATED LIKE '%" + date + "%' ORDER BY CREATED DESC";
+                    query = "SELECT * FROM HIS_ONLINE WHERE CREATED LIKE '%" + date + "%' ORDER BY ID DESC";
                 }
                 else if (btnNodeOffline.Checked == true)
                 {
-                    query = "SELECT * FROM HIS_OFFLINE WHERE CREATED LIKE '%" + date + "%' ORDER BY CREATED DESC";
+                    query = "SELECT * FROM HIS_OFFLINE WHERE CREATED LIKE '%" + date + "%' ORDER BY ID DESC";
                 }
                 else if (btnNodeBlackList.Checked == true)
                 {
-                    query = "SELECT * FROM HIS_BLACK_LIST WHERE CREATED LIKE '%" + date + "%' ORDER BY CREATED DESC";
+                    query = "SELECT * FROM HIS_BLACK_LIST WHERE CREATED LIKE '%" + date + "%' ORDER BY ID DESC";
                 }
 
                 using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, connection))
@@ -49,6 +49,8 @@ namespace DCU_Cuong_Tool
                     DataTable dataTable = new DataTable();
                     adapter.Fill(dataTable);
                     dtgvData.DataSource = dataTable;
+                    int rowCount = dataTable.Rows.Count;
+                    lbCount.Text = "Số lượng : " + rowCount.ToString();
                 }
 
 

@@ -38,6 +38,7 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtgvData = new System.Windows.Forms.DataGridView();
             this.sqLiteCommandBuilder1 = new System.Data.SQLite.SQLiteCommandBuilder();
+            this.lbCount = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvData)).BeginInit();
@@ -45,6 +46,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbCount);
             this.panel1.Controls.Add(this.dateTimePicker1);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.btnNodeBlackList);
@@ -58,15 +60,16 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(34, 51);
+            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker1.Location = new System.Drawing.Point(65, 42);
             this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(208, 26);
+            this.dateTimePicker1.Size = new System.Drawing.Size(119, 26);
             this.dateTimePicker1.TabIndex = 8;
             // 
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(59, 311);
+            this.button1.Location = new System.Drawing.Point(64, 361);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 51);
             this.button1.TabIndex = 7;
@@ -77,9 +80,10 @@
             // btnNodeBlackList
             // 
             this.btnNodeBlackList.AutoSize = true;
-            this.btnNodeBlackList.Location = new System.Drawing.Point(64, 244);
+            this.btnNodeBlackList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNodeBlackList.Location = new System.Drawing.Point(64, 286);
             this.btnNodeBlackList.Name = "btnNodeBlackList";
-            this.btnNodeBlackList.Size = new System.Drawing.Size(136, 24);
+            this.btnNodeBlackList.Size = new System.Drawing.Size(134, 24);
             this.btnNodeBlackList.TabIndex = 6;
             this.btnNodeBlackList.TabStop = true;
             this.btnNodeBlackList.Text = "Node black list";
@@ -88,9 +92,10 @@
             // btnNodeOffline
             // 
             this.btnNodeOffline.AutoSize = true;
-            this.btnNodeOffline.Location = new System.Drawing.Point(64, 181);
+            this.btnNodeOffline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNodeOffline.Location = new System.Drawing.Point(64, 221);
             this.btnNodeOffline.Name = "btnNodeOffline";
-            this.btnNodeOffline.Size = new System.Drawing.Size(122, 24);
+            this.btnNodeOffline.Size = new System.Drawing.Size(120, 24);
             this.btnNodeOffline.TabIndex = 5;
             this.btnNodeOffline.TabStop = true;
             this.btnNodeOffline.Text = "Node Offline";
@@ -99,9 +104,10 @@
             // btnNodeOnline
             // 
             this.btnNodeOnline.AutoSize = true;
-            this.btnNodeOnline.Location = new System.Drawing.Point(64, 127);
+            this.btnNodeOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnNodeOnline.Location = new System.Drawing.Point(64, 156);
             this.btnNodeOnline.Name = "btnNodeOnline";
-            this.btnNodeOnline.Size = new System.Drawing.Size(121, 24);
+            this.btnNodeOnline.Size = new System.Drawing.Size(119, 24);
             this.btnNodeOnline.TabIndex = 4;
             this.btnNodeOnline.TabStop = true;
             this.btnNodeOnline.Text = "Node Online";
@@ -132,6 +138,15 @@
             // 
             this.sqLiteCommandBuilder1.DataAdapter = null;
             this.sqLiteCommandBuilder1.QuoteSuffix = "]";
+            // 
+            // lbCount
+            // 
+            this.lbCount.AutoSize = true;
+            this.lbCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCount.Location = new System.Drawing.Point(40, 115);
+            this.lbCount.Name = "lbCount";
+            this.lbCount.Size = new System.Drawing.Size(0, 25);
+            this.lbCount.TabIndex = 9;
             // 
             // frmList
             // 
@@ -165,5 +180,6 @@
         private System.Windows.Forms.RadioButton btnNodeOnline;
         private System.Data.SQLite.SQLiteCommandBuilder sqLiteCommandBuilder1;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Label lbCount;
     }
 }
