@@ -32,15 +32,19 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmChar));
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtTimeOffSet = new System.Windows.Forms.TextBox();
+            this.cbBlackList = new System.Windows.Forms.CheckBox();
+            this.cbOffline = new System.Windows.Forms.CheckBox();
+            this.cbOnline = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.cbOnline = new System.Windows.Forms.CheckBox();
-            this.cbOffline = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -75,20 +79,34 @@
             this.chart1.Legends.Add(legend1);
             this.chart1.Location = new System.Drawing.Point(0, 0);
             this.chart1.Name = "chart1";
+            this.chart1.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
+            this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
+        System.Drawing.Color.Lime,
+        System.Drawing.Color.Red,
+        System.Drawing.Color.Black};
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Online";
             series2.ChartArea = "ChartArea1";
             series2.Legend = "Legend1";
             series2.Name = "Offline";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.Name = "BlackList";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
+            this.chart1.Series.Add(series3);
             this.chart1.Size = new System.Drawing.Size(1198, 626);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
+            title1.Name = "Title1";
+            title1.Text = "Biểu đồ thống kê các node online và offline trong ngày ";
+            this.chart1.Titles.Add(title1);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtTimeOffSet);
+            this.panel1.Controls.Add(this.cbBlackList);
             this.panel1.Controls.Add(this.cbOffline);
             this.panel1.Controls.Add(this.cbOnline);
             this.panel1.Controls.Add(this.button1);
@@ -99,9 +117,53 @@
             this.panel1.Size = new System.Drawing.Size(224, 626);
             this.panel1.TabIndex = 3;
             // 
+            // txtTimeOffSet
+            // 
+            this.txtTimeOffSet.Location = new System.Drawing.Point(37, 84);
+            this.txtTimeOffSet.Name = "txtTimeOffSet";
+            this.txtTimeOffSet.Size = new System.Drawing.Size(100, 26);
+            this.txtTimeOffSet.TabIndex = 40;
+            this.txtTimeOffSet.Text = "1";
+            // 
+            // cbBlackList
+            // 
+            this.cbBlackList.AutoSize = true;
+            this.cbBlackList.Checked = true;
+            this.cbBlackList.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbBlackList.Location = new System.Drawing.Point(37, 254);
+            this.cbBlackList.Name = "cbBlackList";
+            this.cbBlackList.Size = new System.Drawing.Size(103, 24);
+            this.cbBlackList.TabIndex = 5;
+            this.cbBlackList.Text = "Black List";
+            this.cbBlackList.UseVisualStyleBackColor = true;
+            // 
+            // cbOffline
+            // 
+            this.cbOffline.AutoSize = true;
+            this.cbOffline.Checked = true;
+            this.cbOffline.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbOffline.Location = new System.Drawing.Point(37, 201);
+            this.cbOffline.Name = "cbOffline";
+            this.cbOffline.Size = new System.Drawing.Size(81, 24);
+            this.cbOffline.TabIndex = 4;
+            this.cbOffline.Text = "Offline";
+            this.cbOffline.UseVisualStyleBackColor = true;
+            // 
+            // cbOnline
+            // 
+            this.cbOnline.AutoSize = true;
+            this.cbOnline.Checked = true;
+            this.cbOnline.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.cbOnline.Location = new System.Drawing.Point(37, 141);
+            this.cbOnline.Name = "cbOnline";
+            this.cbOnline.Size = new System.Drawing.Size(80, 24);
+            this.cbOnline.TabIndex = 3;
+            this.cbOnline.Text = "Online";
+            this.cbOnline.UseVisualStyleBackColor = true;
+            // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(28, 219);
+            this.button1.Location = new System.Drawing.Point(30, 297);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 38);
             this.button1.TabIndex = 2;
@@ -115,30 +177,6 @@
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(215, 26);
             this.dateTimePicker1.TabIndex = 1;
-            // 
-            // cbOnline
-            // 
-            this.cbOnline.AutoSize = true;
-            this.cbOnline.Checked = true;
-            this.cbOnline.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbOnline.Location = new System.Drawing.Point(41, 84);
-            this.cbOnline.Name = "cbOnline";
-            this.cbOnline.Size = new System.Drawing.Size(80, 24);
-            this.cbOnline.TabIndex = 3;
-            this.cbOnline.Text = "Online";
-            this.cbOnline.UseVisualStyleBackColor = true;
-            // 
-            // cbOffline
-            // 
-            this.cbOffline.AutoSize = true;
-            this.cbOffline.Checked = true;
-            this.cbOffline.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbOffline.Location = new System.Drawing.Point(41, 158);
-            this.cbOffline.Name = "cbOffline";
-            this.cbOffline.Size = new System.Drawing.Size(81, 24);
-            this.cbOffline.TabIndex = 4;
-            this.cbOffline.Text = "Offline";
-            this.cbOffline.UseVisualStyleBackColor = true;
             // 
             // frmChar
             // 
@@ -171,5 +209,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.CheckBox cbOffline;
         private System.Windows.Forms.CheckBox cbOnline;
+        private System.Windows.Forms.CheckBox cbBlackList;
+        private System.Windows.Forms.TextBox txtTimeOffSet;
     }
 }

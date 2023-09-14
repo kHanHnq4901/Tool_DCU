@@ -18,53 +18,90 @@ namespace DCU_Cuong_Tool
 {
     public partial class frmChar : Form
     {
+
         public frmChar()
         {
             InitializeComponent();
         }
         private void LoadData()
         {
+            int intTimeOffSet;
+            if (txtTimeOffSet.Text.Length == 0)
+            {
+                intTimeOffSet = 1;
+            }
+            else
+            {
+                int intTimeIntoTextBox = int.Parse(txtTimeOffSet.Text);
+                if (intTimeIntoTextBox > 1)
+                {
+                    intTimeOffSet = intTimeIntoTextBox;
+                }
+                else
+                {
+                    intTimeOffSet = 1;
+                }
+            }
             string date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string connectionString = "Data Source=LocalDB.db;Version=3;";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
-
-                for (int hour = 1; hour <= 24; hour++)
+                //frmMain frmMainSub = new frmMain();
+                for(int showChart = 0; showChart < 23; showChart++)
                 {
-                    string time = hour.ToString("D2") + ":00";
-                    string startTime = date + " " + time;
-
-
-                    if (cbOnline.Checked == true)
+                    try
                     {
-                        string query = "SELECT COUNT(*) FROM HIS_ONLINE WHERE substr(CREATED, 1, 16) = @startDate";
-                        using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                        if (showChart % intTimeOffSet == 0)
                         {
-                            command.Parameters.AddWithValue("@startDate", startTime);
+                            string time = showChart.ToString("D2") + ":00";
+                            string startTime = date + " " + time;
 
-                            int count = Convert.ToInt32(command.ExecuteScalar());
 
-                            // Thêm điểm dữ liệu vào biểu đồ
-                            chart1.Series["Online"].Points.AddXY(time + " h", count);
+                            if (cbOnline.Checked == true)
+                            {
+                                string query = "SELECT COUNT(*) FROM HIS_ONLINE WHERE substr(CREATED, 1, 16) = @startDate";
+                                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                                {
+                                    command.Parameters.AddWithValue("@startDate", startTime);
+
+                                    int count = Convert.ToInt32(command.ExecuteScalar());
+
+                                    // Thêm điểm dữ liệu vào biểu đồ
+                                    chart1.Series["Online"].Points.AddXY(time + " h", count);
+                                }
+                            }
+                            if (cbOffline.Checked == true)
+                            {
+                                string query1 = "SELECT COUNT(*) FROM HIS_OFFLINE WHERE substr(CREATED, 1, 16) = @startDate";
+                                using (SQLiteCommand command = new SQLiteCommand(query1, connection))
+                                {
+                                    command.Parameters.AddWithValue("@startDate", startTime);
+
+                                    int count = Convert.ToInt32(command.ExecuteScalar());
+
+                                    // Thêm điểm dữ liệu vào biểu đồ
+                                    chart1.Series["Offline"].Points.AddXY(time + " h", count);
+                                }
+                            }
+                            if (cbBlackList.Checked == true)
+                            {
+                                string query1 = "SELECT COUNT(*) FROM HIS_BLACK_LIST WHERE substr(CREATED, 1, 16) = @startDate";
+                                using (SQLiteCommand command = new SQLiteCommand(query1, connection))
+                                {
+                                    command.Parameters.AddWithValue("@startDate", startTime);
+
+                                    int count = Convert.ToInt32(command.ExecuteScalar());
+
+                                    // Thêm điểm dữ liệu vào biểu đồ
+                                    chart1.Series["BlackList"].Points.AddXY(time + " h", count);
+                                }
+                            }
                         }
                     }
-                    if(cbOffline.Checked == true)
-                    {
-                        string query1 = "SELECT COUNT(*) FROM HIS_OFFLINE WHERE substr(CREATED, 1, 16) = @startDate";
-                        using (SQLiteCommand command = new SQLiteCommand(query1, connection))
-                        {
-                            command.Parameters.AddWithValue("@startDate", startTime);
-
-                            int count = Convert.ToInt32(command.ExecuteScalar());
-
-                            // Thêm điểm dữ liệu vào biểu đồ
-                            chart1.Series["Offline"].Points.AddXY(time + " h", count);
-                        }
-                    }
+                    catch { }
                    
                 }
-
                 connection.Close();
             }
         }
@@ -73,6 +110,7 @@ namespace DCU_Cuong_Tool
         {
             chart1.Series["Online"].Points.Clear();
             chart1.Series["Offline"].Points.Clear();
+            chart1.Series["BlackList"].Points.Clear();
             LoadData();
         }
 

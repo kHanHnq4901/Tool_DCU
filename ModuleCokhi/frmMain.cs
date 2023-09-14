@@ -1,9 +1,12 @@
 ﻿using DCU_Cuong_Tool;
+using NPOI.OpenXmlFormats.Dml;
+using NPOI.SS.Formula.Eval;
 using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
 using System.IO.Ports;
@@ -12,6 +15,7 @@ using System.Text;
 using System.Threading;
 using System.Timers;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Xml.Linq;
 
 namespace WM03Soft
@@ -78,200 +82,158 @@ namespace WM03Soft
             myTimer.Elapsed += new ElapsedEventHandler(timer_Tick);
             myPort.DataReceived += new SerialDataReceivedEventHandler(SerialPortDataReceived);
         }
-      
-        private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e)
+private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             var serialPort = (SerialPort)sender;
-            int ibyte = serialPort.BytesToRead;
-            byte[] myArrData = new byte[ibyte];
-            serialPort.Read(myArrData, 0, ibyte);
-            bBufferRecv += MyLib.ByteArrToHexString(myArrData);
-            int iStartFrame = bBufferRecv.IndexOf("FEFE");
-            int iEndFrame = bBufferRecv.IndexOf("0A0D");
-            if (iEndFrame > iStartFrame && iStartFrame > -1)
+            int bytesToRead = serialPort.BytesToRead;
+            byte[] buffer = new byte[bytesToRead];
+            serialPort.Read(buffer, 0, bytesToRead);
+            string receivedData = MyLib.ByteArrToHexString(buffer);
+            bBufferRecv += receivedData;
+
+            int startFrameIndex = bBufferRecv.IndexOf("FEFE");
+            int endFrameIndex = bBufferRecv.IndexOf("0A0D");
+
+            while (endFrameIndex > startFrameIndex && startFrameIndex > -1)
             {
-                string tembBufferRecv = bBufferRecv.Substring(iStartFrame, iEndFrame + 4 - iStartFrame);
-                ProcessRecv(MyLib.FormatHexString(tembBufferRecv.Replace("-", " ")));
-                bBufferRecv = bBufferRecv.Substring(iEndFrame + 4, bBufferRecv.Length - iEndFrame - 4);
+                string frameData = bBufferRecv.Substring(startFrameIndex, endFrameIndex + 4 - startFrameIndex);
+                string formattedData = MyLib.FormatHexString(frameData.Replace("-", " "));
+                ProcessPacket(formattedData);
+                bBufferRecv = bBufferRecv.Substring(endFrameIndex + 4);
+                startFrameIndex = bBufferRecv.IndexOf("FEFE");
+                endFrameIndex = bBufferRecv.IndexOf("0A0D");
                 this.dataReceivedCount++;
             }
-        
         }
 
-        public void ProcessRecv (string recv)
+        StringBuilder receivedDataBuffer = new StringBuilder();
+
+        void ProcessPacket(string packetData)
         {
-            //Nhận các công tơ đang online
+            string recv = packetData;
+            // Nhận các công tơ online
             if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "07" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
-                {
+            {
                 string[] aRec = recv.Split(' ');
                 string serial = aRec[7] + aRec[8] + aRec[9] + aRec[10] + aRec[11] + aRec[12];
                 string level = aRec[13];
+
                 if (serial != "FFFFFFFFFFFF")
                 {
                     displayLog("serial " + serial + "|| tầng " + level);
-                    string query = "INSERT INTO HIS_ONLINE (SERIAL, LEVEL, CREATED) VALUES ('" + serial + "', " + level + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
-                    clsSQLite.ExecuteSql(query);
+                    AddDataToBatch(serial, level);
                 }
                 else
                 {
                     displayLog(recv);
-                    string countString = (dataReceivedCount-1) .ToString();
+                    string countString = (dataReceivedCount - 1).ToString();
                     displayLog("Send" + " Tổng số node đang online ------> " + countString);
                     dataReceivedCount = 0;
+                    Thread executeThread = new Thread(ExecuteBatchInsert);
+                    executeThread.Start();
                 }
+                
             }
-            //Nhận các công tơ đang offline
-            else if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "08" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
+            // Nhận các công tơ đang offline
+            if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "08" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
             {
                 string[] aRec = recv.Split(' ');
                 string serial = aRec[7] + aRec[8] + aRec[9] + aRec[10] + aRec[11] + aRec[12];
+
                 if (serial != "FFFFFFFFFFFF")
                 {
                     string config = aRec[13];
                     displayLog("serial " + serial + " || Never config  " + config + "|| Never eixts");
-
-                    string query = "INSERT INTO HIS_OFFLINE (SERIAL, CREATED) VALUES ('" + serial + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
-
-                    clsSQLite.ExecuteSql(query);
+                    AddDataToBatchHisOffLine(serial);
                 }
-                else 
-                { 
+                else
+                {
                     displayLog(recv);
-                    string countString = (dataReceivedCount-1).ToString();
-                    displayLog("Send"+ " Tổng số node đang offline ------>" + countString);
+                    string countString = (dataReceivedCount - 1).ToString();
+                    displayLog("Send" + " Tổng số node đang offline ------>" + countString);
                     dataReceivedCount = 0;
-                };
+                    Thread executeThread = new Thread(ExecuteBatchInsert);
+                    executeThread.Start();
+                }
                
             }
-            //Nhận các công tơ blacklist
-            else if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "06" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
+
+            // Nhận các công tơ blacklist
+            if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "06" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
             {
                 string[] aRec = recv.Split(' ');
                 string serial = aRec[7] + aRec[8] + aRec[9] + aRec[10] + aRec[11] + aRec[12];
                 if (serial != "FFFFFFFFFFFF")
-
-
                 {
                     displayLog("serial " + serial);
-                    string query = "INSERT INTO HIS_BLACK_LIST (SERIAL, CREATED) VALUES ('" + serial + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')";
-
-                    clsSQLite.ExecuteSql(query);
+                    AddDataToBatchHisBlackList(serial);
                 }
-                else {
+                else
+                {
                     displayLog(recv);
-                   string countString = (dataReceivedCount-1).ToString();
-                    displayLog("Send" + " Tổng số node đang  black list ------>" +countString);
+                    string countString = (dataReceivedCount - 1).ToString();
+                    displayLog("Send" + " Tổng số node đang black list ------>" + countString);
                     dataReceivedCount = 0;
-                };
-            }
-
-            if (recv == "FE FE 01 02 AA AA " + getCRC("02 AA AA") + " 0A 0D")
-            {
-                string lenPay = "06 "
-                    + txtDCUNo.Text.Trim().PadLeft(12, '0').Substring(0, 2) + " "
-                    + txtDCUNo.Text.Trim().PadLeft(12, '0').Substring(2, 2) + " "
-                    + txtDCUNo.Text.Trim().PadLeft(12, '0').Substring(4, 2) + " "
-                    + txtDCUNo.Text.Trim().PadLeft(12, '0').Substring(6, 2) + " "
-                    + txtDCUNo.Text.Trim().PadLeft(12, '0').Substring(8, 2) + " "
-                    + txtDCUNo.Text.Trim().PadLeft(12, '0').Substring(10, 2);
-                SendOnly("FE FE 05 " + lenPay + " " + getCRC(lenPay) + " 0A 0D");
-            }
-
-            // Yêu cầu gửi seri công tơ
-            // FE FE 02 02 00 00 FD 0A 0D
-            if (recv.IndexOf("FE FE 02 02") > -1)
-            {
-                try
-                {
-                    string iMeterBytes = recv[12].ToString() + recv[13].ToString() + recv[15].ToString() + recv[16].ToString();
-                    int iMeter = Convert.ToInt32(iMeterBytes, 16);
-
-                    if (recv == "FE FE 02 02 " + iMeterBytes.Substring(0, 2) + " " + iMeterBytes.Substring(2, 2) + " " + getCRC("02 " + iMeterBytes.Substring(0, 2) + " " + iMeterBytes.Substring(2, 2)) + " 0A 0D")
-                    {
-                        string seri = meterList[iMeter].PadLeft(12, '0');
-                        string seriBytes = meterList.Count.ToString("X4");
-                        string iBytes = iMeter.ToString("X4");
-                        string seriHex = seri.Substring(0, 2) + " "
-                            + seri.Substring(2, 2) + " "
-                            + seri.Substring(4, 2) + " "
-                            + seri.Substring(6, 2) + " "
-                            + seri.Substring(8, 2) + " "
-                            + seri.Substring(10, 2);
-                        string lenPay = "0B " + seriBytes.Substring(0, 2) + " " + seriBytes.Substring(2, 2) + " " + iBytes.Substring(0, 2) + " " + iBytes.Substring(2, 2) + " " + seriHex + " 01";
-                        SendOnly("FE FE 06 " + lenPay + " " + getCRC(lenPay) + " 0A 0D");
-                    }
+                    Thread executeThread = new Thread(ExecuteBatchInsert);
+                    executeThread.Start();
                 }
-                catch { }
+                
             }
+        }
+        string connectionString = "Data Source=LocalDB.db;Version=3;";
+        List<string> dataToWriteBatch = new List<string>();
 
-            // Nhận dữ liệu hoá đơn ngày
-            if (recv.Length >= 22)
-            {
-                if (recv.Substring(0, 5) == "FE FE" && recv.Substring(12, 5) == "11 03" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
-                {
-                    try
-                    {
-                        string[] aRec = recv.Split(' ');
-                        string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
-                        string dateTime = "20" + MyLib.HexStringToByte(aRec[18]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[17]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[16]).ToString().PadLeft(2, '0')
-                            + " " + MyLib.HexStringToByte(aRec[13]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[14]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[15]).ToString().PadLeft(2, '0');
-                        string tem = "";
-                        for (int i = 19; i <= aRec.Length - 3; i++)
-                        {
-                            tem += aRec[i] + " ";
-                        }
-                        string temActive = MyLib.ByteArrToASCII(MyLib.HexStringToArrByte(MyLib.FormatHexString(tem)));
-                        int index = temActive.IndexOf("(");
-                        double dActive = Convert.ToDouble(temActive.Substring(index + 1, temActive.Length - index - 7));
-                        clsSQLite.ExecuteSql("insert into HIS_DAILY (SERIAL, DATA_TIME, V180, CREATED) values (" + serial + ", '" + dateTime + "', " + dActive + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')");
-                    }
-                    catch { }
-                }
-            }
-
-            // Nhận dữ liệu online
-            if (recv.Length >= 22)
-            {
-                if (recv.Substring(0, 5) == "FE FE" && recv.Substring(12, 5) == "11 03" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
-                {
-                    try
-                    {
-                        string[] aRec = recv.Split(' ');
-                        string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
-                        string dateTime = "20" + MyLib.HexStringToByte(aRec[18]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[17]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[16]).ToString().PadLeft(2, '0')
-                            + " " + MyLib.HexStringToByte(aRec[13]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[14]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[15]).ToString().PadLeft(2, '0');
-                        string tem = "";
-                        for (int i = 19; i <= aRec.Length - 3; i++)
-                        {
-                            tem += aRec[i] + " ";
-                        }
-                        string temActive = MyLib.ByteArrToASCII(MyLib.HexStringToArrByte(MyLib.FormatHexString(tem)));
-                        int index = temActive.IndexOf("(");
-                        double dActive = Convert.ToDouble(temActive.Substring(index + 1, temActive.Length - index - 7));
-                        //clsSQLite.ExecuteSql("insert into HIS_DAILY (SERIAL, DATA_TIME, V180, CREATED) values (" + serial + ", '" + dateTime + "', " + dActive + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')");
-                    }
-                    catch { }
-                }
-            }
-           
-            //Nhận các công tơ black list
-            //if (recv.Length >= 22)
-            //{
-            //    if (recv.Substring(0, 5) == "FE FE" && recv.Substring(12, 5) == "11 00" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
-            //    {
-            //        try
-            //        {
-            //            string[] aRec = recv.Split(' ');
-            //            string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
-            //            string level = aRec[13];
-            //            ///double dActive = Convert.ToDouble(temActive.Substring(index + 1, temActive.Length - index - 7));
-            //            //clsSQLite.ExecuteSql("insert into HIS_DAILY (SERIAL, DATA_TIME, V180, CREATED) values (" + serial + ", '" + dateTime + "', " + dActive + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')");
-            //        }
-            //        catch { }
-            //    }
-            //}
+        void AddDataToBatch(string serial, string level)
+        {
+            string data = $"INSERT INTO HIS_ONLINE (SERIAL, LEVEL, CREATED) VALUES ('{serial}', '{level}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+            dataToWriteBatch.Add(data);
         }
 
+        void AddDataToBatchHisOffLine(string serial)
+        {
+            string data = $"INSERT INTO HIS_OFFLINE (SERIAL, CREATED) VALUES ('{serial}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+            dataToWriteBatch.Add(data);
+        }
+
+        void AddDataToBatchHisBlackList(string serial)
+        {
+            string data = $"INSERT INTO HIS_BLACK_LIST (SERIAL, CREATED) VALUES ('{serial}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+            dataToWriteBatch.Add(data);
+        }
+
+        void ExecuteBatchInsert()
+        {
+            if (dataToWriteBatch.Count > 0)
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    using (SQLiteTransaction transaction = connection.BeginTransaction())
+                    {
+                        try
+                        {
+                            foreach (string data in dataToWriteBatch)
+                            {
+                                using (SQLiteCommand command = new SQLiteCommand(data, connection))
+                                {
+                                    command.ExecuteNonQuery();
+                                }
+                            }
+
+                            transaction.Commit();
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("Batch insert failed: " + ex.Message);
+                            transaction.Rollback();
+                        }
+                    }
+                }
+
+                dataToWriteBatch.Clear();
+            }
+        }
         public void StartCounterTimer()
         {
             iCounterTimeout = 0;
@@ -408,10 +370,7 @@ namespace WM03Soft
                 myPort.Write(bufferOBIS, 0, bufferOBIS.Length);
             }
             catch {
-               // displayLog("Send: " + MyLib.FormatHexString(strData));
-
             }
-          //  displayLog("Send: " + MyLib.FormatHexString(strData));
         }
 
 
@@ -459,11 +418,8 @@ namespace WM03Soft
         {
             InitializeComponent();
             updateOutputThread = displayLog;
-            
-            timer3.Interval = 1000; // Cập nhật mỗi giây (1000 milliseconds)
-            timer3.Start();
         }
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
             MyLib.ReadConfigConn();
@@ -480,22 +436,14 @@ namespace WM03Soft
                 }
             }
                 btnRefresh.Enabled=false;
+          
         }
+        
 
         // Lấy cấu hình từ db từ file
         public void ReadMeterList()
         {
             meterList.Clear();
-          //  string strPath = txtPath.Text;
-
-         //   FileInfo config_f = new FileInfo(strPath);
-         //   foreach (string line in File.ReadAllLines(config_f.FullName))
-         //   {
-          //      if (line != string.Empty)
-          //      {
-           //         meterList.Add(line);
-           //     }
-          //  }
         }
 
         public void port_SendData(string sendForm)
@@ -507,24 +455,6 @@ namespace WM03Soft
 
         private void button4_Click(object sender, EventArgs e)
         {
-            //MyLib.ReadConfigConn();
-            //ReadMeterList();
-            //ports = SerialPort.GetPortNames();
-            //cmbPortList.Items.Clear();
-            //try
-            //{
-            //    port.Close();
-            //}
-            //catch { }
-            //if (ports.Length > 0)
-            //{
-            //    for (int i = 0; i < ports.Length; i++)
-            //    {
-            //        cmbPortList.DisplayMember = "Text";
-            //        cmbPortList.ValueMember = "Value";
-            //        cmbPortList.Items.Add(new { Text = ports[i], Value = ports[i] });
-            //    }
-            //}
             CloseCOM();
         }
 
@@ -586,11 +516,9 @@ namespace WM03Soft
                 {
                     textColor = Color.Black;
                 }
-
                 rtbOutput.SelectionStart = rtbOutput.TextLength;
                 rtbOutput.SelectionLength = 0;
                 rtbOutput.SelectionColor = textColor;
-              //  rtbOutput.AppendText("----------------\r\n" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "\r\n" + msg + Environment.NewLine);
                 rtbOutput.AppendText( msg + Environment.NewLine);
                 rtbOutput.SelectionColor = rtbOutput.ForeColor;
                 rtbOutput.ScrollToCaret();
@@ -646,13 +574,6 @@ namespace WM03Soft
                 
             }
         }
-
-        //private void btnSend_Click(object sender, EventArgs e)
-        //{
-        //    string lenPay = calLen(txtPayload.Text.Trim()) + " " + txtPayload.Text.Trim().ToUpper();
-        //    SendOnly("FE FE " + txtCMD.Text.Trim().ToUpper() + " " + lenPay + " " + getCRC(lenPay) + " 0A 0D");
-        //}
-
         public string calLen(string s)
         {
             return (s.Replace(" ", "").Length / 2).ToString("X2").ToUpper();
@@ -680,11 +601,6 @@ namespace WM03Soft
                 ReadOnlyChecked = true,
                 ShowReadOnly = true
             };
-
-            //if (openFileDialog1.ShowDialog() == DialogResult.OK)
-            //{
-            //    txtPath.Text = openFileDialog1.FileName;
-            //}
 
             ReadMeterList();
         }
@@ -744,11 +660,16 @@ namespace WM03Soft
             int commandId = CommandId_ResponeAllNodeOffline;
             SendCommandAndLog(commandId, "Lấy toàn bộ các node offline");
         }
+        private void btnGetData_Click(object sender, EventArgs e)
+        {
+            int commandId = CommandId_GetDataOfOneNode;
+            SendCommandAndLog(commandId, "Lấy dữ liệu của các node");
+        }
 
         private void SendCommandAndLog(int commandId, string logMessage)
         {
             string command = "FE FE 06 00 01 " + commandId.ToString("X2") + " FF FF FF FF FF FF 0A 0D";
-            displayLog("Send: " + logMessage + " /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            displayLog("Send: " + command + logMessage +" /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             SendOnly(command);
         }
 
@@ -763,37 +684,84 @@ namespace WM03Soft
             frmChar fChar = new frmChar();
             fChar.Show();
         }
-
-        private void timer3_Tick(object sender, EventArgs e)
-        {
-            lbCurrentTime.Text = DateTime.Now.ToString();
-        }
+        private bool executedOnce = false; // Biến kiểm tra xem hành động đã được thực hiện một lần hay chưa
 
         private void timer4_Tick(object sender, EventArgs e)
         {
             DateTime currentTime = DateTime.Now;
-            if (currentTime.Second == 00)
+
+            if (currentTime.Hour == currentHour && !executedOnce)
             {
+                // Thực hiện hành động chỉ chạy đúng một lần khi currentTime.Hour = 13
                 btnNodeOnline.PerformClick();
+                btnBlackList.PerformClick();
+                btnNodeOffline.PerformClick();
+
+                executedOnce = true; // Đánh dấu rằng hành động đã được thực hiện một lần
+            }
+            else if (currentTime.Hour % getTime == 0 && currentTime.Minute == 0 && currentTime.Second == 0 && executedOnce == true)
+            {
+                    btnNodeOnline.PerformClick();
+                    btnBlackList.PerformClick();
+                    btnNodeOffline.PerformClick();
+            }
+        }
+        private int getTime = 0;
+        private int currentHour = 0;
+       
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            // Chuyển đổi giá trị của textBox1 thành số nguyên
+            if (int.TryParse(txtTimeGet.Text, out int number) && int.TryParse(textBox1.Text, out int number1))
+            {
+                if (number == 0)
+                {
+                    getTime = 1;
+                } else
+                {
+                    getTime = number;
+                }
+                DateTime currentTime = DateTime.Now;
+                if ( number1 == 0)
+                {
+                    
+                    this.currentHour = currentTime.Hour ;
+                }else
+                {
+                    this.currentHour = currentTime.Hour + number1;
+                }
+               
+                // Chuyển đổi thành công, số nguyên được lưu trong biến "number"
+                // Bạn có thể sử dụng giá trị số nguyên ở đây
+
+                button1.BackColor = Color.Lime;
+                button1.Enabled = false;
+                button2.Enabled = true;
+                button2.BackColor = Color.Red;
+                txtTimeGet.Enabled = false;
+                textBox1 .Enabled = false;
+                timer4.Start();
+                displayLog("Recv" + " Tự động lấy dữ liệu lần đầu tiền sau " + textBox1.Text + " h  những lần sau " + txtTimeGet.Text +" h ");
+            }
+            else
+            {
+                // Chuyển đổi không thành công, xử lý khi chuỗi không phải là một số nguyên hợp lệ
+                MessageBox.Show("Giá trị không hợp lệ!");
             }
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void button2_Click(object sender, EventArgs e)
         {
-            btnStart.BackColor = Color.Lime;
-            timer4.Enabled = true;
-            displayLog("Recv" + " Đã bật tự động ghi");
-            btnStart.Enabled = false;    
-            btnEnd.Enabled = true;
-        }
-
-        private void btnEnd_Click(object sender, EventArgs e)
-        {
-            btnStart.Enabled = true;
-            btnEnd.Enabled = false;
-            displayLog("End " + "Đã kết thúc ghi");
-            timer4.Enabled = false;
-            btnStart.BackColor = SystemColors.Window;
+            executedOnce = false;
+            button1.BackColor = SystemColors.Window;
+            button2.BackColor = SystemColors.Window;
+            timer4.Stop();
+            button1.Enabled = true;
+            txtTimeGet.Enabled = true;
+            button2.Enabled = false;
+            textBox1.Enabled = true;
+            displayLog("End" + " Kết thúc lấy dữ liệu tự động");
         }
     }
 }

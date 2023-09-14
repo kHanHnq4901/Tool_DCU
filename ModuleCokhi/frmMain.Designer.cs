@@ -43,25 +43,28 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtDCUNo = new System.Windows.Forms.TextBox();
             this.pnlComand = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtTimeGet = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnGetData = new System.Windows.Forms.Button();
             this.btnChar = new System.Windows.Forms.Button();
             this.btnList = new System.Windows.Forms.Button();
-            this.btnStart = new System.Windows.Forms.Button();
             this.btnNodeOnline = new System.Windows.Forms.Button();
             this.btnBlackList = new System.Windows.Forms.Button();
             this.btnNodeOffline = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.lbCurrentTime = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnClearLog = new System.Windows.Forms.Button();
-            this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.timer4 = new System.Windows.Forms.Timer(this.components);
-            this.btnEnd = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.pnlSeri.SuspendLayout();
             this.pnlComand.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // rtbOutput
@@ -182,18 +185,63 @@
             // 
             // pnlComand
             // 
-            this.pnlComand.Controls.Add(this.btnEnd);
+            this.pnlComand.Controls.Add(this.label6);
+            this.pnlComand.Controls.Add(this.label4);
+            this.pnlComand.Controls.Add(this.label3);
+            this.pnlComand.Controls.Add(this.textBox1);
+            this.pnlComand.Controls.Add(this.button2);
+            this.pnlComand.Controls.Add(this.label1);
+            this.pnlComand.Controls.Add(this.txtTimeGet);
+            this.pnlComand.Controls.Add(this.button1);
+            this.pnlComand.Controls.Add(this.btnGetData);
             this.pnlComand.Controls.Add(this.btnChar);
             this.pnlComand.Controls.Add(this.btnList);
-            this.pnlComand.Controls.Add(this.btnStart);
             this.pnlComand.Controls.Add(this.btnNodeOnline);
             this.pnlComand.Controls.Add(this.btnBlackList);
             this.pnlComand.Controls.Add(this.btnNodeOffline);
             this.pnlComand.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlComand.Location = new System.Drawing.Point(0, 151);
             this.pnlComand.Name = "pnlComand";
-            this.pnlComand.Size = new System.Drawing.Size(342, 239);
+            this.pnlComand.Size = new System.Drawing.Size(342, 324);
             this.pnlComand.TabIndex = 35;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(42, 295);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(128, 20);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "Các lần tiếp theo";
+            // 
+            // txtTimeGet
+            // 
+            this.txtTimeGet.Location = new System.Drawing.Point(176, 289);
+            this.txtTimeGet.Name = "txtTimeGet";
+            this.txtTimeGet.Size = new System.Drawing.Size(100, 26);
+            this.txtTimeGet.TabIndex = 42;
+            this.txtTimeGet.Text = "2";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(173, 188);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(139, 52);
+            this.button1.TabIndex = 41;
+            this.button1.Text = "Thời gian";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnGetData
+            // 
+            this.btnGetData.Enabled = false;
+            this.btnGetData.Location = new System.Drawing.Point(173, 118);
+            this.btnGetData.Name = "btnGetData";
+            this.btnGetData.Size = new System.Drawing.Size(139, 52);
+            this.btnGetData.TabIndex = 40;
+            this.btnGetData.Text = "Lấy dữ liệu";
+            this.btnGetData.UseVisualStyleBackColor = true;
+            this.btnGetData.Click += new System.EventHandler(this.btnGetData_Click);
             // 
             // btnChar
             // 
@@ -214,16 +262,6 @@
             this.btnList.Text = "Danh sách";
             this.btnList.UseVisualStyleBackColor = true;
             this.btnList.Click += new System.EventHandler(this.btnList_Click);
-            // 
-            // btnStart
-            // 
-            this.btnStart.Location = new System.Drawing.Point(174, 118);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(139, 52);
-            this.btnStart.TabIndex = 35;
-            this.btnStart.Text = "Bắt đầu";
-            this.btnStart.UseVisualStyleBackColor = true;
-            this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
             // btnNodeOnline
             // 
@@ -257,8 +295,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.lbCurrentTime);
-            this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btnClearLog);
             this.panel1.Controls.Add(this.pnlComand);
             this.panel1.Controls.Add(this.pnlSeri);
@@ -268,25 +304,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(342, 626);
             this.panel1.TabIndex = 30;
-            // 
-            // lbCurrentTime
-            // 
-            this.lbCurrentTime.AutoSize = true;
-            this.lbCurrentTime.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCurrentTime.Location = new System.Drawing.Point(83, 421);
-            this.lbCurrentTime.Name = "lbCurrentTime";
-            this.lbCurrentTime.Size = new System.Drawing.Size(0, 26);
-            this.lbCurrentTime.TabIndex = 38;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DCU_Cuong_Tool.Properties.Resources.clock_time_time_9949;
-            this.pictureBox1.Location = new System.Drawing.Point(21, 415);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox1.TabIndex = 37;
-            this.pictureBox1.TabStop = false;
             // 
             // btnClearLog
             // 
@@ -303,26 +320,56 @@
             this.btnClearLog.UseVisualStyleBackColor = false;
             this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click);
             // 
-            // timer3
-            // 
-            this.timer3.Tick += new System.EventHandler(this.timer3_Tick);
-            // 
             // timer4
             // 
             this.timer4.Interval = 1000;
             this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
             // 
-            // btnEnd
+            // button2
             // 
-            this.btnEnd.BackColor = System.Drawing.SystemColors.Window;
-            this.btnEnd.Enabled = false;
-            this.btnEnd.Location = new System.Drawing.Point(17, 176);
-            this.btnEnd.Name = "btnEnd";
-            this.btnEnd.Size = new System.Drawing.Size(139, 52);
-            this.btnEnd.TabIndex = 38;
-            this.btnEnd.Text = "Kết Thúc";
-            this.btnEnd.UseVisualStyleBackColor = false;
-            this.btnEnd.Click += new System.EventHandler(this.btnEnd_Click);
+            this.button2.Enabled = false;
+            this.button2.Location = new System.Drawing.Point(17, 188);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(139, 52);
+            this.button2.TabIndex = 44;
+            this.button2.Text = "Kết Thúc";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(176, 246);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 26);
+            this.textBox1.TabIndex = 45;
+            this.textBox1.Text = "3";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(42, 252);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(101, 20);
+            this.label3.TabIndex = 46;
+            this.label3.Text = "Lần đầu tiên ";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(288, 249);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(34, 20);
+            this.label4.TabIndex = 47;
+            this.label4.Text = "Giờ";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(288, 295);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(34, 20);
+            this.label6.TabIndex = 48;
+            this.label6.Text = "Giờ";
             // 
             // frmMain
             // 
@@ -345,9 +392,8 @@
             this.pnlSeri.ResumeLayout(false);
             this.pnlSeri.PerformLayout();
             this.pnlComand.ResumeLayout(false);
+            this.pnlComand.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -368,17 +414,21 @@
         private System.Windows.Forms.Panel pnlComand;
         private System.Windows.Forms.Button btnChar;
         private System.Windows.Forms.Button btnList;
-        private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnNodeOnline;
         private System.Windows.Forms.Button btnBlackList;
         private System.Windows.Forms.Button btnNodeOffline;
         private System.Windows.Forms.Button btnClearLog;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label lbCurrentTime;
-        private System.Windows.Forms.Timer timer3;
         private System.Windows.Forms.Timer timer4;
-        private System.Windows.Forms.Button btnEnd;
+        private System.Windows.Forms.Button btnGetData;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtTimeGet;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
