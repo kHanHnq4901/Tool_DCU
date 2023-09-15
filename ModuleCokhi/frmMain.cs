@@ -179,6 +179,30 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
                 }
                 
             }
+            // Nhận dữ liệu hoá đơn ngày
+            if (recv.Length >= 22)
+            {
+                if (recv.Substring(0, 5) == "FE FE" && recv.Substring(12, 5) == "11 03" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
+                {
+                    try
+                    {
+                        string[] aRec = recv.Split(' ');
+                        string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
+                        string dateTime = "20" + MyLib.HexStringToByte(aRec[18]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[17]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[16]).ToString().PadLeft(2, '0')
+                            + " " + MyLib.HexStringToByte(aRec[13]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[14]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[15]).ToString().PadLeft(2, '0');
+                        string tem = "";
+                        for (int i = 19; i <= aRec.Length - 3; i++)
+                        {
+                            tem += aRec[i] + " ";
+                        }
+                        string temActive = MyLib.ByteArrToASCII(MyLib.HexStringToArrByte(MyLib.FormatHexString(tem)));
+                        int index = temActive.IndexOf("(");
+                        double dActive = Convert.ToDouble(temActive.Substring(index + 1, temActive.Length - index - 7));
+                        clsSQLite.ExecuteSql("insert into HIS_DAILY (SERIAL, DATA_TIME, V180, CREATED) values (" + serial + ", '" + dateTime + "', " + dActive + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')");
+                    }
+                    catch { }
+                }
+            }
         }
         string connectionString = "Data Source=LocalDB.db;Version=3;";
         List<string> dataToWriteBatch = new List<string>();

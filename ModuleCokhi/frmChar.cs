@@ -260,5 +260,6 @@ namespace DCU_Cuong_Tool
         {
             LoadData();
         }
+
     }
 }

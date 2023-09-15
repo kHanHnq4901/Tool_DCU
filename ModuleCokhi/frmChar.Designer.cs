@@ -39,13 +39,14 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.txtTimeOffSet = new System.Windows.Forms.TextBox();
             this.cbBlackList = new System.Windows.Forms.CheckBox();
             this.cbOffline = new System.Windows.Forms.CheckBox();
             this.cbOnline = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -66,9 +67,9 @@
             // 
             this.panel3.Controls.Add(this.chart1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(224, 0);
+            this.panel3.Location = new System.Drawing.Point(0, 59);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1198, 626);
+            this.panel3.Size = new System.Drawing.Size(1422, 567);
             this.panel3.TabIndex = 5;
             // 
             // chart1
@@ -97,7 +98,7 @@
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
             this.chart1.Series.Add(series3);
-            this.chart1.Size = new System.Drawing.Size(1198, 626);
+            this.chart1.Size = new System.Drawing.Size(1422, 567);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
             title1.Name = "Title1";
@@ -106,6 +107,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtTimeOffSet);
             this.panel1.Controls.Add(this.cbBlackList);
@@ -113,16 +115,34 @@
             this.panel1.Controls.Add(this.cbOnline);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.dateTimePicker1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(224, 626);
+            this.panel1.Size = new System.Drawing.Size(1422, 59);
             this.panel1.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(3, 19);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(45, 20);
+            this.label2.TabIndex = 42;
+            this.label2.Text = "Ngày";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(208, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 20);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "Giờ";
             // 
             // txtTimeOffSet
             // 
             this.txtTimeOffSet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTimeOffSet.Location = new System.Drawing.Point(57, 77);
+            this.txtTimeOffSet.Location = new System.Drawing.Point(272, 15);
             this.txtTimeOffSet.Name = "txtTimeOffSet";
             this.txtTimeOffSet.Size = new System.Drawing.Size(100, 26);
             this.txtTimeOffSet.TabIndex = 40;
@@ -132,7 +152,7 @@
             // 
             this.cbBlackList.AutoSize = true;
             this.cbBlackList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbBlackList.Location = new System.Drawing.Point(37, 254);
+            this.cbBlackList.Location = new System.Drawing.Point(578, 15);
             this.cbBlackList.Name = "cbBlackList";
             this.cbBlackList.Size = new System.Drawing.Size(98, 24);
             this.cbBlackList.TabIndex = 5;
@@ -145,7 +165,7 @@
             this.cbOffline.Checked = true;
             this.cbOffline.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbOffline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbOffline.Location = new System.Drawing.Point(37, 201);
+            this.cbOffline.Location = new System.Drawing.Point(475, 15);
             this.cbOffline.Name = "cbOffline";
             this.cbOffline.Size = new System.Drawing.Size(76, 24);
             this.cbOffline.TabIndex = 4;
@@ -158,7 +178,7 @@
             this.cbOnline.Checked = true;
             this.cbOnline.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbOnline.Location = new System.Drawing.Point(37, 141);
+            this.cbOnline.Location = new System.Drawing.Point(378, 16);
             this.cbOnline.Name = "cbOnline";
             this.cbOnline.Size = new System.Drawing.Size(75, 24);
             this.cbOnline.TabIndex = 3;
@@ -168,7 +188,7 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(30, 297);
+            this.button1.Location = new System.Drawing.Point(719, 8);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 38);
             this.button1.TabIndex = 2;
@@ -179,19 +199,10 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(21, 12);
+            this.dateTimePicker1.Location = new System.Drawing.Point(59, 14);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(134, 26);
             this.dateTimePicker1.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 83);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 20);
-            this.label1.TabIndex = 41;
-            this.label1.Text = "Giờ";
             // 
             // frmChar
             // 
@@ -227,5 +238,6 @@
         private System.Windows.Forms.CheckBox cbBlackList;
         private System.Windows.Forms.TextBox txtTimeOffSet;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

@@ -31,17 +31,21 @@ namespace DCU_Cuong_Tool
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 string query = "";
-                if (btnNodeOnline.Checked == true)
+                if (rbNodeOnline.Checked == true)
                 {
                     query = "SELECT * FROM HIS_ONLINE WHERE CREATED LIKE '%" + date + "%' ORDER BY ID DESC";
                 }
-                else if (btnNodeOffline.Checked == true)
+                else if (rbNodeOffline.Checked == true)
                 {
                     query = "SELECT * FROM HIS_OFFLINE WHERE CREATED LIKE '%" + date + "%' ORDER BY ID DESC";
                 }
-                else if (btnNodeBlackList.Checked == true)
+                else if (rbNodeBlackList.Checked == true)
                 {
                     query = "SELECT * FROM HIS_BLACK_LIST WHERE CREATED LIKE '%" + date + "%' ORDER BY ID DESC";
+                }
+                else if (rdDaiLy.Checked == true)
+                {
+                    query = "SELECT * FROM HIS_DAILY WHERE CREATED LIKE '%" + date + "%' ORDER BY ID DESC";
                 }
 
                 using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, connection))
