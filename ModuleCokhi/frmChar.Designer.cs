@@ -45,6 +45,7 @@
             this.cbOnline = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
@@ -105,6 +106,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtTimeOffSet);
             this.panel1.Controls.Add(this.cbBlackList);
             this.panel1.Controls.Add(this.cbOffline);
@@ -120,7 +122,7 @@
             // txtTimeOffSet
             // 
             this.txtTimeOffSet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTimeOffSet.Location = new System.Drawing.Point(37, 84);
+            this.txtTimeOffSet.Location = new System.Drawing.Point(57, 77);
             this.txtTimeOffSet.Name = "txtTimeOffSet";
             this.txtTimeOffSet.Size = new System.Drawing.Size(100, 26);
             this.txtTimeOffSet.TabIndex = 40;
@@ -129,8 +131,6 @@
             // cbBlackList
             // 
             this.cbBlackList.AutoSize = true;
-            this.cbBlackList.Checked = true;
-            this.cbBlackList.CheckState = System.Windows.Forms.CheckState.Checked;
             this.cbBlackList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbBlackList.Location = new System.Drawing.Point(37, 254);
             this.cbBlackList.Name = "cbBlackList";
@@ -184,6 +184,15 @@
             this.dateTimePicker1.Size = new System.Drawing.Size(134, 26);
             this.dateTimePicker1.TabIndex = 1;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(3, 83);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(34, 20);
+            this.label1.TabIndex = 41;
+            this.label1.Text = "Giờ";
+            // 
             // frmChar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -217,5 +226,6 @@
         private System.Windows.Forms.CheckBox cbOnline;
         private System.Windows.Forms.CheckBox cbBlackList;
         private System.Windows.Forms.TextBox txtTimeOffSet;
+        private System.Windows.Forms.Label label1;
     }
 }
