@@ -158,8 +158,8 @@ namespace DCU_Cuong_Tool
                     if (leftSerial == rightSerial && leftConfig == rightConfig)
                     {
                         isMatched = true;
-                        leftRow.DefaultCellStyle.BackColor = Color.Green;
-                        rightRow.DefaultCellStyle.BackColor = Color.Green;
+                        leftRow.DefaultCellStyle.BackColor = Color.Lime;
+                        rightRow.DefaultCellStyle.BackColor = Color.Lime;
                         if (rowRight < matchFlags.Count)
                         {
                             matchFlags[rowRight] = true;

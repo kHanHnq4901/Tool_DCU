@@ -732,11 +732,11 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
 
 
             btnNodeOnline.PerformClick();
-            await Task.Delay(25000); // Đợi 10 giây
+            await Task.Delay(30000); // Đợi 10 giây
 
 
             btnBlackList.PerformClick();
-            await Task.Delay(15000); // Đợi 10 giây
+            await Task.Delay(10000); // Đợi 10 giây
 
 
             btnNodeOffline.PerformClick();
