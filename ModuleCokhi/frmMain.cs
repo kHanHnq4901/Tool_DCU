@@ -728,14 +728,22 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
 
         async Task PerformClicksWithDelay()
         {
+
+
+
             btnNodeOnline.PerformClick();
-            await Task.Delay(10000); // Đợi 10 giây
+            await Task.Delay(25000); // Đợi 10 giây
+
 
             btnBlackList.PerformClick();
-            await Task.Delay(10000); // Đợi 10 giây
+            await Task.Delay(15000); // Đợi 10 giây
+
 
             btnNodeOffline.PerformClick();
-            await Task.Delay(10000); // Đợi 10 giây
+            await Task.Delay(15000); // Đợi 10 giây
+
+
+ 
         }
         async void YourMethodOrEvent()
         {
@@ -813,6 +821,12 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
             button2.Enabled = false;
             textBox1.Enabled = true;
             displayLog("End" + " Kết thúc lấy dữ liệu tự động");
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            frmCompare fCompare = new frmCompare();
+            fCompare.Show();
         }
     }
 }

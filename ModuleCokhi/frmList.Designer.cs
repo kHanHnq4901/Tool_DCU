@@ -30,10 +30,13 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmList));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.dateTimeEnd = new System.Windows.Forms.DateTimePicker();
+            this.btnExport = new System.Windows.Forms.Button();
             this.rdDaiLy = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.lbCount = new System.Windows.Forms.Label();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.dateTimeStart = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
             this.rbNodeBlackList = new System.Windows.Forms.RadioButton();
             this.rbNodeOffline = new System.Windows.Forms.RadioButton();
@@ -41,9 +44,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtgvData = new System.Windows.Forms.DataGridView();
             this.sqLiteCommandBuilder1 = new System.Data.SQLite.SQLiteCommandBuilder();
-            this.btnExport = new System.Windows.Forms.Button();
-            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvData)).BeginInit();
@@ -52,12 +52,12 @@
             // panel1
             // 
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.dateTimePicker2);
+            this.panel1.Controls.Add(this.dateTimeEnd);
             this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.rdDaiLy);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lbCount);
-            this.panel1.Controls.Add(this.dateTimePicker1);
+            this.panel1.Controls.Add(this.dateTimeStart);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.rbNodeBlackList);
             this.panel1.Controls.Add(this.rbNodeOffline);
@@ -67,6 +67,34 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1422, 81);
             this.panel1.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(509, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 20);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Đến";
+            // 
+            // dateTimeEnd
+            // 
+            this.dateTimeEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeEnd.Location = new System.Drawing.Point(575, 25);
+            this.dateTimeEnd.Name = "dateTimeEnd";
+            this.dateTimeEnd.Size = new System.Drawing.Size(119, 26);
+            this.dateTimeEnd.TabIndex = 13;
+            // 
+            // btnExport
+            // 
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.Location = new System.Drawing.Point(916, 20);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(131, 36);
+            this.btnExport.TabIndex = 12;
+            this.btnExport.Text = "Xuất file";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // rdDaiLy
             // 
@@ -98,13 +126,13 @@
             this.lbCount.Size = new System.Drawing.Size(0, 25);
             this.lbCount.TabIndex = 9;
             // 
-            // dateTimePicker1
+            // dateTimeStart
             // 
-            this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(365, 25);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(119, 26);
-            this.dateTimePicker1.TabIndex = 8;
+            this.dateTimeStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimeStart.Location = new System.Drawing.Point(365, 25);
+            this.dateTimeStart.Name = "dateTimeStart";
+            this.dateTimeStart.Size = new System.Drawing.Size(119, 26);
+            this.dateTimeStart.TabIndex = 8;
             // 
             // button1
             // 
@@ -179,34 +207,6 @@
             this.sqLiteCommandBuilder1.DataAdapter = null;
             this.sqLiteCommandBuilder1.QuoteSuffix = "]";
             // 
-            // btnExport
-            // 
-            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.Location = new System.Drawing.Point(916, 20);
-            this.btnExport.Name = "btnExport";
-            this.btnExport.Size = new System.Drawing.Size(131, 36);
-            this.btnExport.TabIndex = 12;
-            this.btnExport.Text = "Xuất file";
-            this.btnExport.UseVisualStyleBackColor = true;
-            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
-            // 
-            // dateTimePicker2
-            // 
-            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker2.Location = new System.Drawing.Point(575, 25);
-            this.dateTimePicker2.Name = "dateTimePicker2";
-            this.dateTimePicker2.Size = new System.Drawing.Size(119, 26);
-            this.dateTimePicker2.TabIndex = 13;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(509, 30);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(39, 20);
-            this.label2.TabIndex = 14;
-            this.label2.Text = "Đến";
-            // 
             // frmList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
@@ -238,12 +238,12 @@
         private System.Windows.Forms.RadioButton rbNodeOffline;
         private System.Windows.Forms.RadioButton rbNodeOnline;
         private System.Data.SQLite.SQLiteCommandBuilder sqLiteCommandBuilder1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker dateTimeStart;
         private System.Windows.Forms.Label lbCount;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton rdDaiLy;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
+        private System.Windows.Forms.DateTimePicker dateTimeEnd;
     }
 }
