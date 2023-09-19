@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmList));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rdDaiLy = new System.Windows.Forms.RadioButton();
+            this.label1 = new System.Windows.Forms.Label();
             this.lbCount = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.button1 = new System.Windows.Forms.Button();
@@ -39,8 +41,9 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtgvData = new System.Windows.Forms.DataGridView();
             this.sqLiteCommandBuilder1 = new System.Data.SQLite.SQLiteCommandBuilder();
-            this.label1 = new System.Windows.Forms.Label();
-            this.rdDaiLy = new System.Windows.Forms.RadioButton();
+            this.btnExport = new System.Windows.Forms.Button();
+            this.dateTimePicker2 = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvData)).BeginInit();
@@ -48,6 +51,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.dateTimePicker2);
+            this.panel1.Controls.Add(this.btnExport);
             this.panel1.Controls.Add(this.rdDaiLy);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.lbCount);
@@ -62,11 +68,32 @@
             this.panel1.Size = new System.Drawing.Size(1422, 81);
             this.panel1.TabIndex = 0;
             // 
+            // rdDaiLy
+            // 
+            this.rdDaiLy.AutoSize = true;
+            this.rdDaiLy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rdDaiLy.Location = new System.Drawing.Point(166, 42);
+            this.rdDaiLy.Name = "rdDaiLy";
+            this.rdDaiLy.Size = new System.Drawing.Size(96, 24);
+            this.rdDaiLy.TabIndex = 11;
+            this.rdDaiLy.TabStop = true;
+            this.rdDaiLy.Text = "Hóa Đơn";
+            this.rdDaiLy.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(314, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(27, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Từ";
+            // 
             // lbCount
             // 
             this.lbCount.AutoSize = true;
             this.lbCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCount.Location = new System.Drawing.Point(994, 31);
+            this.lbCount.Location = new System.Drawing.Point(1072, 31);
             this.lbCount.Name = "lbCount";
             this.lbCount.Size = new System.Drawing.Size(0, 25);
             this.lbCount.TabIndex = 9;
@@ -74,7 +101,7 @@
             // dateTimePicker1
             // 
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimePicker1.Location = new System.Drawing.Point(75, 27);
+            this.dateTimePicker1.Location = new System.Drawing.Point(365, 25);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(119, 26);
             this.dateTimePicker1.TabIndex = 8;
@@ -82,7 +109,7 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(772, 24);
+            this.button1.Location = new System.Drawing.Point(762, 20);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 36);
             this.button1.TabIndex = 7;
@@ -94,7 +121,7 @@
             // 
             this.rbNodeBlackList.AutoSize = true;
             this.rbNodeBlackList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbNodeBlackList.Location = new System.Drawing.Point(511, 31);
+            this.rbNodeBlackList.Location = new System.Drawing.Point(166, 12);
             this.rbNodeBlackList.Name = "rbNodeBlackList";
             this.rbNodeBlackList.Size = new System.Drawing.Size(142, 24);
             this.rbNodeBlackList.TabIndex = 6;
@@ -106,7 +133,7 @@
             // 
             this.rbNodeOffline.AutoSize = true;
             this.rbNodeOffline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbNodeOffline.Location = new System.Drawing.Point(369, 31);
+            this.rbNodeOffline.Location = new System.Drawing.Point(32, 42);
             this.rbNodeOffline.Name = "rbNodeOffline";
             this.rbNodeOffline.Size = new System.Drawing.Size(120, 24);
             this.rbNodeOffline.TabIndex = 5;
@@ -118,7 +145,7 @@
             // 
             this.rbNodeOnline.AutoSize = true;
             this.rbNodeOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rbNodeOnline.Location = new System.Drawing.Point(235, 30);
+            this.rbNodeOnline.Location = new System.Drawing.Point(32, 12);
             this.rbNodeOnline.Name = "rbNodeOnline";
             this.rbNodeOnline.Size = new System.Drawing.Size(119, 24);
             this.rbNodeOnline.TabIndex = 4;
@@ -152,26 +179,33 @@
             this.sqLiteCommandBuilder1.DataAdapter = null;
             this.sqLiteCommandBuilder1.QuoteSuffix = "]";
             // 
-            // label1
+            // btnExport
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 30);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(45, 20);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Ngày";
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.Location = new System.Drawing.Point(916, 20);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(131, 36);
+            this.btnExport.TabIndex = 12;
+            this.btnExport.Text = "Xuất file";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
-            // rdDaiLy
+            // dateTimePicker2
             // 
-            this.rdDaiLy.AutoSize = true;
-            this.rdDaiLy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.rdDaiLy.Location = new System.Drawing.Point(657, 31);
-            this.rdDaiLy.Name = "rdDaiLy";
-            this.rdDaiLy.Size = new System.Drawing.Size(96, 24);
-            this.rdDaiLy.TabIndex = 11;
-            this.rdDaiLy.TabStop = true;
-            this.rdDaiLy.Text = "Hóa Đơn";
-            this.rdDaiLy.UseVisualStyleBackColor = true;
+            this.dateTimePicker2.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker2.Location = new System.Drawing.Point(575, 25);
+            this.dateTimePicker2.Name = "dateTimePicker2";
+            this.dateTimePicker2.Size = new System.Drawing.Size(119, 26);
+            this.dateTimePicker2.TabIndex = 13;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(509, 30);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 20);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Đến";
             // 
             // frmList
             // 
@@ -208,5 +242,8 @@
         private System.Windows.Forms.Label lbCount;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.RadioButton rdDaiLy;
+        private System.Windows.Forms.Button btnExport;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.DateTimePicker dateTimePicker2;
     }
 }

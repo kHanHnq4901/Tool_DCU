@@ -13,6 +13,7 @@ using System.IO.Ports;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Timers;
 using System.Windows.Forms;
 using System.Windows.Forms.DataVisualization.Charting;
@@ -144,7 +145,7 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
                 {
                     string config = aRec[13];
                     displayLog("serial " + serial + " || Never config  " + config + "|| Never eixts");
-                    AddDataToBatchHisOffLine(serial);
+                    AddDataToBatchHisOffLine(serial, config);
                 }
                 else
                 {
@@ -198,7 +199,10 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
                         string temActive = MyLib.ByteArrToASCII(MyLib.HexStringToArrByte(MyLib.FormatHexString(tem)));
                         int index = temActive.IndexOf("(");
                         double dActive = Convert.ToDouble(temActive.Substring(index + 1, temActive.Length - index - 7));
-                        clsSQLite.ExecuteSql("insert into HIS_DAILY (SERIAL, DATA_TIME, V180, CREATED) values (" + serial + ", '" + dateTime + "', " + dActive + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')");
+                        AddDataToBatchHisDaiLy(serial,dateTime,dActive);
+                        Thread executeThread = new Thread(ExecuteBatchInsert);
+                        executeThread.Start();
+                        // clsSQLite.ExecuteSql("insert into HIS_DAILY (SERIAL, DATA_TIME, V180, CREATED) values (" + serial + ", '" + dateTime + "', " + dActive + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')");
                     }
                     catch { }
                 }
@@ -213,9 +217,9 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
             dataToWriteBatch.Add(data);
         }
 
-        void AddDataToBatchHisOffLine(string serial)
+        void AddDataToBatchHisOffLine(string serial,string config)
         {
-            string data = $"INSERT INTO HIS_OFFLINE (SERIAL, CREATED) VALUES ('{serial}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+            string data = $"INSERT INTO HIS_OFFLINE (SERIAL, CONFIG, CREATED) VALUES ('{serial}', '{config}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
             dataToWriteBatch.Add(data);
         }
 
@@ -224,40 +228,52 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
             string data = $"INSERT INTO HIS_BLACK_LIST (SERIAL, CREATED) VALUES ('{serial}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
             dataToWriteBatch.Add(data);
         }
+        void AddDataToBatchHisDaiLy(string serial,string dateTime, double dActive)
+        {
+            string data = $"INSERT INTO HIS_DAILY (SERIAL, DATA_TIME, V180, CREATED) VALUES ('{serial}','{dateTime}','{dActive}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+            dataToWriteBatch.Add(data);
+        }
+
+
+        private object lockObject = new object(); // Khóa đồng bộ cho việc truy cập vào danh sách dataToWriteBatch
 
         void ExecuteBatchInsert()
         {
             if (dataToWriteBatch.Count > 0)
             {
-                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                lock (lockObject) // Đảm bảo chỉ một luồng có thể truy cập vào danh sách dataToWriteBatch cùng một lúc
                 {
-                    connection.Open();
-
-                    using (SQLiteTransaction transaction = connection.BeginTransaction())
+                    using (SQLiteConnection connection = new SQLiteConnection(connectionString))
                     {
-                        try
-                        {
-                            foreach (string data in dataToWriteBatch)
-                            {
-                                using (SQLiteCommand command = new SQLiteCommand(data, connection))
-                                {
-                                    command.ExecuteNonQuery();
-                                }
-                            }
+                        connection.Open();
 
-                            transaction.Commit();
-                        }
-                        catch (Exception ex)
+                        using (SQLiteTransaction transaction = connection.BeginTransaction())
                         {
-                            Console.WriteLine("Batch insert failed: " + ex.Message);
-                            transaction.Rollback();
+                            try
+                            {
+                                foreach (string data in dataToWriteBatch)
+                                {
+                                    using (SQLiteCommand command = new SQLiteCommand(data, connection))
+                                    {
+                                        command.ExecuteNonQuery();
+                                    }
+                                }
+
+                                transaction.Commit();
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine("Batch insert failed: " + ex.Message);
+                                transaction.Rollback();
+                            }
                         }
                     }
-                }
 
-                dataToWriteBatch.Clear();
+                    dataToWriteBatch.Clear();
+                }
             }
         }
+
         public void StartCounterTimer()
         {
             iCounterTimeout = 0;
@@ -710,6 +726,21 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
         }
         private bool executedOnce = false; // Biến kiểm tra xem hành động đã được thực hiện một lần hay chưa
 
+        async Task PerformClicksWithDelay()
+        {
+            btnNodeOnline.PerformClick();
+            await Task.Delay(10000); // Đợi 10 giây
+
+            btnBlackList.PerformClick();
+            await Task.Delay(10000); // Đợi 10 giây
+
+            btnNodeOffline.PerformClick();
+            await Task.Delay(10000); // Đợi 10 giây
+        }
+        async void YourMethodOrEvent()
+        {
+            await PerformClicksWithDelay();
+        }
         private void timer4_Tick(object sender, EventArgs e)
         {
             DateTime currentTime = DateTime.Now;
@@ -717,17 +748,13 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
             if (currentTime.Hour == currentHour && !executedOnce)
             {
                 // Thực hiện hành động chỉ chạy đúng một lần khi currentTime.Hour = 13
-                btnNodeOnline.PerformClick();
-                btnBlackList.PerformClick();
-                btnNodeOffline.PerformClick();
+                YourMethodOrEvent();
 
                 executedOnce = true; // Đánh dấu rằng hành động đã được thực hiện một lần
             }
             else if (currentTime.Hour % getTime == 0 && currentTime.Minute == 0 && currentTime.Second == 0 && executedOnce == true)
             {
-                    btnNodeOnline.PerformClick();
-                    btnBlackList.PerformClick();
-                    btnNodeOffline.PerformClick();
+                YourMethodOrEvent();
             }
         }
         private int getTime = 0;
