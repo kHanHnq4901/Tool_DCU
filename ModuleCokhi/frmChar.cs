@@ -135,7 +135,7 @@ namespace DCU_Cuong_Tool
                 //    catch { }
 
                 //}
-                for (int showChart = 0; showChart < 23; showChart++)
+                for (int showChart = 0; showChart < 24; showChart++)
                 {
                     try
                     {
@@ -241,7 +241,20 @@ namespace DCU_Cuong_Tool
                         // Xử lý ngoại lệ nếu cần thiết
                     }
                 }
+    
+                if (cbOnline.Checked && cbOffline.Checked)
+                {
+                    chart1.ChartAreas[0].AxisY.Maximum = 419;
+                }
+                else if (cbOnline.Checked || cbOffline.Checked)
+                { 
+                   chart1.ChartAreas[0].AxisY.Maximum = 419;
+                }else
+                {
 
+                }
+                chart1.AntiAliasing = System.Windows.Forms.DataVisualization.Charting.AntiAliasingStyles.All;
+                chart1.ChartAreas[0].AxisX.Maximum = 25;
                 chart1.ChartAreas[0].AxisY.Title = "Số Công Tớ";
                 chart1.ChartAreas[0].AxisX.Title = "Thời Gian";
                 connection.Close();

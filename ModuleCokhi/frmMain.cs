@@ -188,7 +188,7 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
                     try
                     {
                         string[] aRec = recv.Split(' ');
-                        string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
+                        string serial = aRec[7] + aRec[8] + aRec[9] + aRec[10] + aRec[11] + aRec[12];
                         string dateTime = "20" + MyLib.HexStringToByte(aRec[18]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[17]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[16]).ToString().PadLeft(2, '0')
                             + " " + MyLib.HexStringToByte(aRec[13]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[14]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[15]).ToString().PadLeft(2, '0');
                         string tem = "";

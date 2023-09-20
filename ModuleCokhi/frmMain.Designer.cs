@@ -37,10 +37,13 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.cmbPortList = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnRead = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.pnlSeri = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.txtDCUNo = new System.Windows.Forms.TextBox();
             this.pnlComand = new System.Windows.Forms.Panel();
+            this.btnCompare = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,18 +52,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtTimeGet = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnGetData = new System.Windows.Forms.Button();
             this.btnChar = new System.Windows.Forms.Button();
             this.btnList = new System.Windows.Forms.Button();
             this.btnNodeOnline = new System.Windows.Forms.Button();
             this.btnBlackList = new System.Windows.Forms.Button();
             this.btnNodeOffline = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.timer4 = new System.Windows.Forms.Timer(this.components);
-            this.btnCompare = new System.Windows.Forms.Button();
             this.btnClearLog = new System.Windows.Forms.Button();
-            this.btnRead = new System.Windows.Forms.Button();
-            this.btnRefresh = new System.Windows.Forms.Button();
+            this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.pnlSeri.SuspendLayout();
@@ -128,6 +127,37 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Cổng";
             // 
+            // btnRead
+            // 
+            this.btnRead.BackColor = System.Drawing.SystemColors.Window;
+            this.btnRead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRead.Image = global::DCU_Cuong_Tool.Properties.Resources.connect_line_icon_236099;
+            this.btnRead.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRead.Location = new System.Drawing.Point(17, 51);
+            this.btnRead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRead.Name = "btnRead";
+            this.btnRead.Size = new System.Drawing.Size(139, 49);
+            this.btnRead.TabIndex = 2;
+            this.btnRead.Text = "Mở COM";
+            this.btnRead.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRead.UseVisualStyleBackColor = false;
+            this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Image = global::DCU_Cuong_Tool.Properties.Resources.disconnect_line_icon_236081;
+            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnRefresh.Location = new System.Drawing.Point(173, 51);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(139, 49);
+            this.btnRefresh.TabIndex = 3;
+            this.btnRefresh.Text = "Đóng COM";
+            this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.button4_Click);
+            // 
             // pnlSeri
             // 
             this.pnlSeri.Controls.Add(this.label5);
@@ -169,7 +199,6 @@
             this.pnlComand.Controls.Add(this.label1);
             this.pnlComand.Controls.Add(this.txtTimeGet);
             this.pnlComand.Controls.Add(this.button1);
-            this.pnlComand.Controls.Add(this.btnGetData);
             this.pnlComand.Controls.Add(this.btnChar);
             this.pnlComand.Controls.Add(this.btnList);
             this.pnlComand.Controls.Add(this.btnNodeOnline);
@@ -181,10 +210,21 @@
             this.pnlComand.Size = new System.Drawing.Size(342, 363);
             this.pnlComand.TabIndex = 35;
             // 
+            // btnCompare
+            // 
+            this.btnCompare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCompare.Location = new System.Drawing.Point(172, 118);
+            this.btnCompare.Name = "btnCompare";
+            this.btnCompare.Size = new System.Drawing.Size(140, 52);
+            this.btnCompare.TabIndex = 49;
+            this.btnCompare.Text = "So sánh";
+            this.btnCompare.UseVisualStyleBackColor = true;
+            this.btnCompare.Click += new System.EventHandler(this.button3_Click);
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(288, 333);
+            this.label6.Location = new System.Drawing.Point(288, 302);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(34, 20);
             this.label6.TabIndex = 48;
@@ -193,7 +233,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(288, 292);
+            this.label4.Location = new System.Drawing.Point(288, 260);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 20);
             this.label4.TabIndex = 47;
@@ -202,7 +242,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 296);
+            this.label3.Location = new System.Drawing.Point(15, 256);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 20);
             this.label3.TabIndex = 46;
@@ -211,7 +251,7 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(176, 290);
+            this.textBox1.Location = new System.Drawing.Point(173, 254);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 26);
             this.textBox1.TabIndex = 15;
@@ -221,7 +261,7 @@
             // 
             this.button2.Enabled = false;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(16, 234);
+            this.button2.Location = new System.Drawing.Point(17, 185);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(139, 52);
             this.button2.TabIndex = 13;
@@ -232,7 +272,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 327);
+            this.label1.Location = new System.Drawing.Point(13, 302);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(128, 20);
             this.label1.TabIndex = 43;
@@ -241,7 +281,7 @@
             // txtTimeGet
             // 
             this.txtTimeGet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTimeGet.Location = new System.Drawing.Point(176, 327);
+            this.txtTimeGet.Location = new System.Drawing.Point(172, 296);
             this.txtTimeGet.Name = "txtTimeGet";
             this.txtTimeGet.Size = new System.Drawing.Size(100, 26);
             this.txtTimeGet.TabIndex = 16;
@@ -250,25 +290,13 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(172, 234);
+            this.button1.Location = new System.Drawing.Point(172, 185);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 52);
             this.button1.TabIndex = 14;
             this.button1.Text = "Bắt đầu";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnGetData
-            // 
-            this.btnGetData.Enabled = false;
-            this.btnGetData.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGetData.Location = new System.Drawing.Point(172, 176);
-            this.btnGetData.Name = "btnGetData";
-            this.btnGetData.Size = new System.Drawing.Size(139, 52);
-            this.btnGetData.TabIndex = 12;
-            this.btnGetData.Text = "Lấy dữ liệu";
-            this.btnGetData.UseVisualStyleBackColor = true;
-            this.btnGetData.Click += new System.EventHandler(this.btnGetData_Click);
             // 
             // btnChar
             // 
@@ -337,22 +365,6 @@
             this.panel1.Size = new System.Drawing.Size(342, 626);
             this.panel1.TabIndex = 30;
             // 
-            // timer4
-            // 
-            this.timer4.Interval = 1000;
-            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
-            // 
-            // btnCompare
-            // 
-            this.btnCompare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCompare.Location = new System.Drawing.Point(172, 118);
-            this.btnCompare.Name = "btnCompare";
-            this.btnCompare.Size = new System.Drawing.Size(140, 52);
-            this.btnCompare.TabIndex = 49;
-            this.btnCompare.Text = "So sánh";
-            this.btnCompare.UseVisualStyleBackColor = true;
-            this.btnCompare.Click += new System.EventHandler(this.button3_Click);
-            // 
             // btnClearLog
             // 
             this.btnClearLog.BackColor = System.Drawing.Color.LightCoral;
@@ -369,36 +381,10 @@
             this.btnClearLog.UseVisualStyleBackColor = false;
             this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click);
             // 
-            // btnRead
+            // timer4
             // 
-            this.btnRead.BackColor = System.Drawing.SystemColors.Window;
-            this.btnRead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRead.Image = global::DCU_Cuong_Tool.Properties.Resources.connect_line_icon_236099;
-            this.btnRead.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRead.Location = new System.Drawing.Point(17, 51);
-            this.btnRead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnRead.Name = "btnRead";
-            this.btnRead.Size = new System.Drawing.Size(139, 49);
-            this.btnRead.TabIndex = 2;
-            this.btnRead.Text = "Mở COM";
-            this.btnRead.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRead.UseVisualStyleBackColor = false;
-            this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRefresh.Image = global::DCU_Cuong_Tool.Properties.Resources.disconnect_line_icon_236081;
-            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRefresh.Location = new System.Drawing.Point(173, 51);
-            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(139, 49);
-            this.btnRefresh.TabIndex = 3;
-            this.btnRefresh.Text = "Đóng COM";
-            this.btnRefresh.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.button4_Click);
+            this.timer4.Interval = 1000;
+            this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
             // 
             // frmMain
             // 
@@ -449,7 +435,6 @@
         private System.Windows.Forms.Button btnClearLog;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Timer timer4;
-        private System.Windows.Forms.Button btnGetData;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtTimeGet;
