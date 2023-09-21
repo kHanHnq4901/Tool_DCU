@@ -465,7 +465,7 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
             MyLib.ReadConfigConn();
             GenerateTableCRC();
             pnlSeri.Visible = false;
-            pnlComand.Visible = true;
+            pnlComand.Visible = false;
             if (ports.Length > 0)
             {
                 for (int i = 0; i < ports.Length; i++)
@@ -729,21 +729,16 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
         async Task PerformClicksWithDelay()
         {
 
-
-
-            btnNodeOnline.PerformClick();
-            await Task.Delay(30000); // Đợi 10 giây
-
-
             btnBlackList.PerformClick();
             await Task.Delay(10000); // Đợi 10 giây
 
-
             btnNodeOffline.PerformClick();
-            await Task.Delay(15000); // Đợi 10 giây
+            await Task.Delay(20000); // Đợi 20 giây
+
+            btnNodeOnline.PerformClick();
+            await Task.Delay(30000); // Đợi 30 giây
 
 
- 
         }
         async void YourMethodOrEvent()
         {

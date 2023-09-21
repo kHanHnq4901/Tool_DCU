@@ -30,23 +30,25 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCompare));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cbTimeLeft = new System.Windows.Forms.ComboBox();
             this.dateTimeRight = new System.Windows.Forms.DateTimePicker();
             this.rdDaiLy = new System.Windows.Forms.RadioButton();
             this.label1 = new System.Windows.Forms.Label();
             this.dateTimeLeft = new System.Windows.Forms.DateTimePicker();
-            this.button1 = new System.Windows.Forms.Button();
             this.rbNodeBlackList = new System.Windows.Forms.RadioButton();
             this.rbNodeOffline = new System.Windows.Forms.RadioButton();
             this.rbNodeOnline = new System.Windows.Forms.RadioButton();
-            this.cbTime = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lbCountDiff = new System.Windows.Forms.Label();
+            this.lbCountLeft = new System.Windows.Forms.Label();
             this.lbCountRight = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.dtgvLeft = new System.Windows.Forms.DataGridView();
             this.dtgvRight = new System.Windows.Forms.DataGridView();
-            this.lbCountLeft = new System.Windows.Forms.Label();
-            this.lbCountDiff = new System.Windows.Forms.Label();
+            this.cbTimeRight = new System.Windows.Forms.ComboBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvLeft)).BeginInit();
@@ -56,9 +58,11 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.cbTimeRight);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.cbTime);
+            this.panel1.Controls.Add(this.cbTimeLeft);
             this.panel1.Controls.Add(this.dateTimeRight);
             this.panel1.Controls.Add(this.rdDaiLy);
             this.panel1.Controls.Add(this.label1);
@@ -72,10 +76,36 @@
             this.panel1.Size = new System.Drawing.Size(1422, 104);
             this.panel1.TabIndex = 1;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(706, 60);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(45, 20);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Ngày";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(328, 61);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 20);
+            this.label3.TabIndex = 16;
+            this.label3.Text = "Khung giờ";
+            // 
+            // cbTimeLeft
+            // 
+            this.cbTimeLeft.FormattingEnabled = true;
+            this.cbTimeLeft.Location = new System.Drawing.Point(418, 52);
+            this.cbTimeLeft.Name = "cbTimeLeft";
+            this.cbTimeLeft.Size = new System.Drawing.Size(121, 28);
+            this.cbTimeLeft.TabIndex = 15;
+            // 
             // dateTimeRight
             // 
             this.dateTimeRight.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeRight.Location = new System.Drawing.Point(923, 47);
+            this.dateTimeRight.Location = new System.Drawing.Point(786, 56);
             this.dateTimeRight.Name = "dateTimeRight";
             this.dateTimeRight.Size = new System.Drawing.Size(119, 26);
             this.dateTimeRight.TabIndex = 13;
@@ -95,7 +125,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(176, 55);
+            this.label1.Location = new System.Drawing.Point(86, 62);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(45, 20);
             this.label1.TabIndex = 10;
@@ -104,21 +134,10 @@
             // dateTimeLeft
             // 
             this.dateTimeLeft.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeLeft.Location = new System.Drawing.Point(277, 49);
+            this.dateTimeLeft.Location = new System.Drawing.Point(169, 55);
             this.dateTimeLeft.Name = "dateTimeLeft";
             this.dateTimeLeft.Size = new System.Drawing.Size(119, 26);
             this.dateTimeLeft.TabIndex = 8;
-            // 
-            // button1
-            // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(595, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(131, 36);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "Xem";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // rbNodeBlackList
             // 
@@ -156,22 +175,16 @@
             this.rbNodeOnline.Text = "Node Online";
             this.rbNodeOnline.UseVisualStyleBackColor = true;
             // 
-            // cbTime
+            // button1
             // 
-            this.cbTime.FormattingEnabled = true;
-            this.cbTime.Location = new System.Drawing.Point(595, 47);
-            this.cbTime.Name = "cbTime";
-            this.cbTime.Size = new System.Drawing.Size(121, 28);
-            this.cbTime.TabIndex = 15;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(497, 53);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(80, 20);
-            this.label3.TabIndex = 16;
-            this.label3.Text = "Khung giờ";
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Location = new System.Drawing.Point(595, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(131, 36);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Xem";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel3
             // 
@@ -186,6 +199,25 @@
             this.panel3.Size = new System.Drawing.Size(1422, 67);
             this.panel3.TabIndex = 18;
             // 
+            // lbCountDiff
+            // 
+            this.lbCountDiff.AutoSize = true;
+            this.lbCountDiff.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCountDiff.Location = new System.Drawing.Point(539, 42);
+            this.lbCountDiff.Name = "lbCountDiff";
+            this.lbCountDiff.Size = new System.Drawing.Size(0, 25);
+            this.lbCountDiff.TabIndex = 11;
+            // 
+            // lbCountLeft
+            // 
+            this.lbCountLeft.AutoSize = true;
+            this.lbCountLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCountLeft.Location = new System.Drawing.Point(123, 14);
+            this.lbCountLeft.Name = "lbCountLeft";
+            this.lbCountLeft.Size = new System.Drawing.Size(98, 25);
+            this.lbCountLeft.TabIndex = 10;
+            this.lbCountLeft.Text = "Số lượng";
+            // 
             // lbCountRight
             // 
             this.lbCountRight.AutoSize = true;
@@ -195,15 +227,6 @@
             this.lbCountRight.Size = new System.Drawing.Size(98, 25);
             this.lbCountRight.TabIndex = 9;
             this.lbCountRight.Text = "Số lượng";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(834, 49);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(45, 20);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Ngày";
             // 
             // dtgvLeft
             // 
@@ -225,24 +248,22 @@
             this.dtgvRight.Size = new System.Drawing.Size(591, 443);
             this.dtgvRight.TabIndex = 20;
             // 
-            // lbCountLeft
+            // cbTimeRight
             // 
-            this.lbCountLeft.AutoSize = true;
-            this.lbCountLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCountLeft.Location = new System.Drawing.Point(123, 14);
-            this.lbCountLeft.Name = "lbCountLeft";
-            this.lbCountLeft.Size = new System.Drawing.Size(98, 25);
-            this.lbCountLeft.TabIndex = 10;
-            this.lbCountLeft.Text = "Số lượng";
+            this.cbTimeRight.FormattingEnabled = true;
+            this.cbTimeRight.Location = new System.Drawing.Point(1014, 52);
+            this.cbTimeRight.Name = "cbTimeRight";
+            this.cbTimeRight.Size = new System.Drawing.Size(121, 28);
+            this.cbTimeRight.TabIndex = 18;
             // 
-            // lbCountDiff
+            // label2
             // 
-            this.lbCountDiff.AutoSize = true;
-            this.lbCountDiff.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCountDiff.Location = new System.Drawing.Point(539, 42);
-            this.lbCountDiff.Name = "lbCountDiff";
-            this.lbCountDiff.Size = new System.Drawing.Size(0, 25);
-            this.lbCountDiff.TabIndex = 11;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(928, 60);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 20);
+            this.label2.TabIndex = 19;
+            this.label2.Text = "Khung giờ";
             // 
             // frmCompare
             // 
@@ -280,7 +301,7 @@
         private System.Windows.Forms.RadioButton rbNodeOffline;
         private System.Windows.Forms.RadioButton rbNodeOnline;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbTime;
+        private System.Windows.Forms.ComboBox cbTimeLeft;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lbCountRight;
         private System.Windows.Forms.Label label4;
@@ -288,5 +309,7 @@
         private System.Windows.Forms.DataGridView dtgvRight;
         private System.Windows.Forms.Label lbCountLeft;
         private System.Windows.Forms.Label lbCountDiff;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.ComboBox cbTimeRight;
     }
 }

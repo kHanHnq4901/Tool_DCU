@@ -34,14 +34,17 @@ namespace DCU_Cuong_Tool
             }
 
             // Thêm dữ liệu vào ComboBox
-            cbTime.Items.AddRange(hours.ToArray());
-            cbTime.SelectedIndex = 0;
+            cbTimeLeft.Items.AddRange(hours.ToArray());
+            cbTimeLeft.SelectedIndex = 0;
+            cbTimeRight.Items.AddRange(hours.ToArray());
+            cbTimeRight.SelectedIndex = 0;
         }
         private void LoadData()
         {
             string dateLeft = dateTimeLeft.Value.ToString("yyyy-MM-dd");
             string dateRight = dateTimeRight.Value.ToString("yyyy-MM-dd");
-            string hour = cbTime.SelectedItem.ToString(); // Sử dụng SelectedItem thay vì ValueMember
+            string hourLeft = cbTimeLeft.SelectedItem.ToString(); // Sử dụng SelectedItem thay vì ValueMember
+            string hourRight = cbTimeRight.SelectedItem.ToString(); // Sử dụng SelectedItem thay vì ValueMember
 
             string connectionString = "Data Source=LocalDB.db;Version=3;";
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
@@ -51,23 +54,23 @@ namespace DCU_Cuong_Tool
 
                 if (rbNodeOnline.Checked == true)
                 {
-                    queryleft = "SELECT SERIAL,LEVEL FROM HIS_ONLINE WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hour + "%' ORDER BY ID DESC";
-                    queryRight = "SELECT SERIAL,LEVEL FROM HIS_ONLINE WHERE datetime(CREATED) LIKE '" + dateRight + " " + hour + "%' ORDER BY ID DESC";
+                    queryleft = "SELECT SERIAL,LEVEL FROM HIS_ONLINE WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hourLeft + "%' ORDER BY ID DESC";
+                    queryRight = "SELECT SERIAL,LEVEL FROM HIS_ONLINE WHERE datetime(CREATED) LIKE '" + dateRight + " " + hourRight + "%' ORDER BY ID DESC";
                 }
                 else if (rbNodeOffline.Checked == true)
                 {
-                    queryleft = "SELECT SERIAL,CONFIG FROM HIS_OFFLINE WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hour + "%' ORDER BY ID DESC";
-                    queryRight = "SELECT SERIAL,CONFIG FROM HIS_OFFLINE WHERE datetime(CREATED) LIKE '" + dateRight + " " + hour + "%' ORDER BY ID DESC";
+                    queryleft = "SELECT SERIAL,CONFIG FROM HIS_OFFLINE WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hourLeft + "%' ORDER BY ID DESC";
+                    queryRight = "SELECT SERIAL,CONFIG FROM HIS_OFFLINE WHERE datetime(CREATED) LIKE '" + dateRight + " " + hourRight + "%' ORDER BY ID DESC";
                 }
                 else if (rbNodeBlackList.Checked == true)
                 {
-                    queryleft = "SELECT * FROM HIS_BLACK_LIST WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hour + "%' ORDER BY ID DESC";
-                    queryRight = "SELECT * FROM HIS_BLACK_LIST WHERE datetime(CREATED) LIKE '" + dateRight + " " + hour + "%' ORDER BY ID DESC";
+                    queryleft = "SELECT * FROM HIS_BLACK_LIST WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hourLeft + "%' ORDER BY ID DESC";
+                    queryRight = "SELECT * FROM HIS_BLACK_LIST WHERE datetime(CREATED) LIKE '" + dateRight + " " + hourRight + "%' ORDER BY ID DESC";
                 }
                 else if (rdDaiLy.Checked == true)
                 {
-                    queryleft = "SELECT * FROM HIS_DAILY WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hour + "%' ORDER BY ID DESC";
-                    queryRight = "SELECT * FROM HIS_DAILY WHERE datetime(CREATED) LIKE '" + dateRight + " " + hour + "%' ORDER BY ID DESC";
+                    queryleft = "SELECT * FROM HIS_DAILY WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hourLeft + "%' ORDER BY ID DESC";
+                    queryRight = "SELECT * FROM HIS_DAILY WHERE datetime(CREATED) LIKE '" + dateRight + " " + hourRight + "%' ORDER BY ID DESC";
                 }
 
                 int rowCountLeft;
