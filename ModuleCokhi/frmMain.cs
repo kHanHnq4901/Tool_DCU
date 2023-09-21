@@ -465,7 +465,7 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
             MyLib.ReadConfigConn();
             GenerateTableCRC();
             pnlSeri.Visible = false;
-            pnlComand.Visible = false;
+            pnlComand.Visible = true ;
             if (ports.Length > 0)
             {
                 for (int i = 0; i < ports.Length; i++)
@@ -822,6 +822,16 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
         {
             frmCompare fCompare = new frmCompare();
             fCompare.Show();
+        }
+        //Đóng tool
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có chắc muốn đóng chương trình?", "Cảnh báo", MessageBoxButtons.OKCancel,MessageBoxIcon.Warning);
+
+            if (result == DialogResult.Cancel)
+            {
+                e.Cancel = true; // Ngăn không cho form đóng
+            }
         }
     }
 }
