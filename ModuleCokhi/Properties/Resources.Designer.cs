@@ -63,6 +63,16 @@ namespace DCU_Cuong_Tool.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap blackpin_118433 {
+            get {
+                object obj = ResourceManager.GetObject("blackpin_118433", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap clear_icon_155649 {
             get {
                 object obj = ResourceManager.GetObject("clear_icon_155649", resourceCulture);
@@ -96,6 +106,46 @@ namespace DCU_Cuong_Tool.Properties {
         internal static System.Drawing.Bitmap disconnect_line_icon_236081 {
             get {
                 object obj = ResourceManager.GetObject("disconnect_line_icon_236081", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap reset_undo_arrow_icon_149006 {
+            get {
+                object obj = ResourceManager.GetObject("reset_undo_arrow_icon_149006", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap switch_off_icon_34344 {
+            get {
+                object obj = ResourceManager.GetObject("switch-off-icon_34344", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap switch_on_icon_34343 {
+            get {
+                object obj = ResourceManager.GetObject("switch-on-icon_34343", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap zenmap_104119 {
+            get {
+                object obj = ResourceManager.GetObject("zenmap_104119", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

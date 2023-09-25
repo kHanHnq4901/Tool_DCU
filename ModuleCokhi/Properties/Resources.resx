@@ -118,16 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="clear_icon_155649" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\clear_icon_155649.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="blackpin_118433" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blackpin_118433.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="connect_line_icon_236099" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\connect_line_icon_236099.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="switch-on-icon_34343" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\switch-on-icon_34343.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="disconnect_line_icon_236081" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\disconnect_line_icon_236081.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="connect_line_icon_236099" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\connect_line_icon_236099.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="switch-off-icon_34344" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\switch-off-icon_34344.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="clock_time_time_9949" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\clock_time_time_9949.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clear_icon_155649" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clear_icon_155649.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reset_undo_arrow_icon_149006" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reset_undo_arrow_icon_149006.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="zenmap_104119" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zenmap_104119.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

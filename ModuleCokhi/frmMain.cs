@@ -1,10 +1,12 @@
 ﻿using DCU_Cuong_Tool;
+using DCU_Cuong_Tool.Properties;
 using NPOI.OpenXmlFormats.Dml;
 using NPOI.SS.Formula.Eval;
 using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
@@ -123,12 +125,24 @@ namespace WM03Soft
                 {
                     displayLog("serial " + serial + "|| tầng " + level);
                     AddDataToBatch(serial, level);
+                    // Thêm dữ liệu vào dtgvNode.Rows trong một luồng riêng
+                    Thread addRowThread = new Thread(() =>
+                    {
+                        // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
+                        Invoke(new Action(() =>
+                        {
+                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.switch_on_icon_34343, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
+                        }));
+                    });
+
+                    addRowThread.Start();
                 }
                 else
                 {
                     displayLog(recv);
                     string countString = (dataReceivedCount - 1).ToString();
                     displayLog("Send" + " Tổng số node đang online ------> " + countString);
+                    lbOnline.Text = countString;
                     dataReceivedCount = 0;
                     Thread executeThread = new Thread(ExecuteBatchInsert);
                     executeThread.Start();
@@ -146,12 +160,24 @@ namespace WM03Soft
                     string config = aRec[13];
                     displayLog("serial " + serial + " || Never config  " + config + "|| Never eixts");
                     AddDataToBatchHisOffLine(serial, config);
+                    // Thêm dữ liệu vào dtgvNode.Rows trong một luồng riêng
+                    Thread addRowThread = new Thread(() =>
+                    {
+                        // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
+                        Invoke(new Action(() =>
+                        {
+                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.switch_off_icon_34344, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
+                        }));
+                    });
+
+                    addRowThread.Start();
                 }
                 else
                 {
                     displayLog(recv);
                     string countString = (dataReceivedCount - 1).ToString();
                     displayLog("Send" + " Tổng số node đang offline ------>" + countString);
+                    lbOffline.Text = countString;
                     dataReceivedCount = 0;
                     Thread executeThread = new Thread(ExecuteBatchInsert);
                     executeThread.Start();
@@ -168,17 +194,63 @@ namespace WM03Soft
                 {
                     displayLog("serial " + serial);
                     AddDataToBatchHisBlackList(serial);
+                    // Thêm dữ liệu vào dtgvNode.Rows trong một luồng riêng
+                    Thread addRowThread = new Thread(() =>
+                    {
+                        // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
+                        Invoke(new Action(() =>
+                        {
+                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.switch_off_icon_34344, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
+                        }));
+                    });
+
+                    addRowThread.Start();
                 }
                 else
                 {
                     displayLog(recv);
                     string countString = (dataReceivedCount - 1).ToString();
                     displayLog("Send" + " Tổng số node đang black list ------>" + countString);
+                    lbBlackList.Text = countString;
                     dataReceivedCount = 0;
                     Thread executeThread = new Thread(ExecuteBatchInsert);
                     executeThread.Start();
                 }
                 
+            }
+            // Nhận các dữ liệu các công tơ
+            if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "11" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
+            {
+                displayLog(recv);
+                //string[] aRec = recv.Split(' ');
+                //string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
+                //if (serial != "FFFFFFFFFFFF")
+                //{
+                //    displayLog("serial " + serial);
+                //    AddDataToBatchHisBlackList(serial);
+                //    // Thêm dữ liệu vào dtgvNode.Rows trong một luồng riêng
+                //    Thread addRowThread = new Thread(() =>
+                //    {
+                //        // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
+                //        Invoke(new Action(() =>
+                //        {
+                //            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.switch_off_icon_34344, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
+                //        }));
+                //    });
+
+                //    addRowThread.Start();
+                //}
+                //else
+                //{
+                //    displayLog(recv);
+                //    string countString = (dataReceivedCount - 1).ToString();
+                //    displayLog("Send" + " Tổng số node đang black list ------>" + countString);
+                //    lbBlackList.Text = countString;
+                //    dataReceivedCount = 0;
+                //    Thread executeThread = new Thread(ExecuteBatchInsert);
+                //    executeThread.Start();
+                //}
+
             }
             // Nhận dữ liệu hoá đơn ngày
             if (recv.Length >= 22)
@@ -207,6 +279,7 @@ namespace WM03Soft
                     catch { }
                 }
             }
+           
         }
         string connectionString = "Data Source=LocalDB.db;Version=3;";
         List<string> dataToWriteBatch = new List<string>();
@@ -652,23 +725,6 @@ namespace WM03Soft
             }
             displayLog(result);
         }
-        //private void btnNodeOnline_Click(object sender, EventArgs e)
-        //{
-        //    displayLog("Send"+"Lấy toàn bộ các node online /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-        //    SendOnly("FE FE 06 00 01 07 FF FF FF FF FF FF 0A 0D");
-        //}
-
-        //private void btnBlackList_Click(object sender, EventArgs e)
-        //{
-        //    displayLog("Send" + "Lấy toàn bộ các node blacklist /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-        //    SendOnly("FE FE 06 00 01 06 FF FF FF FF FF FF 0A 0D");
-        //}
-
-        //private void btnNodeOffline_Click(object sender, EventArgs e)
-        //{
-        //    displayLog("Send" + "Lấy toàn bộ các node offline /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-        //    SendOnly("FE FE 06 00 01 08 FF FF FF FF FF FF 0A 0D");
-        //}
         const int CommandId_AddNewMeter = 1;
         const int CommandId_DeleteOneNode = 2;
         const int CommandId_GetDataOfOneNode = 3;
@@ -699,17 +755,27 @@ namespace WM03Soft
             int commandId = CommandId_ResponeAllNodeOffline;
             SendCommandAndLog(commandId, "Lấy toàn bộ các node offline");
         }
-        private void btnGetData_Click(object sender, EventArgs e)
+        private void btnInfomation_Click(object sender, EventArgs e)
         {
-            int commandId = CommandId_GetDataOfOneNode;
+            int commandId = CommnadID_AutoPushAllInfomationsOfNode;
             SendCommandAndLog(commandId, "Lấy dữ liệu của các node");
         }
 
         private void SendCommandAndLog(int commandId, string logMessage)
         {
-            string command = "FE FE 06 00 01 " + commandId.ToString("X2") + " FF FF FF FF FF FF 0A 0D";
-            displayLog("Send: " + logMessage +" /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-            SendOnly(command);
+            if (commandId < 10) 
+                {
+                string command = "FE FE 06 00 01 " + commandId.ToString("X2") + " FF FF FF FF FF FF 0A 0D";
+                displayLog("Send: " + command + logMessage + " /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                SendOnly(command);
+            }
+            else
+            {
+                string command = "FE FE 06 00 01 " + commandId.ToString() + " FF FF FF FF FF FF 0A 0D";
+                displayLog("Send: " + command + logMessage + " /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                SendOnly(command);
+            }
+          
         }
 
         private void btnList_Click(object sender, EventArgs e)
@@ -727,7 +793,7 @@ namespace WM03Soft
 
         async Task PerformClicksWithDelay()
         {
-
+            dtgvNode.Rows.Clear();
             btnBlackList.PerformClick();
             await Task.Delay(10000); // Đợi 10 giây
 
@@ -834,5 +900,12 @@ namespace WM03Soft
                 e.Cancel = true; // Ngăn không cho form đóng
             }
         }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            YourMethodOrEvent();
+        }
+
+
     }
 }
