@@ -83,7 +83,7 @@ namespace WM03Soft
             myTimer.Elapsed += new ElapsedEventHandler(timer_Tick);
             myPort.DataReceived += new SerialDataReceivedEventHandler(SerialPortDataReceived);
         }
-private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e)
+        private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e)
         {
             var serialPort = (SerialPort)sender;
             int bytesToRead = serialPort.BytesToRead;
@@ -116,7 +116,7 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
             if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "07" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
             {
                 string[] aRec = recv.Split(' ');
-                string serial = aRec[7] + aRec[8] + aRec[9] + aRec[10] + aRec[11] + aRec[12];
+                string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
                 string level = aRec[13];
 
                 if (serial != "FFFFFFFFFFFF")
@@ -139,7 +139,7 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
             if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "08" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
             {
                 string[] aRec = recv.Split(' ');
-                string serial = aRec[7] + aRec[8] + aRec[9] + aRec[10] + aRec[11] + aRec[12];
+                string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
 
                 if (serial != "FFFFFFFFFFFF")
                 {
@@ -163,7 +163,7 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
             if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "06" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
             {
                 string[] aRec = recv.Split(' ');
-                string serial = aRec[7] + aRec[8] + aRec[9] + aRec[10] + aRec[11] + aRec[12];
+                string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
                 if (serial != "FFFFFFFFFFFF")
                 {
                     displayLog("serial " + serial);
@@ -188,7 +188,7 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
                     try
                     {
                         string[] aRec = recv.Split(' ');
-                        string serial = aRec[7] + aRec[8] + aRec[9] + aRec[10] + aRec[11] + aRec[12];
+                        string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
                         string dateTime = "20" + MyLib.HexStringToByte(aRec[18]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[17]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[16]).ToString().PadLeft(2, '0')
                             + " " + MyLib.HexStringToByte(aRec[13]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[14]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[15]).ToString().PadLeft(2, '0');
                         string tem = "";
@@ -298,15 +298,14 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
                 receiveDone.Reset();
             }
         }
-
         private void OpenCOM(int iBaudRate)
         {
             try
             {
-             //   myPort.Close();
+                //   myPort.Close();
                 myPort.BaudRate = iBaudRate;
                 myPort.Open();
-                displayLog("Recv"+" Đã mở cổng " + comName + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                displayLog("Recv" + " Đã mở cổng " + comName + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 btnRead.Enabled = false;
                 cmbPortList.Enabled = false;
                 btnRead.BackColor = Color.Lime;
@@ -317,7 +316,7 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
             }
             catch
             {
-                displayLog("End "+" Không thể mở cổng " + comName + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                displayLog("End " + " Không thể mở cổng " + comName + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 return;
             }
         }
@@ -497,7 +496,6 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
         {
             CloseCOM();
         }
-
         public bool checkCom()
         {
             if (cmbPortList.Text == string.Empty)
@@ -654,8 +652,6 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
             }
             displayLog(result);
         }
-
-
         //private void btnNodeOnline_Click(object sender, EventArgs e)
         //{
         //    displayLog("Send"+"Lấy toàn bộ các node online /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
@@ -683,6 +679,9 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
         const int CommandId_ResponeAllNodeOffline = 8;
         const int CommandID_Ask = 9;
         const int CommnadID_GetInfomationOfNode = 10;
+        const int CommnadID_AutoPushAllInfomationsOfNode = 11;
+        const int CommandID_GetGraph = 12;
+        const int CommandID_GetNeighoburOfOneNode = 13;
         private void btnNodeOnline_Click(object sender, EventArgs e)
         {
             int commandId = CommandId_ResponeAllNodeOnline;
@@ -709,7 +708,7 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
         private void SendCommandAndLog(int commandId, string logMessage)
         {
             string command = "FE FE 06 00 01 " + commandId.ToString("X2") + " FF FF FF FF FF FF 0A 0D";
-            displayLog("Send: " + command + logMessage +" /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+            displayLog("Send: " + logMessage +" /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             SendOnly(command);
         }
 
@@ -762,7 +761,9 @@ private void SerialPortDataReceived(object sender, SerialDataReceivedEventArgs e
         }
         private int getTime = 0;
         private int currentHour = 0;
-       
+
+        public static SerialPort ConnectedSerialPort { get; internal set; }
+
         private void button1_Click(object sender, EventArgs e)
         {
 

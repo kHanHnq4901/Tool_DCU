@@ -207,13 +207,13 @@
             this.pnlComand.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlComand.Location = new System.Drawing.Point(0, 151);
             this.pnlComand.Name = "pnlComand";
-            this.pnlComand.Size = new System.Drawing.Size(342, 363);
+            this.pnlComand.Size = new System.Drawing.Size(342, 397);
             this.pnlComand.TabIndex = 35;
             // 
             // btnCompare
             // 
             this.btnCompare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCompare.Location = new System.Drawing.Point(172, 118);
+            this.btnCompare.Location = new System.Drawing.Point(16, 122);
             this.btnCompare.Name = "btnCompare";
             this.btnCompare.Size = new System.Drawing.Size(140, 52);
             this.btnCompare.TabIndex = 49;
@@ -224,7 +224,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(288, 302);
+            this.label6.Location = new System.Drawing.Point(278, 359);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(34, 20);
             this.label6.TabIndex = 48;
@@ -233,7 +233,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(288, 260);
+            this.label4.Location = new System.Drawing.Point(278, 327);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 20);
             this.label4.TabIndex = 47;
@@ -242,7 +242,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 256);
+            this.label3.Location = new System.Drawing.Point(12, 327);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(101, 20);
             this.label3.TabIndex = 46;
@@ -251,7 +251,7 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(173, 254);
+            this.textBox1.Location = new System.Drawing.Point(161, 325);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 26);
             this.textBox1.TabIndex = 15;
@@ -261,7 +261,7 @@
             // 
             this.button2.Enabled = false;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(17, 178);
+            this.button2.Location = new System.Drawing.Point(17, 180);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(139, 52);
             this.button2.TabIndex = 13;
@@ -272,7 +272,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 302);
+            this.label1.Location = new System.Drawing.Point(4, 359);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(128, 20);
             this.label1.TabIndex = 43;
@@ -281,7 +281,7 @@
             // txtTimeGet
             // 
             this.txtTimeGet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTimeGet.Location = new System.Drawing.Point(172, 296);
+            this.txtTimeGet.Location = new System.Drawing.Point(161, 357);
             this.txtTimeGet.Name = "txtTimeGet";
             this.txtTimeGet.Size = new System.Drawing.Size(100, 26);
             this.txtTimeGet.TabIndex = 16;
@@ -290,7 +290,7 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(173, 178);
+            this.button1.Location = new System.Drawing.Point(173, 180);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 52);
             this.button1.TabIndex = 14;
@@ -301,9 +301,9 @@
             // btnChar
             // 
             this.btnChar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChar.Location = new System.Drawing.Point(172, 60);
+            this.btnChar.Location = new System.Drawing.Point(173, 10);
             this.btnChar.Name = "btnChar";
-            this.btnChar.Size = new System.Drawing.Size(140, 52);
+            this.btnChar.Size = new System.Drawing.Size(140, 48);
             this.btnChar.TabIndex = 8;
             this.btnChar.Text = "Biểu đồ";
             this.btnChar.UseVisualStyleBackColor = true;
@@ -312,9 +312,9 @@
             // btnList
             // 
             this.btnList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnList.Location = new System.Drawing.Point(17, 118);
+            this.btnList.Location = new System.Drawing.Point(17, 10);
             this.btnList.Name = "btnList";
-            this.btnList.Size = new System.Drawing.Size(140, 52);
+            this.btnList.Size = new System.Drawing.Size(140, 48);
             this.btnList.TabIndex = 11;
             this.btnList.Text = "Danh sách";
             this.btnList.UseVisualStyleBackColor = true;
@@ -323,7 +323,7 @@
             // btnNodeOnline
             // 
             this.btnNodeOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNodeOnline.Location = new System.Drawing.Point(17, 6);
+            this.btnNodeOnline.Location = new System.Drawing.Point(172, 124);
             this.btnNodeOnline.Name = "btnNodeOnline";
             this.btnNodeOnline.Size = new System.Drawing.Size(140, 48);
             this.btnNodeOnline.TabIndex = 5;
@@ -334,7 +334,7 @@
             // btnBlackList
             // 
             this.btnBlackList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBlackList.Location = new System.Drawing.Point(173, 6);
+            this.btnBlackList.Location = new System.Drawing.Point(18, 68);
             this.btnBlackList.Name = "btnBlackList";
             this.btnBlackList.Size = new System.Drawing.Size(139, 48);
             this.btnBlackList.TabIndex = 6;
@@ -345,7 +345,7 @@
             // btnNodeOffline
             // 
             this.btnNodeOffline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNodeOffline.Location = new System.Drawing.Point(17, 60);
+            this.btnNodeOffline.Location = new System.Drawing.Point(173, 64);
             this.btnNodeOffline.Name = "btnNodeOffline";
             this.btnNodeOffline.Size = new System.Drawing.Size(140, 52);
             this.btnNodeOffline.TabIndex = 7;
