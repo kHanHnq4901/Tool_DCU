@@ -142,7 +142,30 @@ namespace WM03Soft
                     displayLog(recv);
                     string countString = (dataReceivedCount - 1).ToString();
                     displayLog("Send" + " Tổng số node đang online ------> " + countString);
+                    // Lưu giữ giá trị trước đó của lbBlackList.Text
+                    string previousOnlineValue = lbOnline.Text;
+
+                    // Gán giá trị mới cho lbBlackList.Text
                     lbOnline.Text = countString;
+
+                    // Tính toán phần trăm chênh lệch
+                    double previousOnlineCount;
+                    double currentOnlineCount;
+                    double ratio;
+
+                    if (double.TryParse(previousOnlineValue, out previousOnlineCount) && double.TryParse(countString, out currentOnlineCount))
+                    {
+                        double difference = currentOnlineCount - previousOnlineCount;
+                        ratio = (difference / previousOnlineCount) * 100;
+                    }
+                    else
+                    {
+                        // Xử lý nếu không thể chuyển đổi thành số
+                        ratio = 0;
+                    }
+
+                    // Hiển thị phần trăm chênh lệch trong lbRatioOnline.Text
+                    lbRatioOnline.Text = string.Format("{0:0.##}%", ratio);
                     dataReceivedCount = 0;
                     Thread executeThread = new Thread(ExecuteBatchInsert);
                     executeThread.Start();
@@ -177,7 +200,30 @@ namespace WM03Soft
                     displayLog(recv);
                     string countString = (dataReceivedCount - 1).ToString();
                     displayLog("Send" + " Tổng số node đang offline ------>" + countString);
+                    // Lưu giữ giá trị trước đó của lbBlackList.Text
+                    string previousOfflineValue = lbOffline.Text;
+
+                    // Gán giá trị mới cho lbBlackList.Text
                     lbOffline.Text = countString;
+
+                    // Tính toán phần trăm chênh lệch
+                    double previousOfflineCount;
+                    double currentOfflineCount;
+                    double ratio;
+
+                    if (double.TryParse(previousOfflineValue, out previousOfflineCount) && double.TryParse(countString, out currentOfflineCount))
+                    {
+                        double difference = currentOfflineCount - previousOfflineCount;
+                        ratio = (difference / previousOfflineCount) * 100;
+                    }
+                    else
+                    {
+                        // Xử lý nếu không thể chuyển đổi thành số
+                        ratio = 0;
+                    }
+
+                    // Hiển thị phần trăm chênh lệch trong lbRatioOnline.Text
+                    lbRatioOnline.Text = string.Format("{0:0.##}%", ratio);
                     dataReceivedCount = 0;
                     Thread executeThread = new Thread(ExecuteBatchInsert);
                     executeThread.Start();
@@ -200,7 +246,7 @@ namespace WM03Soft
                         // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
                         Invoke(new Action(() =>
                         {
-                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.switch_off_icon_34344, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
+                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.blackpin_118433, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
                         }));
                     });
 
@@ -211,7 +257,30 @@ namespace WM03Soft
                     displayLog(recv);
                     string countString = (dataReceivedCount - 1).ToString();
                     displayLog("Send" + " Tổng số node đang black list ------>" + countString);
+                    // Lưu giữ giá trị trước đó của lbBlackList.Text
+                    string previousBlackListValue = lbBlackList.Text;
+
+                    // Gán giá trị mới cho lbBlackList.Text
                     lbBlackList.Text = countString;
+
+                    // Tính toán phần trăm chênh lệch
+                    double previousBlackListCount;
+                    double currentBlackListCount;
+                    double ratio;
+
+                    if (double.TryParse(previousBlackListValue, out previousBlackListCount) && double.TryParse(countString, out currentBlackListCount))
+                    {
+                        double difference = currentBlackListCount - previousBlackListCount;
+                        ratio = (difference / previousBlackListCount) * 100;
+                    }
+                    else
+                    {
+                        // Xử lý nếu không thể chuyển đổi thành số
+                        ratio = 0;
+                    }
+
+                    // Hiển thị phần trăm chênh lệch trong lbRatioOnline.Text
+                    lbRatioOnline.Text = string.Format("{0:0.##}%", ratio);
                     dataReceivedCount = 0;
                     Thread executeThread = new Thread(ExecuteBatchInsert);
                     executeThread.Start();
@@ -219,38 +288,41 @@ namespace WM03Soft
                 
             }
             // Nhận các dữ liệu các công tơ
-            if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "11" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
+            if (recv.Length >= 35)
             {
-                displayLog(recv);
-                //string[] aRec = recv.Split(' ');
-                //string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
-                //if (serial != "FFFFFFFFFFFF")
-                //{
-                //    displayLog("serial " + serial);
-                //    AddDataToBatchHisBlackList(serial);
-                //    // Thêm dữ liệu vào dtgvNode.Rows trong một luồng riêng
-                //    Thread addRowThread = new Thread(() =>
-                //    {
-                //        // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
-                //        Invoke(new Action(() =>
-                //        {
-                //            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.switch_off_icon_34344, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
-                //        }));
-                //    });
+                if (recv.Substring(0, 5) == "FE FE"  && recv.Substring(recv.Length - 5, 5) == "0A 0D")
+                {
+                    displayLog(recv);
+                    string[] aRec = recv.Split(' ');
+                    //string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
+                    //if (serial != "FFFFFFFFFFFF")
+                    //{
+                    //    displayLog("serial " + serial);
+                    //    AddDataToBatchHisBlackList(serial);
+                    //    // Thêm dữ liệu vào dtgvNode.Rows trong một luồng riêng
+                    //    Thread addRowThread = new Thread(() =>
+                    //    {
+                    //        // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
+                    //        Invoke(new Action(() =>
+                    //        {
+                    //            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.switch_off_icon_34344, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
+                    //        }));
+                    //    });
 
-                //    addRowThread.Start();
-                //}
-                //else
-                //{
-                //    displayLog(recv);
-                //    string countString = (dataReceivedCount - 1).ToString();
-                //    displayLog("Send" + " Tổng số node đang black list ------>" + countString);
-                //    lbBlackList.Text = countString;
-                //    dataReceivedCount = 0;
-                //    Thread executeThread = new Thread(ExecuteBatchInsert);
-                //    executeThread.Start();
-                //}
+                    //    addRowThread.Start();
+                    //}
+                    //else
+                    //{
+                    //    displayLog(recv);
+                    //    string countString = (dataReceivedCount - 1).ToString();
+                    //    displayLog("Send" + " Tổng số node đang black list ------>" + countString);
+                    //    lbBlackList.Text = countString;
+                    //    dataReceivedCount = 0;
+                    //    Thread executeThread = new Thread(ExecuteBatchInsert);
+                    //    executeThread.Start();
+                    //}
 
+                }
             }
             // Nhận dữ liệu hoá đơn ngày
             if (recv.Length >= 22)
@@ -793,17 +865,16 @@ namespace WM03Soft
 
         async Task PerformClicksWithDelay()
         {
-            dtgvNode.Rows.Clear();
-            btnBlackList.PerformClick();
-            await Task.Delay(10000); // Đợi 10 giây
 
-            btnNodeOffline.PerformClick();
-            await Task.Delay(20000); // Đợi 20 giây
+                dtgvNode.Rows.Clear();
+                btnBlackList.PerformClick();
+                await Task.Delay(10000); // Đợi 10 giây
 
-            btnNodeOnline.PerformClick();
-            await Task.Delay(30000); // Đợi 30 giây
+                btnNodeOffline.PerformClick();
+                await Task.Delay(20000); // Đợi 20 giây
 
-
+                btnNodeOnline.PerformClick();
+                await Task.Delay(30000); // Đợi 30 giây
         }
         async void YourMethodOrEvent()
         {

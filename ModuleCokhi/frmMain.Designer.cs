@@ -49,17 +49,17 @@
             this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lbRatioBlacklist = new System.Windows.Forms.Label();
             this.lbBlackList = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lbRatioOffline = new System.Windows.Forms.Label();
             this.lbOffline = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.lbRatioOnline = new System.Windows.Forms.Label();
             this.lbOnline = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -71,6 +71,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtDCUNo = new System.Windows.Forms.TextBox();
             this.pnlComand = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnInfomation = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.btnCompare = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
@@ -89,8 +91,7 @@
             this.btnClearLog = new System.Windows.Forms.Button();
             this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.btnInfomation = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.prgLoad = new Guna.UI2.WinForms.Guna2ProgressIndicator();
             this.panel2.SuspendLayout();
             this.gunaElipsePanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvNode)).BeginInit();
@@ -141,6 +142,7 @@
             // 
             this.gunaElipsePanel2.BackColor = System.Drawing.Color.Transparent;
             this.gunaElipsePanel2.BaseColor = System.Drawing.Color.White;
+            this.gunaElipsePanel2.Controls.Add(this.prgLoad);
             this.gunaElipsePanel2.Controls.Add(this.dtgvNode);
             this.gunaElipsePanel2.Controls.Add(this.guna2CustomGradientPanel1);
             this.gunaElipsePanel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -299,7 +301,7 @@
             // 
             this.guna2Panel3.BorderRadius = 10;
             this.guna2Panel3.Controls.Add(this.pictureBox3);
-            this.guna2Panel3.Controls.Add(this.label15);
+            this.guna2Panel3.Controls.Add(this.lbRatioBlacklist);
             this.guna2Panel3.Controls.Add(this.lbBlackList);
             this.guna2Panel3.Controls.Add(this.label9);
             this.guna2Panel3.FillColor = System.Drawing.Color.Silver;
@@ -318,14 +320,14 @@
             this.pictureBox3.TabIndex = 53;
             this.pictureBox3.TabStop = false;
             // 
-            // label15
+            // lbRatioBlacklist
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(16, 74);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(0, 25);
-            this.label15.TabIndex = 53;
+            this.lbRatioBlacklist.AutoSize = true;
+            this.lbRatioBlacklist.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRatioBlacklist.Location = new System.Drawing.Point(16, 74);
+            this.lbRatioBlacklist.Name = "lbRatioBlacklist";
+            this.lbRatioBlacklist.Size = new System.Drawing.Size(0, 25);
+            this.lbRatioBlacklist.TabIndex = 53;
             // 
             // lbBlackList
             // 
@@ -352,7 +354,7 @@
             this.guna2Panel2.BorderRadius = 10;
             this.guna2Panel2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             this.guna2Panel2.Controls.Add(this.pictureBox2);
-            this.guna2Panel2.Controls.Add(this.label14);
+            this.guna2Panel2.Controls.Add(this.lbRatioOffline);
             this.guna2Panel2.Controls.Add(this.lbOffline);
             this.guna2Panel2.Controls.Add(this.label8);
             this.guna2Panel2.FillColor = System.Drawing.Color.IndianRed;
@@ -371,14 +373,14 @@
             this.pictureBox2.TabIndex = 50;
             this.pictureBox2.TabStop = false;
             // 
-            // label14
+            // lbRatioOffline
             // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(22, 74);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(0, 25);
-            this.label14.TabIndex = 52;
+            this.lbRatioOffline.AutoSize = true;
+            this.lbRatioOffline.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRatioOffline.Location = new System.Drawing.Point(22, 74);
+            this.lbRatioOffline.Name = "lbRatioOffline";
+            this.lbRatioOffline.Size = new System.Drawing.Size(0, 25);
+            this.lbRatioOffline.TabIndex = 52;
             // 
             // lbOffline
             // 
@@ -404,7 +406,7 @@
             // 
             this.guna2Panel1.BorderRadius = 10;
             this.guna2Panel1.Controls.Add(this.pictureBox1);
-            this.guna2Panel1.Controls.Add(this.label13);
+            this.guna2Panel1.Controls.Add(this.lbRatioOnline);
             this.guna2Panel1.Controls.Add(this.lbOnline);
             this.guna2Panel1.Controls.Add(this.label3);
             this.guna2Panel1.FillColor = System.Drawing.Color.MediumSpringGreen;
@@ -423,14 +425,14 @@
             this.pictureBox1.TabIndex = 49;
             this.pictureBox1.TabStop = false;
             // 
-            // label13
+            // lbRatioOnline
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(21, 74);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(0, 25);
-            this.label13.TabIndex = 48;
+            this.lbRatioOnline.AutoSize = true;
+            this.lbRatioOnline.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRatioOnline.Location = new System.Drawing.Point(21, 74);
+            this.lbRatioOnline.Name = "lbRatioOnline";
+            this.lbRatioOnline.Size = new System.Drawing.Size(0, 25);
+            this.lbRatioOnline.TabIndex = 48;
             // 
             // lbOnline
             // 
@@ -569,6 +571,27 @@
             this.pnlComand.Name = "pnlComand";
             this.pnlComand.Size = new System.Drawing.Size(342, 397);
             this.pnlComand.TabIndex = 35;
+            // 
+            // button4
+            // 
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Location = new System.Drawing.Point(173, 174);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(139, 52);
+            this.button4.TabIndex = 51;
+            this.button4.Text = "Bắt đầu";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // btnInfomation
+            // 
+            this.btnInfomation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInfomation.Location = new System.Drawing.Point(17, 176);
+            this.btnInfomation.Name = "btnInfomation";
+            this.btnInfomation.Size = new System.Drawing.Size(140, 52);
+            this.btnInfomation.TabIndex = 50;
+            this.btnInfomation.Text = "Thông tin";
+            this.btnInfomation.UseVisualStyleBackColor = true;
+            this.btnInfomation.Click += new System.EventHandler(this.btnInfomation_Click);
             // 
             // label7
             // 
@@ -754,26 +777,14 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Width = 289;
             // 
-            // btnInfomation
+            // prgLoad
             // 
-            this.btnInfomation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInfomation.Location = new System.Drawing.Point(17, 176);
-            this.btnInfomation.Name = "btnInfomation";
-            this.btnInfomation.Size = new System.Drawing.Size(140, 52);
-            this.btnInfomation.TabIndex = 50;
-            this.btnInfomation.Text = "Thông tin";
-            this.btnInfomation.UseVisualStyleBackColor = true;
-            this.btnInfomation.Click += new System.EventHandler(this.btnInfomation_Click);
-            // 
-            // button4
-            // 
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Location = new System.Drawing.Point(173, 174);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(139, 52);
-            this.button4.TabIndex = 51;
-            this.button4.Text = "Bắt đầu";
-            this.button4.UseVisualStyleBackColor = true;
+            this.prgLoad.AutoStart = true;
+            this.prgLoad.Location = new System.Drawing.Point(217, 124);
+            this.prgLoad.Name = "prgLoad";
+            this.prgLoad.Size = new System.Drawing.Size(90, 90);
+            this.prgLoad.TabIndex = 54;
+            this.prgLoad.Visible = false;
             // 
             // frmMain
             // 
@@ -859,9 +870,9 @@
         private System.Windows.Forms.Label lbBlackList;
         private System.Windows.Forms.Label lbOffline;
         private System.Windows.Forms.Label lbOnline;
-        private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lbRatioBlacklist;
+        private System.Windows.Forms.Label lbRatioOffline;
+        private System.Windows.Forms.Label lbRatioOnline;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -876,6 +887,7 @@
         private System.Windows.Forms.Label lbCount;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button btnInfomation;
+        private Guna.UI2.WinForms.Guna2ProgressIndicator prgLoad;
     }
 }
 
