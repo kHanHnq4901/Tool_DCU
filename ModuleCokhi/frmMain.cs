@@ -231,7 +231,6 @@ namespace WM03Soft
                 }
                
             }
-
             // Nhận các công tơ blacklist
             if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "06" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
             {
@@ -288,28 +287,29 @@ namespace WM03Soft
                 }
                 
             }
-            if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "13" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
-            {
-                displayLog(recv);
-            }
-                // Nhận các dữ liệu các công tơ
-                if (recv.Length >= 30)
-            {
+            // Nhận vị trí của công tơ
+            //if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "13" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
+            //{
+            //    displayLog(recv);
+            //}
+            // Nhận các dữ liệu các công tơ
+            if (recv.Length >= 30)
+                    {
                 displayLog(recv);
                 if (recv.Substring(0, 5) == "FE FE"  && recv.Substring(recv.Length - 5, 5) == "0A 0D")
                 {
                     displayLog(recv);
-                    string[] aRec = recv.Split(' ');
-                    string location = aRec[3] + aRec[4];
-                    string longAddress = aRec[5] + aRec[6] + aRec[7] + aRec[8] + aRec[9] + aRec[10];
-                    string shortAddress = aRec[11] + aRec[12];
-                    string layer = aRec[13];
-                    string state = aRec[14];
-                    string softwareVersion = aRec[15]+ aRec[16]+ aRec[17];
-                    string hardwareVersion = aRec[18] + aRec[19] + aRec[20];
-                    string stateGetDate180 = aRec[21];
-                    string pathOneSixByte = aRec[22] + aRec[23] + aRec[24] + aRec[25] + aRec[26];
-                    string pathOneTwoByte = aRec[27];
+                    //string[] aRec = recv.Split(' ');
+                    //string location = aRec[3] + aRec[4];
+                    //string longAddress = aRec[5] + aRec[6] + aRec[7] + aRec[8] + aRec[9] + aRec[10];
+                    //string shortAddress = aRec[11] + aRec[12];
+                    //string layer = aRec[13];
+                    //string state = aRec[14];
+                    //string softwareVersion = aRec[15]+ aRec[16]+ aRec[17];
+                    //string hardwareVersion = aRec[18] + aRec[19] + aRec[20];
+                    //string stateGetDate180 = aRec[21];
+                    //string pathOneSixByte = aRec[22] + aRec[23] + aRec[24] + aRec[25] + aRec[26];
+                    //string pathOneTwoByte = aRec[27];
                     //if (serial != "FFFFFFFFFFFF")
                     //{
                     //    displayLog("serial " + serial);
@@ -852,12 +852,23 @@ namespace WM03Soft
         {
             // Lấy giá trị của TextBox "txtSerialNode"
             string serial = txtSerialNode.Text;
+            string formattedSerial = "";
+
+            for (int i = 0; i < serial.Length; i += 2)
+            {
+                if (i > 0)
+                {
+                    formattedSerial += " ";
+                }
+
+                formattedSerial += serial.Substring(i, 2);
+            }
 
             // Kiểm tra giá trị serial nếu cần thiết
             if (!string.IsNullOrEmpty(serial))
             {
-                int commandId = CommandID_GetNeighoburOfOneNode;
-                SendCommandAndLog(commandId);
+                SendOnly("FE FE 06 00 10 13 " + formattedSerial + " 0A 0D");
+                displayLog("FE FE 06 00 10 13 " + formattedSerial + " 0A 0D");
                 MessageBox.Show("Thông tin của serial: " + serial);
             }
             else
@@ -895,6 +906,64 @@ namespace WM03Soft
         {
             frmChar fChar = new frmChar();
             fChar.Show();
+        }
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            YourMethodOrEvent();
+            load();
+        }
+
+        private void dtgvNode_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0) // Kiểm tra người dùng đã nhấp vào hàng hợp lệ hay không
+                {
+                    DataGridViewRow selectedRow = dtgvNode.Rows[e.RowIndex];
+
+                    // Lấy giá trị của cột đầu tiên trong hàng đã chọn
+                    object cellValue = selectedRow.Cells[0].Value;
+                    if (cellValue != null)
+                    {
+                        string value = cellValue.ToString();
+
+                        // Hiển thị giá trị trong TextBox
+                        txtSerialNode.Text = value;
+                    }
+                    else
+                    {
+                        // Xử lý khi giá trị là null
+                        // Ví dụ: Gán giá trị mặc định cho TextBox
+                        txtSerialNode.Text = string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi
+                // Ví dụ: Hiển thị thông báo lỗi
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+            }
+        }
+
+        private void btnReadInfomationNode_Click(object sender, EventArgs e)
+        {
+            // Lấy giá trị của TextBox "txtSerialNode"
+            string serial = txtSerialNode.Text;
+
+            // Kiểm tra giá trị serial nếu cần thiết
+            if (!string.IsNullOrEmpty(serial))
+            {
+                // Xử lý để xem thông tin của serial
+                // Ví dụ: Hiển thị thông tin trong MessageBox
+                MessageBox.Show("Thông tin của serial: " + serial);
+            }
+            else
+            {
+                // Xử lý khi serial rỗng
+                // Ví dụ: Hiển thị thông báo lỗi
+                MessageBox.Show("Vui lòng nhập serial trước");
+            }
         }
         private bool executedOnce = false; // Biến kiểm tra xem hành động đã được thực hiện một lần hay chưa
 
@@ -1018,68 +1087,6 @@ namespace WM03Soft
             prgLoad.Visible = false;
             panel1.Enabled = true;
             guna2CustomGradientPanel1.Enabled = true;
-        }
-        private void btnReset_Click(object sender, EventArgs e)
-        {
-            //string[] rowData = new string[] { "0022413431" };
-
-            //// Thêm hàng mới vào DataGridView
-            //dtgvNode.Rows.Add(rowData);
-            YourMethodOrEvent();
-            load();
-        }
-
-        private void dtgvNode_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            try
-            {
-                if (e.RowIndex >= 0) // Kiểm tra người dùng đã nhấp vào hàng hợp lệ hay không
-                {
-                    DataGridViewRow selectedRow = dtgvNode.Rows[e.RowIndex];
-
-                    // Lấy giá trị của cột đầu tiên trong hàng đã chọn
-                    object cellValue = selectedRow.Cells[0].Value;
-                    if (cellValue != null)
-                    {
-                        string value = cellValue.ToString();
-
-                        // Hiển thị giá trị trong TextBox
-                        txtSerialNode.Text = value;
-                    }
-                    else
-                    {
-                        // Xử lý khi giá trị là null
-                        // Ví dụ: Gán giá trị mặc định cho TextBox
-                        txtSerialNode.Text = string.Empty;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Xử lý lỗi
-                // Ví dụ: Hiển thị thông báo lỗi
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
-            }
-        }
-
-        private void btnReadInfomationNode_Click(object sender, EventArgs e)
-        {
-            // Lấy giá trị của TextBox "txtSerialNode"
-            string serial = txtSerialNode.Text;
-
-            // Kiểm tra giá trị serial nếu cần thiết
-            if (!string.IsNullOrEmpty(serial))
-            {
-                // Xử lý để xem thông tin của serial
-                // Ví dụ: Hiển thị thông tin trong MessageBox
-                MessageBox.Show("Thông tin của serial: " + serial);
-            }
-            else
-            {
-                // Xử lý khi serial rỗng
-                // Ví dụ: Hiển thị thông báo lỗi
-                MessageBox.Show("Vui lòng nhập serial trước");
-            }
         }
     }
 }

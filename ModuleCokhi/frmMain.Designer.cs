@@ -34,7 +34,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.rtbOutput = new System.Windows.Forms.RichTextBox();
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.pn2 = new Guna.UI.WinForms.GunaElipsePanel();
@@ -92,6 +91,8 @@
             this.btnClearLog = new System.Windows.Forms.Button();
             this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.rtbOutput = new System.Windows.Forms.RichTextBox();
+            this.guna2Panel4 = new Guna.UI2.WinForms.Guna2Panel();
             this.panel2.SuspendLayout();
             this.pn2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgvNode)).BeginInit();
@@ -107,19 +108,8 @@
             this.pnlSeri.SuspendLayout();
             this.pnlComand.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.guna2Panel4.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // rtbOutput
-            // 
-            this.rtbOutput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.rtbOutput.Dock = System.Windows.Forms.DockStyle.Right;
-            this.rtbOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbOutput.Location = new System.Drawing.Point(883, 0);
-            this.rtbOutput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.rtbOutput.Name = "rtbOutput";
-            this.rtbOutput.Size = new System.Drawing.Size(225, 626);
-            this.rtbOutput.TabIndex = 17;
-            this.rtbOutput.Text = "";
             // 
             // timer2
             // 
@@ -131,11 +121,10 @@
             // 
             this.panel2.Controls.Add(this.pn2);
             this.panel2.Controls.Add(this.gunaElipsePanel1);
-            this.panel2.Controls.Add(this.rtbOutput);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(314, 0);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel2.Location = new System.Drawing.Point(279, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1108, 626);
+            this.panel2.Size = new System.Drawing.Size(705, 626);
             this.panel2.TabIndex = 31;
             // 
             // pn2
@@ -148,7 +137,7 @@
             this.pn2.Dock = System.Windows.Forms.DockStyle.Top;
             this.pn2.Location = new System.Drawing.Point(0, 145);
             this.pn2.Name = "pn2";
-            this.pn2.Size = new System.Drawing.Size(883, 526);
+            this.pn2.Size = new System.Drawing.Size(705, 526);
             this.pn2.TabIndex = 20;
             // 
             // prgLoad
@@ -196,7 +185,7 @@
             this.dtgvNode.RowHeadersVisible = false;
             this.dtgvNode.RowHeadersWidth = 62;
             this.dtgvNode.RowTemplate.Height = 28;
-            this.dtgvNode.Size = new System.Drawing.Size(883, 417);
+            this.dtgvNode.Size = new System.Drawing.Size(705, 417);
             this.dtgvNode.TabIndex = 51;
             this.dtgvNode.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dtgvNode.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -250,7 +239,7 @@
             this.guna2CustomGradientPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2CustomGradientPanel1.Location = new System.Drawing.Point(0, 0);
             this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(883, 64);
+            this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(705, 64);
             this.guna2CustomGradientPanel1.TabIndex = 50;
             // 
             // btnLocation
@@ -305,7 +294,7 @@
             this.btnReset.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnReset.ForeColor = System.Drawing.Color.White;
             this.btnReset.Image = global::DCU_Cuong_Tool.Properties.Resources.reset_undo_arrow_icon_149006;
-            this.btnReset.Location = new System.Drawing.Point(677, 13);
+            this.btnReset.Location = new System.Drawing.Point(628, 15);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(46, 43);
             this.btnReset.TabIndex = 1;
@@ -341,7 +330,7 @@
             this.gunaElipsePanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.gunaElipsePanel1.Location = new System.Drawing.Point(0, 0);
             this.gunaElipsePanel1.Name = "gunaElipsePanel1";
-            this.gunaElipsePanel1.Size = new System.Drawing.Size(883, 145);
+            this.gunaElipsePanel1.Size = new System.Drawing.Size(705, 145);
             this.gunaElipsePanel1.TabIndex = 19;
             // 
             // guna2Panel3
@@ -352,7 +341,7 @@
             this.guna2Panel3.Controls.Add(this.lbBlackList);
             this.guna2Panel3.Controls.Add(this.label9);
             this.guna2Panel3.FillColor = System.Drawing.Color.Silver;
-            this.guna2Panel3.Location = new System.Drawing.Point(502, 12);
+            this.guna2Panel3.Location = new System.Drawing.Point(467, 12);
             this.guna2Panel3.Name = "guna2Panel3";
             this.guna2Panel3.Size = new System.Drawing.Size(231, 110);
             this.guna2Panel3.TabIndex = 4;
@@ -404,7 +393,7 @@
             this.guna2Panel2.Controls.Add(this.lbOffline);
             this.guna2Panel2.Controls.Add(this.label8);
             this.guna2Panel2.FillColor = System.Drawing.Color.IndianRed;
-            this.guna2Panel2.Location = new System.Drawing.Point(260, 12);
+            this.guna2Panel2.Location = new System.Drawing.Point(241, 12);
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(220, 110);
             this.guna2Panel2.TabIndex = 4;
@@ -507,7 +496,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(314, 100);
+            this.panel3.Size = new System.Drawing.Size(279, 100);
             this.panel3.TabIndex = 30;
             // 
             // cmbPortList
@@ -537,7 +526,7 @@
             this.btnRead.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRead.Image = global::DCU_Cuong_Tool.Properties.Resources.connect_line_icon_236099;
             this.btnRead.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRead.Location = new System.Drawing.Point(17, 51);
+            this.btnRead.Location = new System.Drawing.Point(1, 51);
             this.btnRead.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(139, 49);
@@ -552,7 +541,7 @@
             this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefresh.Image = global::DCU_Cuong_Tool.Properties.Resources.disconnect_line_icon_236081;
             this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRefresh.Location = new System.Drawing.Point(173, 51);
+            this.btnRefresh.Location = new System.Drawing.Point(140, 51);
             this.btnRefresh.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(139, 49);
@@ -569,7 +558,7 @@
             this.pnlSeri.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSeri.Location = new System.Drawing.Point(0, 100);
             this.pnlSeri.Name = "pnlSeri";
-            this.pnlSeri.Size = new System.Drawing.Size(314, 51);
+            this.pnlSeri.Size = new System.Drawing.Size(279, 51);
             this.pnlSeri.TabIndex = 31;
             // 
             // label5
@@ -611,13 +600,13 @@
             this.pnlComand.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlComand.Location = new System.Drawing.Point(0, 151);
             this.pnlComand.Name = "pnlComand";
-            this.pnlComand.Size = new System.Drawing.Size(314, 397);
+            this.pnlComand.Size = new System.Drawing.Size(279, 358);
             this.pnlComand.TabIndex = 35;
             // 
             // btnInfomation
             // 
             this.btnInfomation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInfomation.Location = new System.Drawing.Point(172, 118);
+            this.btnInfomation.Location = new System.Drawing.Point(140, 111);
             this.btnInfomation.Name = "btnInfomation";
             this.btnInfomation.Size = new System.Drawing.Size(140, 52);
             this.btnInfomation.TabIndex = 50;
@@ -628,7 +617,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(4, 325);
+            this.label7.Location = new System.Drawing.Point(13, 243);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(101, 20);
             this.label7.TabIndex = 47;
@@ -637,7 +626,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(278, 359);
+            this.label6.Location = new System.Drawing.Point(242, 273);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(34, 20);
             this.label6.TabIndex = 48;
@@ -646,7 +635,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(278, 327);
+            this.label4.Location = new System.Drawing.Point(242, 238);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 20);
             this.label4.TabIndex = 47;
@@ -655,7 +644,7 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(161, 325);
+            this.textBox1.Location = new System.Drawing.Point(136, 232);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 26);
             this.textBox1.TabIndex = 15;
@@ -665,7 +654,7 @@
             // 
             this.button2.Enabled = false;
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Location = new System.Drawing.Point(17, 178);
+            this.button2.Location = new System.Drawing.Point(0, 163);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(140, 52);
             this.button2.TabIndex = 13;
@@ -676,16 +665,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(4, 359);
+            this.label1.Location = new System.Drawing.Point(13, 275);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(128, 20);
+            this.label1.Size = new System.Drawing.Size(102, 20);
             this.label1.TabIndex = 43;
-            this.label1.Text = "Các lần tiếp theo";
+            this.label1.Text = "Lần tiếp theo";
             // 
             // txtTimeGet
             // 
             this.txtTimeGet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTimeGet.Location = new System.Drawing.Point(161, 357);
+            this.txtTimeGet.Location = new System.Drawing.Point(136, 273);
             this.txtTimeGet.Name = "txtTimeGet";
             this.txtTimeGet.Size = new System.Drawing.Size(100, 26);
             this.txtTimeGet.TabIndex = 16;
@@ -694,7 +683,7 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(173, 178);
+            this.button1.Location = new System.Drawing.Point(140, 163);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(139, 52);
             this.button1.TabIndex = 14;
@@ -705,7 +694,7 @@
             // btnChar
             // 
             this.btnChar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnChar.Location = new System.Drawing.Point(172, 10);
+            this.btnChar.Location = new System.Drawing.Point(140, 15);
             this.btnChar.Name = "btnChar";
             this.btnChar.Size = new System.Drawing.Size(140, 48);
             this.btnChar.TabIndex = 8;
@@ -716,7 +705,7 @@
             // btnList
             // 
             this.btnList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnList.Location = new System.Drawing.Point(17, 10);
+            this.btnList.Location = new System.Drawing.Point(0, 15);
             this.btnList.Name = "btnList";
             this.btnList.Size = new System.Drawing.Size(140, 48);
             this.btnList.TabIndex = 11;
@@ -727,7 +716,7 @@
             // btnNodeOnline
             // 
             this.btnNodeOnline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNodeOnline.Location = new System.Drawing.Point(172, 64);
+            this.btnNodeOnline.Location = new System.Drawing.Point(140, 61);
             this.btnNodeOnline.Name = "btnNodeOnline";
             this.btnNodeOnline.Size = new System.Drawing.Size(140, 50);
             this.btnNodeOnline.TabIndex = 5;
@@ -738,7 +727,7 @@
             // btnBlackList
             // 
             this.btnBlackList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBlackList.Location = new System.Drawing.Point(17, 118);
+            this.btnBlackList.Location = new System.Drawing.Point(0, 111);
             this.btnBlackList.Name = "btnBlackList";
             this.btnBlackList.Size = new System.Drawing.Size(140, 52);
             this.btnBlackList.TabIndex = 6;
@@ -749,7 +738,7 @@
             // btnNodeOffline
             // 
             this.btnNodeOffline.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnNodeOffline.Location = new System.Drawing.Point(17, 66);
+            this.btnNodeOffline.Location = new System.Drawing.Point(0, 63);
             this.btnNodeOffline.Name = "btnNodeOffline";
             this.btnNodeOffline.Size = new System.Drawing.Size(140, 48);
             this.btnNodeOffline.TabIndex = 7;
@@ -766,7 +755,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(314, 626);
+            this.panel1.Size = new System.Drawing.Size(279, 626);
             this.panel1.TabIndex = 30;
             // 
             // btnClearLog
@@ -776,9 +765,9 @@
             this.btnClearLog.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClearLog.Image = global::DCU_Cuong_Tool.Properties.Resources.clear_icon_155649;
             this.btnClearLog.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClearLog.Location = new System.Drawing.Point(73, 564);
+            this.btnClearLog.Location = new System.Drawing.Point(59, 539);
             this.btnClearLog.Name = "btnClearLog";
-            this.btnClearLog.Size = new System.Drawing.Size(174, 50);
+            this.btnClearLog.Size = new System.Drawing.Size(177, 50);
             this.btnClearLog.TabIndex = 17;
             this.btnClearLog.Text = "Xóa Log ";
             this.btnClearLog.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -798,11 +787,30 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Width = 289;
             // 
+            // rtbOutput
+            // 
+            this.rtbOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rtbOutput.Location = new System.Drawing.Point(0, 0);
+            this.rtbOutput.Name = "rtbOutput";
+            this.rtbOutput.Size = new System.Drawing.Size(438, 626);
+            this.rtbOutput.TabIndex = 51;
+            this.rtbOutput.Text = "";
+            // 
+            // guna2Panel4
+            // 
+            this.guna2Panel4.Controls.Add(this.rtbOutput);
+            this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.guna2Panel4.Location = new System.Drawing.Point(984, 0);
+            this.guna2Panel4.Name = "guna2Panel4";
+            this.guna2Panel4.Size = new System.Drawing.Size(438, 626);
+            this.guna2Panel4.TabIndex = 52;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1422, 626);
+            this.Controls.Add(this.guna2Panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -836,13 +844,13 @@
             this.pnlComand.ResumeLayout(false);
             this.pnlComand.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.guna2Panel4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.RichTextBox rtbOutput;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -900,6 +908,8 @@
         private Guna.UI2.WinForms.Guna2Button btnReadInfomationNode;
         private System.Windows.Forms.Label label10;
         private Guna.UI2.WinForms.Guna2Button btnLocation;
+        private System.Windows.Forms.RichTextBox rtbOutput;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
     }
 }
 
