@@ -13,6 +13,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Ports;
 using System.Reflection.Emit;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -131,7 +132,7 @@ namespace WM03Soft
                         // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
                         Invoke(new Action(() =>
                         {
-                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.switch_on_icon_34343, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
+                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_green, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
                         }));
                     });
 
@@ -189,7 +190,7 @@ namespace WM03Soft
                         // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
                         Invoke(new Action(() =>
                         {
-                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.switch_off_icon_34344, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
+                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_red, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
                         }));
                     });
 
@@ -223,7 +224,7 @@ namespace WM03Soft
                     }
 
                     // Hiển thị phần trăm chênh lệch trong lbRatioOnline.Text
-                    lbRatioOnline.Text = string.Format("{0:0.##}%", ratio);
+                    lbRatioOffline.Text = string.Format("{0:0.##}%", ratio);
                     dataReceivedCount = 0;
                     Thread executeThread = new Thread(ExecuteBatchInsert);
                     executeThread.Start();
@@ -246,7 +247,7 @@ namespace WM03Soft
                         // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
                         Invoke(new Action(() =>
                         {
-                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.blackpin_118433, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
+                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_gray, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
                         }));
                     });
 
@@ -280,21 +281,35 @@ namespace WM03Soft
                     }
 
                     // Hiển thị phần trăm chênh lệch trong lbRatioOnline.Text
-                    lbRatioOnline.Text = string.Format("{0:0.##}%", ratio);
+                    lbRatioBlacklist.Text = string.Format("{0:0.##}%", ratio);
                     dataReceivedCount = 0;
                     Thread executeThread = new Thread(ExecuteBatchInsert);
                     executeThread.Start();
                 }
                 
             }
-            // Nhận các dữ liệu các công tơ
-            if (recv.Length >= 35)
+            if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "13" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
             {
+                displayLog(recv);
+            }
+                // Nhận các dữ liệu các công tơ
+                if (recv.Length >= 30)
+            {
+                displayLog(recv);
                 if (recv.Substring(0, 5) == "FE FE"  && recv.Substring(recv.Length - 5, 5) == "0A 0D")
                 {
                     displayLog(recv);
                     string[] aRec = recv.Split(' ');
-                    //string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
+                    string location = aRec[3] + aRec[4];
+                    string longAddress = aRec[5] + aRec[6] + aRec[7] + aRec[8] + aRec[9] + aRec[10];
+                    string shortAddress = aRec[11] + aRec[12];
+                    string layer = aRec[13];
+                    string state = aRec[14];
+                    string softwareVersion = aRec[15]+ aRec[16]+ aRec[17];
+                    string hardwareVersion = aRec[18] + aRec[19] + aRec[20];
+                    string stateGetDate180 = aRec[21];
+                    string pathOneSixByte = aRec[22] + aRec[23] + aRec[24] + aRec[25] + aRec[26];
+                    string pathOneTwoByte = aRec[27];
                     //if (serial != "FFFFFFFFFFFF")
                     //{
                     //    displayLog("serial " + serial);
@@ -331,8 +346,9 @@ namespace WM03Soft
                 {
                     try
                     {
+                        displayLog(recv);
                         string[] aRec = recv.Split(' ');
-                        string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
+                        string serial = aRec[13] + aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8];
                         string dateTime = "20" + MyLib.HexStringToByte(aRec[18]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[17]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[16]).ToString().PadLeft(2, '0')
                             + " " + MyLib.HexStringToByte(aRec[13]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[14]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[15]).ToString().PadLeft(2, '0');
                         string tem = "";
@@ -813,38 +829,57 @@ namespace WM03Soft
         private void btnNodeOnline_Click(object sender, EventArgs e)
         {
             int commandId = CommandId_ResponeAllNodeOnline;
-            SendCommandAndLog(commandId, "Lấy toàn bộ các node online");
+            SendCommandAndLog(commandId);
         }
 
         private void btnBlackList_Click(object sender, EventArgs e)
         {
             int commandId = CommandId_ResponeBlackList;
-            SendCommandAndLog(commandId, "Lấy toàn bộ các node blacklist");
+            SendCommandAndLog(commandId);
         }
 
         private void btnNodeOffline_Click(object sender, EventArgs e)
         {
             int commandId = CommandId_ResponeAllNodeOffline;
-            SendCommandAndLog(commandId, "Lấy toàn bộ các node offline");
+            SendCommandAndLog(commandId);
         }
         private void btnInfomation_Click(object sender, EventArgs e)
         {
             int commandId = CommnadID_AutoPushAllInfomationsOfNode;
-            SendCommandAndLog(commandId, "Lấy dữ liệu của các node");
+            SendCommandAndLog(commandId);
+        }
+        private void btnLocation_Click(object sender, EventArgs e)
+        {
+            // Lấy giá trị của TextBox "txtSerialNode"
+            string serial = txtSerialNode.Text;
+
+            // Kiểm tra giá trị serial nếu cần thiết
+            if (!string.IsNullOrEmpty(serial))
+            {
+                int commandId = CommandID_GetNeighoburOfOneNode;
+                SendCommandAndLog(commandId);
+                MessageBox.Show("Thông tin của serial: " + serial);
+            }
+            else
+            {
+                // Xử lý khi serial rỗng
+                // Ví dụ: Hiển thị thông báo lỗi
+                MessageBox.Show("Vui lòng nhập serial trước");
+            }
         }
 
-        private void SendCommandAndLog(int commandId, string logMessage)
+        private void SendCommandAndLog(int commandId)
         {
             if (commandId < 10) 
                 {
                 string command = "FE FE 06 00 01 " + commandId.ToString("X2") + " FF FF FF FF FF FF 0A 0D";
-                displayLog("Send: " + command + logMessage + " /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                displayLog("Send: " + command + " /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 SendOnly(command);
             }
             else
             {
                 string command = "FE FE 06 00 01 " + commandId.ToString() + " FF FF FF FF FF FF 0A 0D";
-                displayLog("Send: " + command + logMessage + " /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                displayLog("Send: " + command  + " /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
                 SendOnly(command);
             }
           
@@ -867,14 +902,15 @@ namespace WM03Soft
         {
 
                 dtgvNode.Rows.Clear();
-                btnBlackList.PerformClick();
+                SendCommandAndLog(CommandId_ResponeBlackList);
                 await Task.Delay(10000); // Đợi 10 giây
 
-                btnNodeOffline.PerformClick();
+                SendCommandAndLog(CommandId_ResponeAllNodeOffline);
                 await Task.Delay(20000); // Đợi 20 giây
 
-                btnNodeOnline.PerformClick();
+                SendCommandAndLog(CommandId_ResponeAllNodeOnline);
                 await Task.Delay(30000); // Đợi 30 giây
+                complete();
         }
         async void YourMethodOrEvent()
         {
@@ -888,7 +924,7 @@ namespace WM03Soft
             {
                 // Thực hiện hành động chỉ chạy đúng một lần khi currentTime.Hour = 13
                 YourMethodOrEvent();
-
+                load();
                 executedOnce = true; // Đánh dấu rằng hành động đã được thực hiện một lần
             }
             else if (currentTime.Hour % getTime == 0 && currentTime.Minute == 0 && currentTime.Second == 0 && executedOnce == true)
@@ -971,12 +1007,79 @@ namespace WM03Soft
                 e.Cancel = true; // Ngăn không cho form đóng
             }
         }
-
-        private void guna2Button1_Click(object sender, EventArgs e)
+        private void load()
         {
+            prgLoad.Visible = true;
+            panel1.Enabled = false;
+            guna2CustomGradientPanel1.Enabled = false;
+        }
+        private void complete()
+        { 
+            prgLoad.Visible = false;
+            panel1.Enabled = true;
+            guna2CustomGradientPanel1.Enabled = true;
+        }
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            //string[] rowData = new string[] { "0022413431" };
+
+            //// Thêm hàng mới vào DataGridView
+            //dtgvNode.Rows.Add(rowData);
             YourMethodOrEvent();
+            load();
         }
 
+        private void dtgvNode_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0) // Kiểm tra người dùng đã nhấp vào hàng hợp lệ hay không
+                {
+                    DataGridViewRow selectedRow = dtgvNode.Rows[e.RowIndex];
 
+                    // Lấy giá trị của cột đầu tiên trong hàng đã chọn
+                    object cellValue = selectedRow.Cells[0].Value;
+                    if (cellValue != null)
+                    {
+                        string value = cellValue.ToString();
+
+                        // Hiển thị giá trị trong TextBox
+                        txtSerialNode.Text = value;
+                    }
+                    else
+                    {
+                        // Xử lý khi giá trị là null
+                        // Ví dụ: Gán giá trị mặc định cho TextBox
+                        txtSerialNode.Text = string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi
+                // Ví dụ: Hiển thị thông báo lỗi
+                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
+            }
+        }
+
+        private void btnReadInfomationNode_Click(object sender, EventArgs e)
+        {
+            // Lấy giá trị của TextBox "txtSerialNode"
+            string serial = txtSerialNode.Text;
+
+            // Kiểm tra giá trị serial nếu cần thiết
+            if (!string.IsNullOrEmpty(serial))
+            {
+                // Xử lý để xem thông tin của serial
+                // Ví dụ: Hiển thị thông tin trong MessageBox
+                MessageBox.Show("Thông tin của serial: " + serial);
+            }
+            else
+            {
+                // Xử lý khi serial rỗng
+                // Ví dụ: Hiển thị thông báo lỗi
+                MessageBox.Show("Vui lòng nhập serial trước");
+            }
+        }
     }
 }

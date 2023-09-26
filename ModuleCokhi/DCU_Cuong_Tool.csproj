@@ -152,6 +152,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\button_blank_red.ico" />
+    <None Include="Resources\button_blank_green.ico" />
+    <None Include="Resources\button_blank_gray.ico" />
+    <None Include="Resources\button_blank_red_14987.ico" />
+    <None Include="Resources\button_blank_green_14986.ico" />
+    <None Include="Resources\button_blank_gray_14985.ico" />
     <None Include="Resources\zenmap_104119.ico" />
     <None Include="Resources\reset_undo_arrow_icon_149006.ico" />
     <None Include="Resources\blackpin_118433.ico" />
