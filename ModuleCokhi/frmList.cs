@@ -18,6 +18,7 @@ using static NPOI.HSSF.Util.HSSFColor;
 using Microsoft.Office.Interop.Word;
 using System.Reflection;
 using System.Diagnostics;
+using OfficeOpenXml;
 
 namespace DCU_Cuong_Tool
 {
@@ -52,6 +53,14 @@ namespace DCU_Cuong_Tool
                 else if (rdDaiLy.Checked == true)
                 {
                     query = "SELECT * FROM HIS_DAILY WHERE datetime(CREATED) BETWEEN date('" + dateStart + "') AND date('" + dateEnd + "', '+1 day') ORDER BY ID DESC";
+                }
+                else if (rdInfomation.Checked == true)
+                {
+                    query = "SELECT * FROM HIS_INFOMATION WHERE datetime(CREATED) BETWEEN date('" + dateStart + "') AND date('" + dateEnd + "', '+1 day') ORDER BY ID DESC";
+                }
+                else if (rdNeighbohur.Checked == true)
+                {
+                    query = "SELECT * FROM HIS_NEIGHOBUR WHERE datetime(CREATED) BETWEEN date('" + dateStart + "') AND date('" + dateEnd + "', '+1 day') ORDER BY ID DESC";
                 }
 
                 using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, connection))
@@ -190,5 +199,73 @@ namespace DCU_Cuong_Tool
            
         }
 
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            string connectionString = "Data Source=LocalDB.db;Version=3;"; // Thay đổi đường dẫn và tên database SQLite của bạn
+
+            string query = "SELECT * FROM HIS_BLACKLIST"; // Thay đổi your_table thành tên bảng SQLite của bạn
+
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Excel files (*.xlsx)|*.xlsx";
+            saveFileDialog.FilterIndex = 2;
+            saveFileDialog.RestoreDirectory = true;
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                string filePath = saveFileDialog.FileName;
+
+                try
+                {
+                    FileInfo file = new FileInfo(filePath);
+
+                    using (ExcelPackage package = new ExcelPackage(file))
+                    {
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                        using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                        {
+                            connection.Open();
+
+                            SQLiteCommand command = new SQLiteCommand(query, connection);
+                            SQLiteDataReader reader = command.ExecuteReader();
+
+                            int row = 1;
+                            int col = 1;
+
+                            // Ghi tiêu đề cột
+                            for (int i = 0; i < reader.FieldCount; i++)
+                            {
+                                worksheet.Cells[row, col].Value = reader.GetName(i);
+                                col++;
+                            }
+
+                            // Ghi dữ liệu từ SQLite vào Excel
+                            row++;
+                            while (reader.Read())
+                            {
+                                col = 1;
+                                for (int i = 0; i < reader.FieldCount; i++)
+                                {
+                                    worksheet.Cells[row, col].Value = reader[i];
+                                    col++;
+                                }
+                                row++;
+                            }
+
+                            reader.Close();
+                            connection.Close();
+                        }
+
+                        package.Save();
+                    }
+
+                    MessageBox.Show("Xuất dữ liệu thành công!");
+                }
+                catch (IOException ex)
+                {
+                    MessageBox.Show("Có lỗi xảy ra khi ghi file: " + ex.Message);
+                }
+            }
+        }
     }
 }

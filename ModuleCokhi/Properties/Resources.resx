@@ -121,46 +121,52 @@
   <data name="switch-off-icon_34344" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\switch-off-icon_34344.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="zenmap_104119" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\zenmap_104119.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="switch-on-icon_34343" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\switch-on-icon_34343.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="disconnect_line_icon_236081" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\disconnect_line_icon_236081.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="connect_line_icon_236099" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\connect_line_icon_236099.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="blackpin_118433" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\blackpin_118433.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="button_blank_green_14986" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\button_blank_green_14986.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="button_blank_gray_14985" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\button_blank_gray_14985.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="button_blank_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button_blank_gray.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="clock_time_time_9949" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\clock_time_time_9949.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="clear_icon_155649" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\clear_icon_155649.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="button_blank_gray_14985" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button_blank_gray_14985.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="button_blank_red_14987" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\button_blank_red_14987.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="reset_undo_arrow_icon_149006" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\reset_undo_arrow_icon_149006.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="button_blank_gray" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\button_blank_gray.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="zenmap_104119" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\zenmap_104119.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="button_blank_green" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\button_blank_green.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="button_blank_green_14986" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button_blank_green_14986.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="disconnect_line_icon_236081" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\disconnect_line_icon_236081.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="blackpin_118433" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\blackpin_118433.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="connect_line_icon_236099" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\connect_line_icon_236099.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="button_blank_red" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\button_blank_red.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="reset_undo_arrow_icon_149006" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\reset_undo_arrow_icon_149006.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="clear_icon_155649" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\clear_icon_155649.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="switch-on-icon_34343" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\switch-on-icon_34343.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="button_blank_red_14987" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\button_blank_red_14987.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="arrow_logout_exit_close_cancel_icon_208165" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\arrow_logout_exit_close_cancel_icon_208165.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="tick_good_accept_ok_complete_icon_208164" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\tick_good_accept_ok_complete_icon_208164.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

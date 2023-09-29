@@ -63,6 +63,16 @@ namespace DCU_Cuong_Tool.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap arrow_logout_exit_close_cancel_icon_208165 {
+            get {
+                object obj = ResourceManager.GetObject("arrow_logout_exit_close_cancel_icon_208165", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap blackpin_118433 {
             get {
                 object obj = ResourceManager.GetObject("blackpin_118433", resourceCulture);
@@ -196,6 +206,16 @@ namespace DCU_Cuong_Tool.Properties {
         internal static System.Drawing.Bitmap switch_on_icon_34343 {
             get {
                 object obj = ResourceManager.GetObject("switch-on-icon_34343", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap tick_good_accept_ok_complete_icon_208164 {
+            get {
+                object obj = ResourceManager.GetObject("tick_good_accept_ok_complete_icon_208164", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -8,6 +8,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Data;
+using System.Data.SqlClient;
 using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
@@ -109,7 +110,13 @@ namespace WM03Soft
                 this.dataReceivedCount++;
             }
         }
-
+        void CopyStringToString(char[] strDest, char[] strSource, int startCopy, int length)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                strDest[i] = strSource[startCopy + i];
+            }
+        }
         StringBuilder receivedDataBuffer = new StringBuilder();
 
         void ProcessPacket(string packetData)
@@ -126,13 +133,13 @@ namespace WM03Soft
                 {
                     displayLog("serial " + serial + "|| tầng " + level);
                     AddDataToBatch(serial, level);
-                    // Thêm dữ liệu vào dtgvNode.Rows trong một luồng riêng
+
                     Thread addRowThread = new Thread(() =>
                     {
                         // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
                         Invoke(new Action(() =>
                         {
-                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_green, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
+                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_green, "Đã nhận");
                         }));
                     });
 
@@ -143,35 +150,41 @@ namespace WM03Soft
                     displayLog(recv);
                     string countString = (dataReceivedCount - 1).ToString();
                     displayLog("Send" + " Tổng số node đang online ------> " + countString);
-                    // Lưu giữ giá trị trước đó của lbBlackList.Text
-                    string previousOnlineValue = lbOnline.Text;
 
-                    // Gán giá trị mới cho lbBlackList.Text
-                    lbOnline.Text = countString;
-
-                    // Tính toán phần trăm chênh lệch
-                    double previousOnlineCount;
-                    double currentOnlineCount;
-                    double ratio;
-
-                    if (double.TryParse(previousOnlineValue, out previousOnlineCount) && double.TryParse(countString, out currentOnlineCount))
+                    // Sử dụng Invoke để truy cập thành phần UI từ luồng khác
+                    lbOnline.Invoke((MethodInvoker)delegate
                     {
-                        double difference = currentOnlineCount - previousOnlineCount;
-                        ratio = (difference / previousOnlineCount) * 100;
-                    }
-                    else
-                    {
-                        // Xử lý nếu không thể chuyển đổi thành số
-                        ratio = 0;
-                    }
+                        // Lưu giữ giá trị trước đó của lbBlackList.Text
+                        string previousOnlineValue = lbOnline.Text;
 
-                    // Hiển thị phần trăm chênh lệch trong lbRatioOnline.Text
-                    lbRatioOnline.Text = string.Format("{0:0.##}%", ratio);
-                    dataReceivedCount = 0;
+                        // Gán giá trị mới cho lbBlackList.Text
+                        lbOnline.Text = countString;
+
+                        // Tính toán phần trăm chênh lệch
+                        double previousOnlineCount;
+                        double currentOnlineCount;
+                        double ratio;
+
+                        if (double.TryParse(previousOnlineValue, out previousOnlineCount) && double.TryParse(countString, out currentOnlineCount))
+                        {
+                            double difference = currentOnlineCount - previousOnlineCount;
+                            ratio = (difference / previousOnlineCount) * 100;
+                        }
+                        else
+                        {
+                            // Xử lý nếu không thể chuyển đổi thành số
+                            ratio = 0;
+                        }
+
+                        // Hiển thị phần trăm chênh lệch trong lbRatioOnline.Text
+                        lbRatioOnline.Text = string.Format("{0:0.##}%", ratio);
+                    });
+
+                   // dataReceivedCount = 0;
                     Thread executeThread = new Thread(ExecuteBatchInsert);
                     executeThread.Start();
                 }
-                
+
             }
             // Nhận các công tơ đang offline
             if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "08" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
@@ -190,7 +203,7 @@ namespace WM03Soft
                         // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
                         Invoke(new Action(() =>
                         {
-                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_red, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
+                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_red, "Chưa nhận");
                         }));
                     });
 
@@ -201,35 +214,41 @@ namespace WM03Soft
                     displayLog(recv);
                     string countString = (dataReceivedCount - 1).ToString();
                     displayLog("Send" + " Tổng số node đang offline ------>" + countString);
-                    // Lưu giữ giá trị trước đó của lbBlackList.Text
-                    string previousOfflineValue = lbOffline.Text;
 
-                    // Gán giá trị mới cho lbBlackList.Text
-                    lbOffline.Text = countString;
-
-                    // Tính toán phần trăm chênh lệch
-                    double previousOfflineCount;
-                    double currentOfflineCount;
-                    double ratio;
-
-                    if (double.TryParse(previousOfflineValue, out previousOfflineCount) && double.TryParse(countString, out currentOfflineCount))
+                    // Sử dụng Invoke để truy cập thành phần UI từ luồng khác
+                    lbOffline.Invoke((MethodInvoker)delegate
                     {
-                        double difference = currentOfflineCount - previousOfflineCount;
-                        ratio = (difference / previousOfflineCount) * 100;
-                    }
-                    else
-                    {
-                        // Xử lý nếu không thể chuyển đổi thành số
-                        ratio = 0;
-                    }
+                        // Lưu giữ giá trị trước đó của lbBlackList.Text
+                        string previousOfflineValue = lbOffline.Text;
 
-                    // Hiển thị phần trăm chênh lệch trong lbRatioOnline.Text
-                    lbRatioOffline.Text = string.Format("{0:0.##}%", ratio);
-                    dataReceivedCount = 0;
+                        // Gán giá trị mới cho lbBlackList.Text
+                        lbOffline.Text = countString;
+
+                        // Tính toán phần trăm chênh lệch
+                        double previousOfflineCount;
+                        double currentOfflineCount;
+                        double ratio;
+
+                        if (double.TryParse(previousOfflineValue, out previousOfflineCount) && double.TryParse(countString, out currentOfflineCount))
+                        {
+                            double difference = currentOfflineCount - previousOfflineCount;
+                            ratio = (difference / previousOfflineCount) * 100;
+                        }
+                        else
+                        {
+                            // Xử lý nếu không thể chuyển đổi thành số
+                            ratio = 0;
+                        }
+
+                        // Hiển thị phần trăm chênh lệch trong lbRatioOffline.Text
+                        lbRatioOffline.Text = string.Format("{0:0.##}%", ratio);
+                    });
+
+                    //dataReceivedCount = 0;
                     Thread executeThread = new Thread(ExecuteBatchInsert);
                     executeThread.Start();
                 }
-               
+
             }
             // Nhận các công tơ blacklist
             if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "06" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
@@ -246,7 +265,7 @@ namespace WM03Soft
                         // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
                         Invoke(new Action(() =>
                         {
-                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_gray, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
+                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_gray, "Chưa nhận");
                         }));
                     });
 
@@ -257,98 +276,65 @@ namespace WM03Soft
                     displayLog(recv);
                     string countString = (dataReceivedCount - 1).ToString();
                     displayLog("Send" + " Tổng số node đang black list ------>" + countString);
-                    // Lưu giữ giá trị trước đó của lbBlackList.Text
-                    string previousBlackListValue = lbBlackList.Text;
-
-                    // Gán giá trị mới cho lbBlackList.Text
-                    lbBlackList.Text = countString;
-
-                    // Tính toán phần trăm chênh lệch
-                    double previousBlackListCount;
-                    double currentBlackListCount;
-                    double ratio;
-
-                    if (double.TryParse(previousBlackListValue, out previousBlackListCount) && double.TryParse(countString, out currentBlackListCount))
-                    {
-                        double difference = currentBlackListCount - previousBlackListCount;
-                        ratio = (difference / previousBlackListCount) * 100;
-                    }
-                    else
-                    {
-                        // Xử lý nếu không thể chuyển đổi thành số
-                        ratio = 0;
-                    }
-
-                    // Hiển thị phần trăm chênh lệch trong lbRatioOnline.Text
-                    lbRatioBlacklist.Text = string.Format("{0:0.##}%", ratio);
-                    dataReceivedCount = 0;
+                   // dataReceivedCount = 0;
                     Thread executeThread = new Thread(ExecuteBatchInsert);
                     executeThread.Start();
                 }
                 
             }
-            // Nhận vị trí của công tơ
-            //if (recv.Substring(0, 5) == "FE FE" && recv.Substring(15, 2) == "13" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
-            //{
-            //    displayLog(recv);
-            //}
-            // Nhận các dữ liệu các công tơ
-            if (recv.Length >= 30)
-                    {
+            // Nhận các thông tin các công tơ
+            if (recv.Length >= 60 && recv.Length <= 200 && recv.Substring(0, 5) == "FE FE" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
+            {
                 displayLog(recv);
-                if (recv.Substring(0, 5) == "FE FE"  && recv.Substring(recv.Length - 5, 5) == "0A 0D")
                 {
-                    displayLog(recv);
-                    //string[] aRec = recv.Split(' ');
-                    //string location = aRec[3] + aRec[4];
-                    //string longAddress = aRec[5] + aRec[6] + aRec[7] + aRec[8] + aRec[9] + aRec[10];
-                    //string shortAddress = aRec[11] + aRec[12];
-                    //string layer = aRec[13];
-                    //string state = aRec[14];
-                    //string softwareVersion = aRec[15]+ aRec[16]+ aRec[17];
-                    //string hardwareVersion = aRec[18] + aRec[19] + aRec[20];
-                    //string stateGetDate180 = aRec[21];
-                    //string pathOneSixByte = aRec[22] + aRec[23] + aRec[24] + aRec[25] + aRec[26];
-                    //string pathOneTwoByte = aRec[27];
-                    //if (serial != "FFFFFFFFFFFF")
-                    //{
-                    //    displayLog("serial " + serial);
-                    //    AddDataToBatchHisBlackList(serial);
-                    //    // Thêm dữ liệu vào dtgvNode.Rows trong một luồng riêng
-                    //    Thread addRowThread = new Thread(() =>
-                    //    {
-                    //        // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
-                    //        Invoke(new Action(() =>
-                    //        {
-                    //            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.switch_off_icon_34344, DCU_Cuong_Tool.Properties.Resources.zenmap_104119);
-                    //        }));
-                    //    });
+                    string[] aRec = recv.Split(' ');
 
-                    //    addRowThread.Start();
-                    //}
-                    //else
-                    //{
-                    //    displayLog(recv);
-                    //    string countString = (dataReceivedCount - 1).ToString();
-                    //    displayLog("Send" + " Tổng số node đang black list ------>" + countString);
-                    //    lbBlackList.Text = countString;
-                    //    dataReceivedCount = 0;
-                    //    Thread executeThread = new Thread(ExecuteBatchInsert);
-                    //    executeThread.Start();
-                    //}
+                    string location = aRec[2] + aRec[3];
+                    string serial = aRec[4] + aRec[5] + aRec[6] + aRec[7] + aRec[8] + aRec[9];
+                    string shortAddress = aRec[10] + aRec[11];
+                    string timeslot = aRec[12] + aRec[13];
+                    string layer = aRec[14];
+                    string state = aRec[15];
+                    string softwareVersion = aRec[16] + aRec[17] + aRec[18];
+                    string hardwareVersion = aRec[19] + aRec[20] + aRec[21];
+                    string stateGetDate180 = aRec[22];
+                    string pathOneSixByte = aRec[23] + aRec[24] + aRec[25] + aRec[26] + aRec[27]  + aRec[28];
+                    string pathOneTwoByte = aRec[29];
+                    string url = aRec[30] + aRec[31] + aRec[32] + aRec[33] + aRec[34] + aRec[35] + aRec[36]
+                        + aRec[37] + aRec[38] + aRec[39] + aRec[40] + aRec[41] + aRec[42] + aRec[43] + aRec[44] + aRec[45];
+                    displayLog("Địa chỉ " + location + "\nSerial " + serial + "\nĐịa chỉ ngắn " + shortAddress + "\nLayer " + layer + "\nTrạng Thái " + state
+                    + "\nPhần mềm " + softwareVersion + "\nPhần cứng " + hardwareVersion + "\nlấy 180 " + stateGetDate180 + "\nsix byte " + pathOneSixByte
+                    + "\ntwo byte " + pathOneTwoByte + "\nURL " + url);
+                    displayLog("--------------------------------------------");
+                    string countString = (dataReceivedCount + 1).ToString();
 
+                    AddDataToBatchHisInfomation(serial, location, shortAddress,timeslot,layer,state,softwareVersion,hardwareVersion,stateGetDate180,pathOneSixByte,pathOneTwoByte,url);
+                    Thread executeThread = new Thread(ExecuteBatchInsert);
+                    executeThread.Start();
+                    //dataReceivedCount++;
+
+                    displayLog("Dữ liệu số: " + dataReceivedCount);
                 }
             }
+            // Nhận vị trí của công tơ
+            if (recv.Length >= 200 && recv.Substring(0, 5) == "FE FE" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
+            {
+
+                displayLog(recv);
+                displayLog("Dữ liệu số: --------------------------->" + dataReceivedCount);
+               // AddDataToBatchHisNeighobur(serial, dateTime, dActive);
+                Thread executeThread = new Thread(ExecuteBatchInsert);
+                executeThread.Start();
+            }
             // Nhận dữ liệu hoá đơn ngày
-            if (recv.Length >= 22)
+            if (recv.Length >= 22 && recv.Length < 50)
             {
                 if (recv.Substring(0, 5) == "FE FE" && recv.Substring(12, 5) == "11 03" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
                 {
                     try
                     {
-                        displayLog(recv);
                         string[] aRec = recv.Split(' ');
-                        string serial = aRec[13] + aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8];
+                        string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
                         string dateTime = "20" + MyLib.HexStringToByte(aRec[18]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[17]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[16]).ToString().PadLeft(2, '0')
                             + " " + MyLib.HexStringToByte(aRec[13]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[14]).ToString().PadLeft(2, '0') + ":" + MyLib.HexStringToByte(aRec[15]).ToString().PadLeft(2, '0');
                         string tem = "";
@@ -394,7 +380,18 @@ namespace WM03Soft
             string data = $"INSERT INTO HIS_DAILY (SERIAL, DATA_TIME, V180, CREATED) VALUES ('{serial}','{dateTime}','{dActive}', '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
             dataToWriteBatch.Add(data);
         }
+        void AddDataToBatchHisInfomation(string serial, string location, string shortaddress, string timeslot, string layer, string state, string softwareversion, string hardwareversion, string get180, string pathsix, string url, string pathtwo)
+        {
+            string data = $"INSERT INTO HIS_INFOMATION (SERIAL, LOCATION, SHORTADDRESS, TIMESLOT, LAYER, STATE, SOFTWAREVERSION, HARDWAREVERSION, GET180, PATHSIX, PATHTWO, URL, CREATED) " +
+                $"VALUES ('{serial}', '{location}','{shortaddress}','{timeslot}', '{layer}', '{state}', '{softwareversion}','{hardwareversion}','{get180}','{pathsix}', '{url}','{pathtwo}',  '{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+            dataToWriteBatch.Add(data);
+        }
 
+        void AddDataToBatchHisNeighobur(string serial, string location)
+        {
+            string data = $"INSERT INTO HIS_NEIGHOBUR (SERIAL, LOCATION, CREATED) VALUES ('{serial}','{location}' ,'{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")}')";
+            dataToWriteBatch.Add(data);
+        }
 
         private object lockObject = new object(); // Khóa đồng bộ cho việc truy cập vào danh sách dataToWriteBatch
 
@@ -822,10 +819,10 @@ namespace WM03Soft
         const int CommandId_ResponeAllNodeOnline = 7;
         const int CommandId_ResponeAllNodeOffline = 8;
         const int CommandID_Ask = 9;
-        const int CommnadID_GetInfomationOfNode = 10;
-        const int CommnadID_AutoPushAllInfomationsOfNode = 11;
-        const int CommandID_GetGraph = 12;
-        const int CommandID_GetNeighoburOfOneNode = 13;
+        const int CommnadID_GetInfomationOfNode = 0x0A;
+        const int CommnadID_AutoPushAllInfomationsOfNode = 0x0B;
+        const int CommandID_GetGraph = 0x0C;
+        const int CommandID_GetNeighoburOfOneNode = 0x0C;
         private void btnNodeOnline_Click(object sender, EventArgs e)
         {
             int commandId = CommandId_ResponeAllNodeOnline;
@@ -850,50 +847,15 @@ namespace WM03Soft
         }
         private void btnLocation_Click(object sender, EventArgs e)
         {
-            // Lấy giá trị của TextBox "txtSerialNode"
-            string serial = txtSerialNode.Text;
-            string formattedSerial = "";
-
-            for (int i = 0; i < serial.Length; i += 2)
-            {
-                if (i > 0)
-                {
-                    formattedSerial += " ";
-                }
-
-                formattedSerial += serial.Substring(i, 2);
-            }
-
-            // Kiểm tra giá trị serial nếu cần thiết
-            if (!string.IsNullOrEmpty(serial))
-            {
-                SendOnly("FE FE 06 00 10 13 " + formattedSerial + " 0A 0D");
-                displayLog("FE FE 06 00 10 13 " + formattedSerial + " 0A 0D");
-                MessageBox.Show("Thông tin của serial: " + serial);
-            }
-            else
-            {
-                // Xử lý khi serial rỗng
-                // Ví dụ: Hiển thị thông báo lỗi
-                MessageBox.Show("Vui lòng nhập serial trước");
-            }
+            int commandId = CommandID_GetGraph;
+            SendCommandAndLog(commandId);
         }
 
         private void SendCommandAndLog(int commandId)
         {
-            if (commandId < 10) 
-                {
                 string command = "FE FE 06 00 01 " + commandId.ToString("X2") + " FF FF FF FF FF FF 0A 0D";
                 displayLog("Send: " + command + " /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                SendOnly(command);
-            }
-            else
-            {
-                string command = "FE FE 06 00 01 " + commandId.ToString() + " FF FF FF FF FF FF 0A 0D";
-                displayLog("Send: " + command  + " /" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-                SendOnly(command);
-            }
-          
+                SendOnly(command);   
         }
 
         private void btnList_Click(object sender, EventArgs e)
@@ -907,11 +869,67 @@ namespace WM03Soft
             frmChar fChar = new frmChar();
             fChar.Show();
         }
-        private void btnReset_Click(object sender, EventArgs e)
+        private List<string> receivedSerials = new List<string>();  // Khai báo danh sách tạm thời chứa các số serial đã nhận được
+
+        private async void btnReset_Click(object sender, EventArgs e)
         {
+            // Thực hiện toàn bộ quá trình trong một luồng riêng
+            await Task.Run(() =>
+            {
+                // Xóa dữ liệu hiện có trong danh sách tạm thời
+                receivedSerials.Clear();
+
+                // Lấy ngày hôm nay
+                DateTime today = DateTime.Today;
+                string todayString = today.ToString("yyyy-MM-dd");
+                DateTime previousDay = DateTime.Today.AddDays(-1);
+                string previousDayString = previousDay.ToString("yyyy-MM-dd");
+                // int previousDayCount = 0;
+                string connectionString = "Data Source=LocalDB.db;Version=3;";
+
+                // Tạo đối tượng SQLiteConnection
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string commandText = "SELECT SERIAL FROM HIS_DAILY WHERE CREATED LIKE @todayString";
+
+                    using (SQLiteCommand command = new SQLiteCommand(commandText, connection))
+                    {
+                        command.Parameters.AddWithValue("@todayString", todayString + "%");
+
+                        // Thực hiện câu truy vấn và đọc kết quả
+                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                string serialFromDB = reader["SERIAL"].ToString();
+
+                                // Thêm giá trị vào danh sách tạm thời receivedSerials
+                                receivedSerials.Add(serialFromDB);
+                            }
+                        }
+                    }
+                    //string previousDayCommandText = "SELECT COUNT(*) FROM HIS_DAILY WHERE CREATED LIKE @previousDayString";
+                    //using (SQLiteCommand previousDayCommand = new SQLiteCommand(previousDayCommandText, connection))
+                    //{
+                    //    previousDayCommand.Parameters.AddWithValue("@previousDayString", previousDayString + "%");
+                    //    object previousDayCountObject = previousDayCommand.ExecuteScalar();
+                    //    if (previousDayCountObject != null && int.TryParse(previousDayCountObject.ToString(), out int count))
+                    //    {
+                    //        previousDayCount = count;
+                    //    }
+                    //}
+                }
+            });
+            int totalCount = receivedSerials.Count;
+            lbV180.Text = totalCount.ToString();
+            // lbRatiov180.Text = previousDayCount.ToString();
+            // Gọi các phương thức hoặc sự kiện khác ở đây
             YourMethodOrEvent();
-            load();
+             load();
         }
+
 
         private void dtgvNode_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -973,13 +991,16 @@ namespace WM03Soft
                 dtgvNode.Rows.Clear();
                 SendCommandAndLog(CommandId_ResponeBlackList);
                 await Task.Delay(10000); // Đợi 10 giây
-
+                this.dataReceivedCount = 0;
                 SendCommandAndLog(CommandId_ResponeAllNodeOffline);
                 await Task.Delay(20000); // Đợi 20 giây
-
+                this.dataReceivedCount = 0;
                 SendCommandAndLog(CommandId_ResponeAllNodeOnline);
                 await Task.Delay(30000); // Đợi 30 giây
+                this.dataReceivedCount = 0;
+                this.bBufferRecv = "";
                 complete();
+                
         }
         async void YourMethodOrEvent()
         {
@@ -1087,6 +1108,12 @@ namespace WM03Soft
             prgLoad.Visible = false;
             panel1.Enabled = true;
             guna2CustomGradientPanel1.Enabled = true;
+        }
+
+        private void btnReset_Click_1(object sender, EventArgs e)
+        {
+            YourMethodOrEvent();
+            load();
         }
     }
 }

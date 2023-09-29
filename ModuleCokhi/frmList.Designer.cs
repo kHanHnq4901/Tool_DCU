@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmList));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnExportExcel = new System.Windows.Forms.Button();
+            this.rdNeighbohur = new System.Windows.Forms.RadioButton();
+            this.rdInfomation = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.dateTimeEnd = new System.Windows.Forms.DateTimePicker();
             this.btnExport = new System.Windows.Forms.Button();
@@ -51,6 +54,9 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnExportExcel);
+            this.panel1.Controls.Add(this.rdNeighbohur);
+            this.panel1.Controls.Add(this.rdInfomation);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.dateTimeEnd);
             this.panel1.Controls.Add(this.btnExport);
@@ -68,10 +74,45 @@
             this.panel1.Size = new System.Drawing.Size(1422, 81);
             this.panel1.TabIndex = 0;
             // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportExcel.Location = new System.Drawing.Point(916, 42);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(131, 36);
+            this.btnExportExcel.TabIndex = 17;
+            this.btnExportExcel.Text = "Xuất file excel";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
+            // 
+            // rdNeighbohur
+            // 
+            this.rdNeighbohur.AutoSize = true;
+            this.rdNeighbohur.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rdNeighbohur.Location = new System.Drawing.Point(314, 42);
+            this.rdNeighbohur.Name = "rdNeighbohur";
+            this.rdNeighbohur.Size = new System.Drawing.Size(63, 24);
+            this.rdNeighbohur.TabIndex = 16;
+            this.rdNeighbohur.TabStop = true;
+            this.rdNeighbohur.Text = "Vị trí";
+            this.rdNeighbohur.UseVisualStyleBackColor = true;
+            // 
+            // rdInfomation
+            // 
+            this.rdInfomation.AutoSize = true;
+            this.rdInfomation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rdInfomation.Location = new System.Drawing.Point(314, 11);
+            this.rdInfomation.Name = "rdInfomation";
+            this.rdInfomation.Size = new System.Drawing.Size(98, 24);
+            this.rdInfomation.TabIndex = 15;
+            this.rdInfomation.TabStop = true;
+            this.rdInfomation.Text = "Thông tin";
+            this.rdInfomation.UseVisualStyleBackColor = true;
+            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(509, 30);
+            this.label2.Location = new System.Drawing.Point(536, 54);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 20);
             this.label2.TabIndex = 14;
@@ -80,7 +121,7 @@
             // dateTimeEnd
             // 
             this.dateTimeEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeEnd.Location = new System.Drawing.Point(575, 25);
+            this.dateTimeEnd.Location = new System.Drawing.Point(600, 49);
             this.dateTimeEnd.Name = "dateTimeEnd";
             this.dateTimeEnd.Size = new System.Drawing.Size(119, 26);
             this.dateTimeEnd.TabIndex = 13;
@@ -88,11 +129,11 @@
             // btnExport
             // 
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.Location = new System.Drawing.Point(916, 20);
+            this.btnExport.Location = new System.Drawing.Point(916, 3);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(131, 36);
             this.btnExport.TabIndex = 12;
-            this.btnExport.Text = "Xuất file";
+            this.btnExport.Text = "Xuất file world";
             this.btnExport.UseVisualStyleBackColor = true;
             this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
@@ -111,7 +152,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(314, 29);
+            this.label1.Location = new System.Drawing.Point(536, 15);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 20);
             this.label1.TabIndex = 10;
@@ -129,7 +170,7 @@
             // dateTimeStart
             // 
             this.dateTimeStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeStart.Location = new System.Drawing.Point(365, 25);
+            this.dateTimeStart.Location = new System.Drawing.Point(600, 10);
             this.dateTimeStart.Name = "dateTimeStart";
             this.dateTimeStart.Size = new System.Drawing.Size(119, 26);
             this.dateTimeStart.TabIndex = 8;
@@ -245,5 +286,8 @@
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker dateTimeEnd;
+        private System.Windows.Forms.RadioButton rdNeighbohur;
+        private System.Windows.Forms.RadioButton rdInfomation;
+        private System.Windows.Forms.Button btnExportExcel;
     }
 }

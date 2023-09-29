@@ -41,7 +41,7 @@
             this.dtgvNode = new Guna.UI2.WinForms.Guna2DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.btnLocation = new Guna.UI2.WinForms.Guna2Button();
             this.label10 = new System.Windows.Forms.Label();
@@ -51,8 +51,8 @@
             this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.lbRatioBlacklist = new System.Windows.Forms.Label();
-            this.lbBlackList = new System.Windows.Forms.Label();
+            this.lbRatiov180 = new System.Windows.Forms.Label();
+            this.lbV180 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -124,20 +124,22 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel2.Location = new System.Drawing.Point(279, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(705, 626);
+            this.panel2.Size = new System.Drawing.Size(741, 626);
             this.panel2.TabIndex = 31;
             // 
             // pn2
             // 
+            this.pn2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pn2.BackColor = System.Drawing.Color.Transparent;
             this.pn2.BaseColor = System.Drawing.Color.White;
             this.pn2.Controls.Add(this.prgLoad);
             this.pn2.Controls.Add(this.dtgvNode);
             this.pn2.Controls.Add(this.guna2CustomGradientPanel1);
-            this.pn2.Dock = System.Windows.Forms.DockStyle.Top;
             this.pn2.Location = new System.Drawing.Point(0, 145);
             this.pn2.Name = "pn2";
-            this.pn2.Size = new System.Drawing.Size(705, 526);
+            this.pn2.Size = new System.Drawing.Size(741, 526);
             this.pn2.TabIndex = 20;
             // 
             // prgLoad
@@ -176,7 +178,7 @@
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dtgvNode.DefaultCellStyle = dataGridViewCellStyle3;
-            this.dtgvNode.Dock = System.Windows.Forms.DockStyle.Top;
+            this.dtgvNode.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dtgvNode.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dtgvNode.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dtgvNode.Location = new System.Drawing.Point(0, 64);
@@ -185,7 +187,7 @@
             this.dtgvNode.RowHeadersVisible = false;
             this.dtgvNode.RowHeadersWidth = 62;
             this.dtgvNode.RowTemplate.Height = 28;
-            this.dtgvNode.Size = new System.Drawing.Size(705, 417);
+            this.dtgvNode.Size = new System.Drawing.Size(741, 462);
             this.dtgvNode.TabIndex = 51;
             this.dtgvNode.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dtgvNode.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -224,10 +226,11 @@
             // 
             // Column3
             // 
-            this.Column3.HeaderText = "Hành động";
-            this.Column3.Image = global::DCU_Cuong_Tool.Properties.Resources.zenmap_104119;
+            this.Column3.HeaderText = "Dữ liệu";
             this.Column3.MinimumWidth = 8;
             this.Column3.Name = "Column3";
+            this.Column3.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // guna2CustomGradientPanel1
             // 
@@ -239,7 +242,7 @@
             this.guna2CustomGradientPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.guna2CustomGradientPanel1.Location = new System.Drawing.Point(0, 0);
             this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
-            this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(705, 64);
+            this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(741, 64);
             this.guna2CustomGradientPanel1.TabIndex = 50;
             // 
             // btnLocation
@@ -298,7 +301,7 @@
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(46, 43);
             this.btnReset.TabIndex = 1;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click_1);
             // 
             // txtSerialNode
             // 
@@ -330,25 +333,28 @@
             this.gunaElipsePanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.gunaElipsePanel1.Location = new System.Drawing.Point(0, 0);
             this.gunaElipsePanel1.Name = "gunaElipsePanel1";
-            this.gunaElipsePanel1.Size = new System.Drawing.Size(705, 145);
+            this.gunaElipsePanel1.Size = new System.Drawing.Size(741, 145);
             this.gunaElipsePanel1.TabIndex = 19;
             // 
             // guna2Panel3
             // 
+            this.guna2Panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2Panel3.BorderRadius = 10;
             this.guna2Panel3.Controls.Add(this.pictureBox3);
-            this.guna2Panel3.Controls.Add(this.lbRatioBlacklist);
-            this.guna2Panel3.Controls.Add(this.lbBlackList);
+            this.guna2Panel3.Controls.Add(this.lbRatiov180);
+            this.guna2Panel3.Controls.Add(this.lbV180);
             this.guna2Panel3.Controls.Add(this.label9);
-            this.guna2Panel3.FillColor = System.Drawing.Color.Silver;
-            this.guna2Panel3.Location = new System.Drawing.Point(467, 12);
+            this.guna2Panel3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.guna2Panel3.Location = new System.Drawing.Point(477, 12);
             this.guna2Panel3.Name = "guna2Panel3";
-            this.guna2Panel3.Size = new System.Drawing.Size(231, 110);
+            this.guna2Panel3.Size = new System.Drawing.Size(225, 110);
             this.guna2Panel3.TabIndex = 4;
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_gray;
+            this.pictureBox3.Image = global::DCU_Cuong_Tool.Properties.Resources.tick_good_accept_ok_complete_icon_208164;
             this.pictureBox3.Location = new System.Drawing.Point(175, 4);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(32, 32);
@@ -356,23 +362,23 @@
             this.pictureBox3.TabIndex = 53;
             this.pictureBox3.TabStop = false;
             // 
-            // lbRatioBlacklist
+            // lbRatiov180
             // 
-            this.lbRatioBlacklist.AutoSize = true;
-            this.lbRatioBlacklist.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRatioBlacklist.Location = new System.Drawing.Point(16, 74);
-            this.lbRatioBlacklist.Name = "lbRatioBlacklist";
-            this.lbRatioBlacklist.Size = new System.Drawing.Size(0, 25);
-            this.lbRatioBlacklist.TabIndex = 53;
+            this.lbRatiov180.AutoSize = true;
+            this.lbRatiov180.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbRatiov180.Location = new System.Drawing.Point(16, 74);
+            this.lbRatiov180.Name = "lbRatiov180";
+            this.lbRatiov180.Size = new System.Drawing.Size(0, 25);
+            this.lbRatiov180.TabIndex = 53;
             // 
-            // lbBlackList
+            // lbV180
             // 
-            this.lbBlackList.AutoSize = true;
-            this.lbBlackList.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBlackList.Location = new System.Drawing.Point(58, 39);
-            this.lbBlackList.Name = "lbBlackList";
-            this.lbBlackList.Size = new System.Drawing.Size(0, 25);
-            this.lbBlackList.TabIndex = 52;
+            this.lbV180.AutoSize = true;
+            this.lbV180.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbV180.Location = new System.Drawing.Point(58, 39);
+            this.lbV180.Name = "lbV180";
+            this.lbV180.Size = new System.Drawing.Size(0, 25);
+            this.lbV180.TabIndex = 52;
             // 
             // label9
             // 
@@ -380,12 +386,15 @@
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(16, 9);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(98, 25);
+            this.label9.Size = new System.Drawing.Size(79, 25);
             this.label9.TabIndex = 51;
-            this.label9.Text = "Black list";
+            this.label9.Text = "Dữ liệu";
             // 
             // guna2Panel2
             // 
+            this.guna2Panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2Panel2.BorderRadius = 10;
             this.guna2Panel2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
             this.guna2Panel2.Controls.Add(this.pictureBox2);
@@ -438,6 +447,9 @@
             // 
             // guna2Panel1
             // 
+            this.guna2Panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2Panel1.BorderRadius = 10;
             this.guna2Panel1.Controls.Add(this.pictureBox1);
             this.guna2Panel1.Controls.Add(this.lbRatioOnline);
@@ -792,7 +804,7 @@
             this.rtbOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rtbOutput.Location = new System.Drawing.Point(0, 0);
             this.rtbOutput.Name = "rtbOutput";
-            this.rtbOutput.Size = new System.Drawing.Size(438, 626);
+            this.rtbOutput.Size = new System.Drawing.Size(402, 626);
             this.rtbOutput.TabIndex = 51;
             this.rtbOutput.Text = "";
             // 
@@ -800,9 +812,9 @@
             // 
             this.guna2Panel4.Controls.Add(this.rtbOutput);
             this.guna2Panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.guna2Panel4.Location = new System.Drawing.Point(984, 0);
+            this.guna2Panel4.Location = new System.Drawing.Point(1020, 0);
             this.guna2Panel4.Name = "guna2Panel4";
-            this.guna2Panel4.Size = new System.Drawing.Size(438, 626);
+            this.guna2Panel4.Size = new System.Drawing.Size(402, 626);
             this.guna2Panel4.TabIndex = 52;
             // 
             // frmMain
@@ -816,7 +828,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.MaximizeBox = false;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "WM03Soft";
@@ -886,10 +897,10 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label lbBlackList;
+        private System.Windows.Forms.Label lbV180;
         private System.Windows.Forms.Label lbOffline;
         private System.Windows.Forms.Label lbOnline;
-        private System.Windows.Forms.Label lbRatioBlacklist;
+        private System.Windows.Forms.Label lbRatiov180;
         private System.Windows.Forms.Label lbRatioOffline;
         private System.Windows.Forms.Label lbRatioOnline;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -899,9 +910,6 @@
         private Guna.UI2.WinForms.Guna2DataGridView dtgvNode;
         private Guna.UI2.WinForms.Guna2Button btnReset;
         private Guna.UI2.WinForms.Guna2TextBox txtSerialNode;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewImageColumn Column2;
-        private System.Windows.Forms.DataGridViewImageColumn Column3;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
         private System.Windows.Forms.Button btnInfomation;
         private Guna.UI2.WinForms.Guna2ProgressIndicator prgLoad;
@@ -910,6 +918,9 @@
         private Guna.UI2.WinForms.Guna2Button btnLocation;
         private System.Windows.Forms.RichTextBox rtbOutput;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewImageColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
 
