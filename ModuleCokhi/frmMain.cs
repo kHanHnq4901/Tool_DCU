@@ -999,8 +999,7 @@ namespace WM03Soft
                 await Task.Delay(30000); // Đợi 30 giây
                 this.dataReceivedCount = 0;
                 this.bBufferRecv = "";
-                complete();
-                
+                complete();  
         }
         async void YourMethodOrEvent()
         {
