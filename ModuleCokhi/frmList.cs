@@ -81,81 +81,95 @@ namespace DCU_Cuong_Tool
             LoadData();
         }
 
-        private void ExportToWord(string outputPath)
+        private void ExportToWord()
         {
-            
             if (dtgvData.DataSource != null)
             {
                 try
                 {
-                    // Sử dụng reflection để tạo đối tượng Microsoft.Office.Interop.Word.Application
-                    Type wordAppType = Type.GetTypeFromProgID("Word.Application");
-                    dynamic wordApp = Activator.CreateInstance(wordAppType);
+                    SaveFileDialog saveFileDialog = new SaveFileDialog();
+                    saveFileDialog.Filter = "Word Document (*.docx)|*.docx";
+                    saveFileDialog.Title = "Save Word File";
+                    saveFileDialog.FileName = "output.docx";
 
-                    // Tạo một tài liệu Word mới
-                    dynamic wordDoc = wordApp.Documents.Add();
-
-                    // Lấy dữ liệu từ DataGridView
-                    System.Data.DataTable dataTable = dtgvData.DataSource as System.Data.DataTable;
-
-                    if (dataTable != null)
+                    if (saveFileDialog.ShowDialog() == DialogResult.OK)
                     {
-                        
-                        // Thêm dữ liệu vào tài liệu Word
-                        dynamic wordParagraph = wordDoc.Content.Paragraphs.Add();
+                        string outputPath = saveFileDialog.FileName;
 
-                        // Tạo bảng trong tài liệu Word
-                        dynamic wordTable = wordDoc.Tables.Add(wordParagraph.Range, dataTable.Rows.Count + 1, dataTable.Columns.Count);
+                        // Sử dụng reflection để tạo đối tượng Microsoft.Office.Interop.Word.Application
+                        Type wordAppType = Type.GetTypeFromProgID("Word.Application");
+                        dynamic wordApp = Activator.CreateInstance(wordAppType);
 
-                        // Đặt tiêu đề cho các cột
-                        for (int i = 0; i < dataTable.Columns.Count; i++)
+                        // Tạo một tài liệu Word mới
+                        dynamic wordDoc = wordApp.Documents.Add();
+
+                        // Lấy dữ liệu từ DataGridView
+                        System.Data.DataTable dataTable = dtgvData.DataSource as System.Data.DataTable;
+
+                        if (dataTable != null)
                         {
-                            wordTable.Cell(1, i + 1).Range.Text = dataTable.Columns[i].ColumnName;
-                        }
-                
-                        // Đặt giá trị cho các ô trong bảng
-                        for (int row = 0; row < dataTable.Rows.Count; row++)
-                        {
-                            for (int col = 0; col < dataTable.Columns.Count; col++)
+                            // Thêm dữ liệu vào tài liệu Word
+                            dynamic wordParagraph = wordDoc.Content.Paragraphs.Add();
+
+                            // Tạo bảng trong tài liệu Word
+                            dynamic wordTable = wordDoc.Tables.Add(wordParagraph.Range, dataTable.Rows.Count + 1, dataTable.Columns.Count);
+
+                            // Đặt tiêu đề cho các cột
+                            for (int i = 0; i < dataTable.Columns.Count; i++)
                             {
-                                wordTable.Cell(row + 2, col + 1).Range.Text = dataTable.Rows[row][col].ToString();
+                                wordTable.Cell(1, i + 1).Range.Text = dataTable.Columns[i].ColumnName;
                             }
-                        }
-                        // Chèn tiêu đề trên đầu trang
-                        dynamic titleRange = wordApp.Selection.Range;
-                        titleRange.Paragraphs.Add();
-                        if (rbNodeBlackList.Checked)
-                        {
-                            titleRange.Text = "Danh sách các node Blacklist Từ ngày " + dateTimeStart.Value.ToString("yyyy-MM-dd") + " đến ngày " + dateTimeEnd.Value.ToString("dd-MM-yyyy");
-                        }
-                        else if(rbNodeOnline.Checked)
-                        {
-                            titleRange.Text = "Danh sách các node Online Từ ngày " + dateTimeStart.Value.ToString("yyyy-MM-dd") + " đến ngày " + dateTimeEnd.Value.ToString("yyyy-MM-dd");
-                        }
-                        else if (rbNodeOffline.Checked)
-                        {
-                            titleRange.Text = "Danh sách các node Offline Từ ngày "+ dateTimeStart.Value.ToString("yyyy-MM-dd") + " đến ngày " + dateTimeEnd.Value.ToString("yyyy-MM-dd");
-                        }else titleRange.Text = "Danh sách hóa đơn từ ngày " + dateTimeStart.Value.ToString("yyyy-MM-dd") + " đến ngày " + dateTimeEnd.Value.ToString("yyyy-MM-dd");
 
-                        titleRange.Bold = 1;
-                        titleRange.ParagraphFormat.Alignment = 1; // Căn giữa
-                        // Di chuyển con trỏ văn bản xuống dòng mới
-                        wordApp.Selection.MoveDown();
-                        // Lưu tài liệu Word
-                        string downloadPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads\\output.docx";
-                        string uniqueFileName = GetUniqueFileName(downloadPath);
-                        wordDoc.SaveAs(uniqueFileName);
-                        wordDoc.Close();
+                            // Đặt giá trị cho các ô trong bảng
+                            for (int row = 0; row < dataTable.Rows.Count; row++)
+                            {
+                                for (int col = 0; col < dataTable.Columns.Count; col++)
+                                {
+                                    wordTable.Cell(row + 2, col + 1).Range.Text = dataTable.Rows[row][col].ToString();
+                                }
+                            }
 
-                        // Đóng ứng dụng Word
-                        wordApp.Quit();
+                            // Chèn tiêu đề trên đầu trang
+                            dynamic titleRange = wordApp.Selection.Range;
+                            titleRange.Paragraphs.Add();
 
-                        MessageBox.Show("Xuất file Word thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Process.Start(uniqueFileName);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Dữ liệu trong DataGridView không phải là một đối tượng DataTable.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            if (rbNodeBlackList.Checked)
+                            {
+                                titleRange.Text = "Danh sách các node Blacklist Từ ngày " + dateTimeStart.Value.ToString("yyyy-MM-dd") + " đến ngày " + dateTimeEnd.Value.ToString("dd-MM-yyyy");
+                            }
+                            else if (rbNodeOnline.Checked)
+                            {
+                                titleRange.Text = "Danh sách các node Online Từ ngày " + dateTimeStart.Value.ToString("yyyy-MM-dd") + " đến ngày " + dateTimeEnd.Value.ToString("yyyy-MM-dd");
+                            }
+                            else if (rbNodeOffline.Checked)
+                            {
+                                titleRange.Text = "Danh sách các node Offline Từ ngày " + dateTimeStart.Value.ToString("yyyy-MM-dd") + " đến ngày " + dateTimeEnd.Value.ToString("yyyy-MM-dd");
+                            }
+                            else
+                            {
+                                titleRange.Text = "Danh sách hóa đơn từ ngày " + dateTimeStart.Value.ToString("yyyy-MM-dd") + " đến ngày " + dateTimeEnd.Value.ToString("yyyy-MM-dd");
+                            }
+
+                            titleRange.Bold = 1;
+                            titleRange.ParagraphFormat.Alignment = 1; // Căn giữa
+
+                            // Di chuyển con trỏ văn bản xuống dòng mới
+                            wordApp.Selection.MoveDown();
+
+                            // Lưu tài liệu Word
+                            wordDoc.SaveAs(outputPath);
+                            wordDoc.Close();
+
+                            // Đóng ứng dụng Word
+                            wordApp.Quit();
+
+                            MessageBox.Show("Xuất file Word thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            Process.Start(outputPath);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Dữ liệu trong DataGridView không phải là một đối tượng DataTable.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -164,17 +178,16 @@ namespace DCU_Cuong_Tool
                 }
             }
             else
-                {
+            {
                 MessageBox.Show("Không có dữ liệu để xuất ra tệp Word.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-          
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
             // Đường dẫn và tên tệp Word đích
-            string outputPath = "\\Downloads\\output.docx";
+            //string outputPath = "\\Downloads\\output.docx";
 
-            ExportToWord(outputPath);
+            ExportToWord();
           
             //string uniqueFilePath = GetUniqueFileName(outputPath);
 
@@ -202,7 +215,6 @@ namespace DCU_Cuong_Tool
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
             string connectionString = "Data Source=LocalDB.db;Version=3;"; // Thay đổi đường dẫn và tên database SQLite của bạn
-
             string query = "SELECT * FROM HIS_BLACKLIST"; // Thay đổi your_table thành tên bảng SQLite của bạn
 
             SaveFileDialog saveFileDialog = new SaveFileDialog();
@@ -217,7 +229,6 @@ namespace DCU_Cuong_Tool
                 try
                 {
                     FileInfo file = new FileInfo(filePath);
-
                     using (ExcelPackage package = new ExcelPackage(file))
                     {
                         ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");

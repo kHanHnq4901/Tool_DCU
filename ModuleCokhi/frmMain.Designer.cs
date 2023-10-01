@@ -43,7 +43,7 @@
             this.Column2 = new System.Windows.Forms.DataGridViewImageColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
-            this.btnLocation = new Guna.UI2.WinForms.Guna2Button();
+            this.btn_LocationSerial = new Guna.UI2.WinForms.Guna2Button();
             this.label10 = new System.Windows.Forms.Label();
             this.btnReadInfomationNode = new Guna.UI2.WinForms.Guna2Button();
             this.btnReset = new Guna.UI2.WinForms.Guna2Button();
@@ -73,6 +73,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtDCUNo = new System.Windows.Forms.TextBox();
             this.pnlComand = new System.Windows.Forms.Panel();
+            this.btn_Location = new System.Windows.Forms.Button();
             this.btnInfomation = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -234,7 +235,7 @@
             // 
             // guna2CustomGradientPanel1
             // 
-            this.guna2CustomGradientPanel1.Controls.Add(this.btnLocation);
+            this.guna2CustomGradientPanel1.Controls.Add(this.btn_LocationSerial);
             this.guna2CustomGradientPanel1.Controls.Add(this.label10);
             this.guna2CustomGradientPanel1.Controls.Add(this.btnReadInfomationNode);
             this.guna2CustomGradientPanel1.Controls.Add(this.btnReset);
@@ -245,21 +246,21 @@
             this.guna2CustomGradientPanel1.Size = new System.Drawing.Size(741, 64);
             this.guna2CustomGradientPanel1.TabIndex = 50;
             // 
-            // btnLocation
+            // btn_LocationSerial
             // 
-            this.btnLocation.BorderRadius = 10;
-            this.btnLocation.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnLocation.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnLocation.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnLocation.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnLocation.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnLocation.ForeColor = System.Drawing.Color.White;
-            this.btnLocation.Location = new System.Drawing.Point(502, 11);
-            this.btnLocation.Name = "btnLocation";
-            this.btnLocation.Size = new System.Drawing.Size(89, 45);
-            this.btnLocation.TabIndex = 4;
-            this.btnLocation.Text = "Vị trí";
-            this.btnLocation.Click += new System.EventHandler(this.btnLocation_Click);
+            this.btn_LocationSerial.BorderRadius = 10;
+            this.btn_LocationSerial.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btn_LocationSerial.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btn_LocationSerial.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btn_LocationSerial.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btn_LocationSerial.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btn_LocationSerial.ForeColor = System.Drawing.Color.White;
+            this.btn_LocationSerial.Location = new System.Drawing.Point(498, 11);
+            this.btn_LocationSerial.Name = "btn_LocationSerial";
+            this.btn_LocationSerial.Size = new System.Drawing.Size(89, 45);
+            this.btn_LocationSerial.TabIndex = 4;
+            this.btn_LocationSerial.Text = "Xem";
+            this.btn_LocationSerial.Click += new System.EventHandler(this.btn_LocationSerial_Click);
             // 
             // label10
             // 
@@ -595,6 +596,7 @@
             // 
             // pnlComand
             // 
+            this.pnlComand.Controls.Add(this.btn_Location);
             this.pnlComand.Controls.Add(this.btnInfomation);
             this.pnlComand.Controls.Add(this.label7);
             this.pnlComand.Controls.Add(this.label6);
@@ -615,6 +617,17 @@
             this.pnlComand.Size = new System.Drawing.Size(279, 358);
             this.pnlComand.TabIndex = 35;
             // 
+            // btn_Location
+            // 
+            this.btn_Location.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Location.Location = new System.Drawing.Point(0, 215);
+            this.btn_Location.Name = "btn_Location";
+            this.btn_Location.Size = new System.Drawing.Size(139, 52);
+            this.btn_Location.TabIndex = 51;
+            this.btn_Location.Text = "Vị trí";
+            this.btn_Location.UseVisualStyleBackColor = true;
+            this.btn_Location.Click += new System.EventHandler(this.btnLocation_Click);
+            // 
             // btnInfomation
             // 
             this.btnInfomation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -629,7 +642,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(13, 243);
+            this.label7.Location = new System.Drawing.Point(14, 276);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(101, 20);
             this.label7.TabIndex = 47;
@@ -638,7 +651,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(242, 273);
+            this.label6.Location = new System.Drawing.Point(239, 318);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(34, 20);
             this.label6.TabIndex = 48;
@@ -647,7 +660,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(242, 238);
+            this.label4.Location = new System.Drawing.Point(239, 276);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(34, 20);
             this.label4.TabIndex = 47;
@@ -656,7 +669,7 @@
             // textBox1
             // 
             this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(136, 232);
+            this.textBox1.Location = new System.Drawing.Point(136, 270);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(100, 26);
             this.textBox1.TabIndex = 15;
@@ -677,7 +690,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 275);
+            this.label1.Location = new System.Drawing.Point(13, 318);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(102, 20);
             this.label1.TabIndex = 43;
@@ -686,7 +699,7 @@
             // txtTimeGet
             // 
             this.txtTimeGet.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtTimeGet.Location = new System.Drawing.Point(136, 273);
+            this.txtTimeGet.Location = new System.Drawing.Point(136, 312);
             this.txtTimeGet.Name = "txtTimeGet";
             this.txtTimeGet.Size = new System.Drawing.Size(100, 26);
             this.txtTimeGet.TabIndex = 16;
@@ -915,12 +928,13 @@
         private Guna.UI2.WinForms.Guna2ProgressIndicator prgLoad;
         private Guna.UI2.WinForms.Guna2Button btnReadInfomationNode;
         private System.Windows.Forms.Label label10;
-        private Guna.UI2.WinForms.Guna2Button btnLocation;
         private System.Windows.Forms.RichTextBox rtbOutput;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewImageColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.Button btn_Location;
+        private Guna.UI2.WinForms.Guna2Button btn_LocationSerial;
     }
 }
 

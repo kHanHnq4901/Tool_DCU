@@ -322,7 +322,9 @@ namespace WM03Soft
 
                 displayLog(recv);
                 displayLog("Dữ liệu số: --------------------------->" + dataReceivedCount);
-               // AddDataToBatchHisNeighobur(serial, dateTime, dActive);
+                string[] aRec = recv.Split(' ');
+                string serial = aRec[2] + aRec[3] + aRec[4] + aRec[5] + aRec[6] + aRec[7];
+                // AddDataToBatchHisNeighobur(serial, dActive);
                 Thread executeThread = new Thread(ExecuteBatchInsert);
                 executeThread.Start();
             }
@@ -844,11 +846,13 @@ namespace WM03Soft
         {
             int commandId = CommnadID_AutoPushAllInfomationsOfNode;
             SendCommandAndLog(commandId);
+           
         }
         private void btnLocation_Click(object sender, EventArgs e)
         {
             int commandId = CommandID_GetGraph;
             SendCommandAndLog(commandId);
+
         }
 
         private void SendCommandAndLog(int commandId)
@@ -974,7 +978,28 @@ namespace WM03Soft
             {
                 // Xử lý để xem thông tin của serial
                 // Ví dụ: Hiển thị thông tin trong MessageBox
-                MessageBox.Show("Thông tin của serial: " + serial);
+                MessageBox.Show("Thông tin của serial: " + serial +"\nVị trí node:" + "\nĐịa chỉ dài:" + "\nĐịa chỉ ngắn:" 
+                    + "\nTime slot:" + "\nLayer:" + "\nTrạng thái online:" + "\nPhiên bản phần mềm:" 
+                    + "\nPhiên bản phần cứng:" + "\nTrạng thái 180:" + "\nsixbyte:" + "\ntowbyte:" + "\nĐường dẫn:");
+            }
+            else
+            {
+                // Xử lý khi serial rỗng
+                // Ví dụ: Hiển thị thông báo lỗi
+                MessageBox.Show("Vui lòng nhập serial trước");
+            }
+        }
+        private void btn_LocationSerial_Click(object sender, EventArgs e)
+        {
+            // Lấy giá trị của TextBox "txtSerialNode"
+            string serial = txtSerialNode.Text;
+
+            // Kiểm tra giá trị serial nếu cần thiết
+            if (!string.IsNullOrEmpty(serial))
+            {
+                // Xử lý để xem thông tin của serial
+                // Ví dụ: Hiển thị thông tin trong MessageBox
+                MessageBox.Show("Thông tin của serial: " + serial + "\nVị trí node:");
             }
             else
             {
@@ -992,13 +1017,20 @@ namespace WM03Soft
                 SendCommandAndLog(CommandId_ResponeBlackList);
                 await Task.Delay(10000); // Đợi 10 giây
                 this.dataReceivedCount = 0;
+                displayLog("-----------------------------");
+                await Task.Delay(1000); // Đợi 1 giây
                 SendCommandAndLog(CommandId_ResponeAllNodeOffline);
                 await Task.Delay(20000); // Đợi 20 giây
                 this.dataReceivedCount = 0;
+                displayLog("-----------------------------");
+                await Task.Delay(1000); // Đợi 1 giây
                 SendCommandAndLog(CommandId_ResponeAllNodeOnline);
                 await Task.Delay(30000); // Đợi 30 giây
                 this.dataReceivedCount = 0;
+                displayLog("-----------------------------");
+                await Task.Delay(1000); // Đợi 1 giây
                 this.bBufferRecv = "";
+                displayLog ("Recv" + "reset buffer");
                 complete();  
         }
         async void YourMethodOrEvent()
@@ -1114,5 +1146,7 @@ namespace WM03Soft
             YourMethodOrEvent();
             load();
         }
+
+      
     }
 }
