@@ -40,15 +40,6 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EPPlus, Version=6.2.9.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
-      <HintPath>..\packages\EPPlus.6.2.9\lib\net35\EPPlus.dll</HintPath>
-    </Reference>
-    <Reference Include="EPPlus.Interfaces, Version=6.1.1.0, Culture=neutral, PublicKeyToken=a694d7f3b0907a61, processorArchitecture=MSIL">
-      <HintPath>..\packages\EPPlus.Interfaces.6.1.1\lib\net35\EPPlus.Interfaces.dll</HintPath>
-    </Reference>
-    <Reference Include="EPPlus.System.Drawing, Version=6.1.1.0, Culture=neutral, PublicKeyToken=2308d35469c9bac0, processorArchitecture=MSIL">
-      <HintPath>..\packages\EPPlus.System.Drawing.6.1.1\lib\net35\EPPlus.System.Drawing.dll</HintPath>
-    </Reference>
     <Reference Include="Guna.Charts.WinForms, Version=1.0.9.0, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.Charts.WinForms.1.0.9\lib\net45\Guna.Charts.WinForms.dll</HintPath>
     </Reference>
@@ -166,6 +157,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\location_icon-icons.com_50109.ico" />
+    <None Include="Resources\ic-ad_97607.ico" />
+    <None Include="Resources\graph-5_icon-icons.com_58023.ico" />
+    <None Include="Resources\circle_customer_help_info_information_service_support_icon_123208.ico" />
+    <None Include="Resources\3706883-control-music-pause-stop-stop-music_108702.ico" />
+    <None Include="Resources\3706872-control-music-play-play-music-play-sound-start_108717.ico" />
+    <None Include="Resources\3706870-control-list-menu-option-playlist_108704.ico" />
     <None Include="Resources\tick_good_accept_ok_complete_icon_208164.ico" />
     <None Include="Resources\arrow_logout_exit_close_cancel_icon_208165.ico" />
     <None Include="Resources\button_blank_red.ico" />

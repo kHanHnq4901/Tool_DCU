@@ -33,12 +33,14 @@
             System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmChar));
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cb180 = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtTimeOffSet = new System.Windows.Forms.TextBox();
@@ -85,7 +87,8 @@
             this.chart1.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.Lime,
         System.Drawing.Color.Red,
-        System.Drawing.Color.Black};
+        System.Drawing.Color.Black,
+        System.Drawing.Color.Aqua};
             series1.ChartArea = "ChartArea1";
             series1.Legend = "Legend1";
             series1.Name = "Online";
@@ -95,9 +98,14 @@
             series3.ChartArea = "ChartArea1";
             series3.Legend = "Legend1";
             series3.Name = "BlackList";
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series4.Legend = "Legend1";
+            series4.Name = "V180";
             this.chart1.Series.Add(series1);
             this.chart1.Series.Add(series2);
             this.chart1.Series.Add(series3);
+            this.chart1.Series.Add(series4);
             this.chart1.Size = new System.Drawing.Size(1422, 567);
             this.chart1.TabIndex = 0;
             this.chart1.Text = "chart1";
@@ -107,6 +115,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.cb180);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.txtTimeOffSet);
@@ -120,6 +129,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1422, 59);
             this.panel1.TabIndex = 3;
+            // 
+            // cb180
+            // 
+            this.cb180.AutoSize = true;
+            this.cb180.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cb180.Location = new System.Drawing.Point(578, 16);
+            this.cb180.Name = "cb180";
+            this.cb180.Size = new System.Drawing.Size(91, 24);
+            this.cb180.TabIndex = 43;
+            this.cb180.Text = "Hóa đơn";
+            this.cb180.UseVisualStyleBackColor = true;
             // 
             // label2
             // 
@@ -152,7 +172,7 @@
             // 
             this.cbBlackList.AutoSize = true;
             this.cbBlackList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbBlackList.Location = new System.Drawing.Point(578, 15);
+            this.cbBlackList.Location = new System.Drawing.Point(708, 16);
             this.cbBlackList.Name = "cbBlackList";
             this.cbBlackList.Size = new System.Drawing.Size(98, 24);
             this.cbBlackList.TabIndex = 5;
@@ -188,7 +208,7 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(719, 8);
+            this.button1.Location = new System.Drawing.Point(832, 7);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(110, 38);
             this.button1.TabIndex = 2;
@@ -239,5 +259,6 @@
         private System.Windows.Forms.TextBox txtTimeOffSet;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox cb180;
     }
 }

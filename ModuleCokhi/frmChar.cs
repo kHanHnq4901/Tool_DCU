@@ -57,84 +57,11 @@ namespace DCU_Cuong_Tool
             }
             string date = dateTimePicker1.Value.ToString("yyyy-MM-dd");
             string connectionString = "Data Source=LocalDB.db;Version=3;";
+
             using (SQLiteConnection connection = new SQLiteConnection(connectionString))
             {
                 connection.Open();
 
-                //for (int showChart = 0; showChart < 23; showChart++)
-                //{
-                //    try
-                //    {
-                //        if (showChart % intTimeOffSet == 0)
-                //        {
-                //            string time = showChart.ToString("D2") + ":00";
-                //            string startTime = date + " " + time;
-
-                //            if (cbOnline.Checked)
-                //            {
-                //                string query = "SELECT COUNT(*) FROM HIS_ONLINE WHERE substr(CREATED, 1, 16) = @startDate";
-                //                using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                //                {
-                //                    command.Parameters.AddWithValue("@startDate", startTime);
-
-                //                    int count = Convert.ToInt32(command.ExecuteScalar());
-                //                    // Thêm điểm dữ liệu vào biểu đồ
-                //                    DataPoint dataPoint = new DataPoint();
-                //                    dataPoint.SetValueXY(time + " h", count);
-                //                    if (count > 0)
-                //                    {
-                //                        dataPoint.Label = count.ToString();
-                //                    }
-                //                    chart1.Series["Online"].Points.Add(dataPoint);
-                //                    // chart1.ChartAreas[0].AxisY.Maximum = totalCount;
-                //                }
-                //            }
-
-                //            if (cbOffline.Checked)
-                //            {
-                //                string query = "SELECT COUNT(*) FROM HIS_OFFLINE WHERE substr(CREATED, 1, 16) = @startDate";
-                //                using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                //                {
-                //                    command.Parameters.AddWithValue("@startDate", startTime);
-
-                //                    int count = Convert.ToInt32(command.ExecuteScalar());
-                //                    // Thêm điểm dữ liệu vào biểu đồ
-                //                    DataPoint dataPoint = new DataPoint();
-                //                    dataPoint.SetValueXY(time + " h", count);
-                //                    if(count > 0)
-                //                    {
-                //                        dataPoint.Label = count.ToString();
-                //                    }
-                //                    chart1.Series["Offline"].Points.Add(dataPoint);
-                //                   // chart1.ChartAreas[0].AxisY.Maximum = totalCount;
-                //                }
-                //            }
-
-                //            if (cbBlackList.Checked)
-                //            {
-                //                string query = "SELECT COUNT(*) FROM HIS_BLACK_LIST WHERE substr(CREATED, 1, 16) = @startDate";
-                //                using (SQLiteCommand command = new SQLiteCommand(query, connection))
-                //                {
-                //                    command.Parameters.AddWithValue("@startDate", startTime);
-
-                //                    int count = Convert.ToInt32(command.ExecuteScalar());
-
-                //                    // Thêm điểm dữ liệu vào biểu đồ
-                //                    DataPoint dataPoint = new DataPoint();
-                //                    dataPoint.SetValueXY(time + " h", count);
-                //                    if (count > 0)
-                //                    {
-                //                        dataPoint.Label = count.ToString();
-                //                    }
-
-                //                    chart1.Series["BlackList"].Points.Add(dataPoint);
-                //                }
-                //            }
-                //        }
-                //    }
-                //    catch { }
-
-                //}
                 for (int showChart = 0; showChart < 24; showChart++)
                 {
                     try
@@ -143,6 +70,9 @@ namespace DCU_Cuong_Tool
                         {
                             string time = showChart.ToString("D2") + ":00";
                             string startTime = date + " " + time;
+
+                            string timeV180 = time.Split(':')[0];
+                            string startTimeV180 = date + " " + time;
 
                             int totalOnlineCount = 0; // Tổng HIS_ONLINE trong mỗi vòng lặp
                             int totalOfflineCount = 0; // Tổng HIS_OFFLINE trong mỗi vòng lặp
@@ -158,6 +88,7 @@ namespace DCU_Cuong_Tool
                                     int count = Convert.ToInt32(command.ExecuteScalar());
                                     totalOnlineCount += count;
                                     totalCount += count;
+
                                     // Thêm điểm dữ liệu vào biểu đồ
                                     DataPoint dataPoint = new DataPoint();
                                     dataPoint.SetValueXY(time + " h", count);
@@ -179,6 +110,7 @@ namespace DCU_Cuong_Tool
                                     int count = Convert.ToInt32(command.ExecuteScalar());
                                     totalOfflineCount += count;
                                     totalCount += count;
+
                                     // Thêm điểm dữ liệu vào biểu đồ
                                     DataPoint dataPoint = new DataPoint();
                                     dataPoint.SetValueXY(time + " h", count);
@@ -189,6 +121,7 @@ namespace DCU_Cuong_Tool
                                     chart1.Series["Offline"].Points.Add(dataPoint);
                                 }
                             }
+
                             if (cbBlackList.Checked)
                             {
                                 string query = "SELECT COUNT(*) FROM HIS_BLACK_LIST WHERE substr(CREATED, 1, 16) = @startDate";
@@ -209,6 +142,28 @@ namespace DCU_Cuong_Tool
                                     chart1.Series["BlackList"].Points.Add(dataPoint);
                                 }
                             }
+
+                            if (cb180.Checked)
+                            {
+                                string query = "SELECT COUNT(*) FROM HIS_DAILY WHERE substr(CREATED, 1, 16) = @startDate";
+                                using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                                {
+                                    command.Parameters.AddWithValue("@startDate", startTimeV180);
+
+                                    int count = Convert.ToInt32(command.ExecuteScalar());
+
+                                    // Thêm điểm dữ liệu vào biểu đồ
+                                    DataPoint dataPoint = new DataPoint();
+                                    dataPoint.SetValueXY(time + " h", count);
+                                    if (count > 0)
+                                    {
+                                        dataPoint.Label = count.ToString();
+                                    }
+
+                                    chart1.Series["V180"].Points.Add(dataPoint);
+                                }
+                            }
+
                             // Hiển thị số lượng và phần trăm (nếu cả hai checkbox đều được chọn)
                             if (cbOnline.Checked && cbOffline.Checked)
                             {
@@ -266,6 +221,7 @@ namespace DCU_Cuong_Tool
             chart1.Series["Online"].Points.Clear();
             chart1.Series["Offline"].Points.Clear();
             chart1.Series["BlackList"].Points.Clear();
+            chart1.Series["V180"].Points.Clear();
             LoadData();
         }
 
@@ -273,6 +229,5 @@ namespace DCU_Cuong_Tool
         {
             LoadData();
         }
-
     }
 }

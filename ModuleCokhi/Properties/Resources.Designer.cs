@@ -63,6 +63,36 @@ namespace DCU_Cuong_Tool.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _3706870_control_list_menu_option_playlist_108704 {
+            get {
+                object obj = ResourceManager.GetObject("3706870-control-list-menu-option-playlist_108704", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _3706872_control_music_play_play_music_play_sound_start_108717 {
+            get {
+                object obj = ResourceManager.GetObject("3706872-control-music-play-play-music-play-sound-start_108717", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap _3706883_control_music_pause_stop_stop_music_108702 {
+            get {
+                object obj = ResourceManager.GetObject("3706883-control-music-pause-stop-stop-music_108702", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap arrow_logout_exit_close_cancel_icon_208165 {
             get {
                 object obj = ResourceManager.GetObject("arrow_logout_exit_close_cancel_icon_208165", resourceCulture);
@@ -143,6 +173,16 @@ namespace DCU_Cuong_Tool.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap circle_customer_help_info_information_service_support_icon_123208 {
+            get {
+                object obj = ResourceManager.GetObject("circle_customer_help_info_information_service_support_icon_123208", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap clear_icon_155649 {
             get {
                 object obj = ResourceManager.GetObject("clear_icon_155649", resourceCulture);
@@ -176,6 +216,36 @@ namespace DCU_Cuong_Tool.Properties {
         internal static System.Drawing.Bitmap disconnect_line_icon_236081 {
             get {
                 object obj = ResourceManager.GetObject("disconnect_line_icon_236081", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap graph_5_icon_icons_com_58023 {
+            get {
+                object obj = ResourceManager.GetObject("graph-5_icon-icons.com_58023", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ic_ad_97607 {
+            get {
+                object obj = ResourceManager.GetObject("ic-ad_97607", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap location_icon_icons_com_50109 {
+            get {
+                object obj = ResourceManager.GetObject("location_icon-icons.com_50109", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
