@@ -325,7 +325,7 @@ namespace WM03Soft
             // Nhận các thông tin các công tơ
             if (recv.Length >= 60 && recv.Length <= 200 && recv.Substring(0, 5) == "FE FE" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
             {
-                displayLog(recv);
+                //displayLog(recv);
                 string[] aRec = recv.Split(' ');
                 string location = aRec[7] + aRec[8];
                 string serial = aRec[14] + aRec[13] + aRec[12] + aRec[11] + aRec[10] + aRec[9];
@@ -1117,7 +1117,7 @@ namespace WM03Soft
         async Task PerformClicksWithDelay()
         {
             this.dataReceivedCount = 0;
-            await Task.Delay(1000);
+            await Task.Delay(1000);// Đợi 1 giây
             dtgvNode.Rows.Clear();
             SendCommandAndLog(CommandId_ResponeBlackList);
             await Task.Delay(10000); // Đợi 10 giây

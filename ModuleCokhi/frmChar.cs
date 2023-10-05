@@ -9,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.IO.Ports;
 using System.Linq;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading;
 using System.Timers;
@@ -71,8 +72,9 @@ namespace DCU_Cuong_Tool
                             string time = showChart.ToString("D2") + ":00";
                             string startTime = date + " " + time;
 
-                            string timeV180 = time.Split(':')[0];
-                            string startTimeV180 = date + " " + time;
+                            string endTime = date + " 00:00";
+                            string timeV180 = showChart.ToString("D2");
+                            string startTimeV180 = date + " " + timeV180;
 
                             int totalOnlineCount = 0; // Tổng HIS_ONLINE trong mỗi vòng lặp
                             int totalOfflineCount = 0; // Tổng HIS_OFFLINE trong mỗi vòng lặp
@@ -145,10 +147,15 @@ namespace DCU_Cuong_Tool
 
                             if (cb180.Checked)
                             {
-                                string query = "SELECT COUNT(*) FROM HIS_DAILY WHERE substr(CREATED, 1, 16) = @startDate";
+                                string query = "SELECT COUNT(*) FROM HIS_DAILY WHERE CREATED >= @startDate AND CREATED < @endDate";
                                 using (SQLiteCommand command = new SQLiteCommand(query, connection))
                                 {
-                                    command.Parameters.AddWithValue("@startDate", startTimeV180);
+                                    //string startDate = date + " 00:00";
+                                    //string endDate = date + " " + time;
+
+                                    command.Parameters.AddWithValue("@startDate", endTime);
+                                    command.Parameters.AddWithValue("@endDate", startTime);
+                                    
 
                                     int count = Convert.ToInt32(command.ExecuteScalar());
 
@@ -160,10 +167,9 @@ namespace DCU_Cuong_Tool
                                         dataPoint.Label = count.ToString();
                                     }
 
-                                    chart1.Series["V180"].Points.Add(dataPoint);
+                                    chart1.Series["180"].Points.Add(dataPoint);
                                 }
                             }
-
                             // Hiển thị số lượng và phần trăm (nếu cả hai checkbox đều được chọn)
                             if (cbOnline.Checked && cbOffline.Checked)
                             {
@@ -221,7 +227,7 @@ namespace DCU_Cuong_Tool
             chart1.Series["Online"].Points.Clear();
             chart1.Series["Offline"].Points.Clear();
             chart1.Series["BlackList"].Points.Clear();
-            chart1.Series["V180"].Points.Clear();
+            chart1.Series["180"].Points.Clear();
             LoadData();
         }
 
