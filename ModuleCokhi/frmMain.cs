@@ -3,6 +3,7 @@ using DCU_Cuong_Tool.Properties;
 using NPOI.OpenXmlFormats.Dml;
 using NPOI.SS.Formula.Eval;
 using NPOI.SS.Formula.Functions;
+using NPOI.SS.UserModel;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Reflection.Emit;
 using System.Security.AccessControl;
+using System.Security.Policy;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -131,24 +133,64 @@ namespace WM03Soft
 
                 if (serial != "FFFFFFFFFFFF")
                 {
-                    displayLog("serial " + serial + "|| tầng " + level);
+                    displayLog("online serial " + serial + "|| tầng " + level);
                     AddDataToBatch(serial, level);
-
                     Thread addRowThread = new Thread(() =>
                     {
+                        bool isReceived = receivedSerials.Contains(serial);
+                        string car = string.Empty;
+
                         // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
                         Invoke(new Action(() =>
                         {
-                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_green, "Đã nhận");
+                            // Chuỗi kết nối đến cơ sở dữ liệu SQLite
+                            string connectionString = "Data Source=LocalDB.db;Version=3;";
+
+                            // Tạo kết nối
+                            using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                            {
+                                // Mở kết nối
+                                connection.Open();
+
+                                // Chuỗi truy vấn để lấy thông tin CAR từ bảng LIST_TRANSFORMERS
+                                string carQuery = "SELECT CAR FROM LIST_TRANSFORMERS WHERE SERIAL = @Serial";
+
+                                // Tạo đối tượng Command
+                                using (SQLiteCommand command = new SQLiteCommand(carQuery, connection))
+                                {
+                                    // Thêm tham số Serial vào truy vấn
+                                    command.Parameters.AddWithValue("@Serial", serial);
+
+                                    // Thực hiện truy vấn và đọc dữ liệu
+                                    using (SQLiteDataReader reader = command.ExecuteReader())
+                                    {
+                                        if (reader.Read())
+                                        {
+                                            // Lấy giá trị từ cột CAR trong kết quả truy vấn
+                                            car = reader.GetString(0);
+                                        }
+                                    }
+                                }
+                            }
+
+                            if (isReceived)
+                            {
+                                // Thêm dòng vào dtgvNode.Rows với thông tin serial, car và trạng thái đã nhận
+                                dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_green, "Đã nhận", car);
+                            }
+                            else
+                            {
+                                // Thêm dòng vào dtgvNode.Rows với thông tin serial, trạng thái chưa nhận và car
+                                dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_green, "Chưa nhận", car);
+                            }
                         }));
                     });
-
                     addRowThread.Start();
                 }
                 else
                 {
                     displayLog(recv);
-                    string countString = (dataReceivedCount - 1).ToString();
+                    string countString = dataReceivedCount .ToString();
                     displayLog("Send" + " Tổng số node đang online ------> " + countString);
 
                     // Sử dụng Invoke để truy cập thành phần UI từ luồng khác
@@ -195,25 +237,49 @@ namespace WM03Soft
                 if (serial != "FFFFFFFFFFFF")
                 {
                     string config = aRec[13];
-                    displayLog("serial " + serial + " || Never config  " + config + "|| Never eixts");
+                    displayLog(" offline serial " + serial + " || Never config  " + config + "|| Never eixts");
                     AddDataToBatchHisOffLine(serial, config);
                     // Thêm dữ liệu vào dtgvNode.Rows trong một luồng riêng
                     Thread addRowThread = new Thread(() =>
                     {
+                        string car = string.Empty;
                         // Kiểm tra nếu serial đã tồn tại trong danh sách
-                        bool isReceived = receivedSerials.Contains(serial);
+                        // Chuỗi kết nối đến cơ sở dữ liệu SQLite
+                        string connectionString = "Data Source=LocalDB.db;Version=3;";
+
+                        // Tạo kết nối
+                        using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                        {
+                            // Mở kết nối
+                            connection.Open();
+
+                            // Chuỗi truy vấn để lấy thông tin CAR từ bảng LIST_TRANSFORMERS
+                            string carQuery = "SELECT CAR FROM LIST_TRANSFORMERS WHERE SERIAL = @Serial";
+
+                            // Tạo đối tượng Command
+                            using (SQLiteCommand command = new SQLiteCommand(carQuery, connection))
+                            {
+                                // Thêm tham số Serial vào truy vấn
+                                command.Parameters.AddWithValue("@Serial", serial);
+
+                                // Thực hiện truy vấn và đọc dữ liệu
+                                using (SQLiteDataReader reader = command.ExecuteReader())
+                                {
+                                    if (reader.Read())
+                                    {
+                                        // Lấy giá trị từ cột CAR trong kết quả truy vấn
+                                        car = reader.GetString(0);
+                                    }
+                                }
+                            }
+                        }
+
 
                         // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
                         Invoke(new Action(() =>
-                        {
-                            if (isReceived)
-                            {
-                                dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_green, "Đã nhận");
-                            }
-                            else
-                            {
-                                dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_red, "Chưa nhận");
-                            }
+                        { 
+                                dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_red, "Chưa nhận",car);
+                            
                         }));
                     });
 
@@ -222,7 +288,7 @@ namespace WM03Soft
                 else
                 {
                     displayLog(recv);
-                    string countString = (dataReceivedCount - 1).ToString();
+                    string countString = dataReceivedCount .ToString();
                     displayLog("Send" + " Tổng số node đang offline ------>" + countString);
 
                     // Sử dụng Invoke để truy cập thành phần UI từ luồng khác
@@ -267,7 +333,7 @@ namespace WM03Soft
                 string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
                 if (serial != "FFFFFFFFFFFF")
                 {
-                    displayLog("serial " + serial);
+                    displayLog(" black list serial " + serial);
                     AddDataToBatchHisBlackList(serial);
                     // Thêm dữ liệu vào dtgvNode.Rows trong một luồng riêng
 
@@ -276,7 +342,7 @@ namespace WM03Soft
                         // Thực hiện thao tác trên dtgvNode.Rows trong luồng riêng
                         Invoke(new Action(() =>
                         {
-                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_gray, "Chưa nhận");
+                            dtgvNode.Rows.Add(serial, DCU_Cuong_Tool.Properties.Resources.button_blank_gray, "Chưa nhận","null");
                         }));
                     });
 
@@ -285,13 +351,13 @@ namespace WM03Soft
                 else
                 {
                     displayLog(recv);
-                    string countString = (dataReceivedCount - 1).ToString();
+                    string countString = dataReceivedCount.ToString();
                     displayLog("Send" + " Tổng số node đang black list ------>" + countString);
                         // Sử dụng Invoke để truy cập thành phần UI từ luồng khác
                     lbBlackList.Invoke((MethodInvoker)delegate
                     {
                         // Lưu giữ giá trị trước đó của lbBlackList.Text
-                        string previousOfflineValue = lbOffline.Text;
+                        string previousOfflineValue = lbBlackList.Text;
 
                         // Gán giá trị mới cho lbBlackList.Text
                         lbBlackList.Text = countString;
@@ -323,47 +389,171 @@ namespace WM03Soft
 
             }
             // Nhận các thông tin các công tơ
-            if (recv.Length >= 60 && recv.Length <= 200 && recv.Substring(0, 5) == "FE FE" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
+            if (recv.Substring(12, 5) == "00 0B" && recv.Substring(0, 5) == "FE FE" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
             {
-                //displayLog(recv);
-                string[] aRec = recv.Split(' ');
-                string location = aRec[7] + aRec[8];
-                string serial = aRec[14] + aRec[13] + aRec[12] + aRec[11] + aRec[10] + aRec[9];
-                string shortAddress = aRec[15] + aRec[16];
-                string timeslot = aRec[17] + aRec[18];
-                string layer = aRec[19];
-                string state = aRec[20];
-                string softwareVersion = aRec[21] + aRec[22] + aRec[23];
-                string hardwareVersion = aRec[24] + aRec[25] + aRec[26];
-                string stateGetDate180 = aRec[27];
-                string pathOneSixByte = aRec[28] + aRec[29] + aRec[30] + aRec[31] + aRec[32] + aRec[33];
-                string pathOneTwoByte = aRec[40] + aRec[41] + aRec[42]
-                    + aRec[43];
-                string url = aRec[34] + aRec[35] + aRec[36] + aRec[37] + aRec[38] + aRec[39] + aRec[40] + aRec[41] + aRec[42]
-                    + aRec[43];
-                displayLog("Địa chỉ " + location + "\nSerial " + serial + "\nĐịa chỉ ngắn " + shortAddress + "\nTimeSlot " + timeslot + "\nLayer " + layer + "\nTrạng Thái " + state
-                + "\nPhần mềm " + softwareVersion + "\nPhần cứng " + hardwareVersion + "\nlấy 180 " + stateGetDate180 + "\nsix byte " + pathOneSixByte
-                + "\ntwo byte " + pathOneTwoByte + "\nURL " + url);
-                displayLog("--------------------------------------------");
-                string countString = (dataReceivedCount + 1).ToString();
-
-                AddDataToBatchHisInfomation(serial, location, shortAddress, timeslot, layer, state, softwareVersion, hardwareVersion, stateGetDate180, pathOneSixByte, pathOneTwoByte, url);
-                Thread executeThread = new Thread(ExecuteBatchInsert);
-                executeThread.Start();
-                //dataReceivedCount++
-                displayLog("Dữ liệu số: " + dataReceivedCount);
-            }
-            // Nhận vị trí của công tơ
-            if (recv.Length >= 200 && recv.Substring(0, 5) == "FE FE" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
-            {
-
                 displayLog(recv);
-                displayLog("Dữ liệu số: --------------------------->" + dataReceivedCount);
+               
                 string[] aRec = recv.Split(' ');
-                string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
-                string location = aRec[13] + aRec[14] + aRec[15] + aRec[16] + aRec[17] + aRec[18]
-                    + aRec[19] + aRec[20] + aRec[21] + aRec[22] + aRec[23] + aRec[24]
-                    + aRec[25] + aRec[26] + aRec[27] + aRec[28] + aRec[29] + aRec[39];
+                if (aRec[9] != "FF")
+                {
+                    string location;
+                    string serial;
+                    string shortAddress;
+                    string timeslot;
+                    string layer;
+                    string state;
+                    string softwareVersion;
+                    string hardwareVersion;
+                    string stateGetDate180;
+                    string pathOneSixByte;
+                    string pathOneTwoByte;
+                    string url;
+
+                    try
+                    {
+                        location = aRec[7] + aRec[8];
+                    }
+                    catch
+                    {
+                        location = "";
+                    }
+
+                    try
+                    {
+                        serial = aRec[14] + aRec[13] + aRec[12] + aRec[11] + aRec[10] + aRec[9];
+                    }
+                    catch
+                    {
+                        serial = "";
+                    }
+
+                    try
+                    {
+                        shortAddress = aRec[15] + aRec[16];
+                    }
+                    catch
+                    {
+                        shortAddress = "";
+                    }
+
+                    try
+                    {
+                        timeslot = aRec[17] + aRec[18];
+                    }
+                    catch
+                    {
+                        timeslot = "";
+                    }
+
+                    try
+                    {
+                        layer = aRec[19];
+                    }
+                    catch
+                    {
+                        layer = "";
+                    }
+
+                    try
+                    {
+                        state = aRec[20];
+                    }
+                    catch
+                    {
+                        state = "";
+                    }
+                    try
+                    {
+                        softwareVersion = aRec[21] + aRec[22] + aRec[23];
+                    }
+                    catch
+                    {
+                        softwareVersion = "";
+                    }
+
+                    try
+                    {
+                        hardwareVersion = aRec[24] + aRec[25] + aRec[26];
+                    }
+                    catch
+                    {
+                        hardwareVersion = "";
+                    }
+
+                    try
+                    {
+                        stateGetDate180 = aRec[27];
+                    }
+                    catch
+                    {
+                        stateGetDate180 = "";
+                    }
+
+                    try
+                    {
+                        pathOneSixByte = aRec[28] + aRec[29] + aRec[30] + aRec[31] + aRec[32] + aRec[33];
+                    }
+                    catch
+                    {
+                        pathOneSixByte = "";
+                    }
+
+                    try
+                    {
+                        pathOneTwoByte = aRec[40] + aRec[41] + aRec[42] + aRec[43];
+                    }
+                    catch
+                    {
+                        pathOneTwoByte = "";
+                    }
+
+                    try
+                    {
+                        url = aRec[34] + aRec[35] + aRec[36] + aRec[37] + aRec[38] + aRec[39] + aRec[40] + aRec[41] + aRec[42] + aRec[43];
+                    }
+                    catch
+                    {
+                        url = "";
+                    }
+                    string logMessage = string.Format("Địa chỉ: {0,-20} Serial: {1}\n", location, serial) +
+                         string.Format("Địa chỉ ngắn: {0,-17} TimeSlot: {1}\n", shortAddress, timeslot) +
+                         string.Format("Layer: {0,-20} Trạng Thái: {1}\n", layer, state) +
+                         string.Format("Phần mềm: {0,-19} Phần cứng: {1}\n", softwareVersion, hardwareVersion) +
+                         string.Format("Lấy 180: {0,-17} Six byte: {1}\n", stateGetDate180, pathOneSixByte) +
+                         string.Format("Two byte: {0,-19} URL: {1}\n", pathOneTwoByte, url);
+
+                    displayLog(logMessage);
+                    string countString = (dataReceivedCount + 1).ToString();
+
+                    AddDataToBatchHisInfomation(serial, location, shortAddress, timeslot, layer, state, softwareVersion, hardwareVersion, stateGetDate180, pathOneSixByte, pathOneTwoByte, url);
+                    Thread executeThread = new Thread(ExecuteBatchInsert);
+                    executeThread.Start();
+
+                    displayLog("Recv " + "Infomation of node, index is : " + dataReceivedCount);
+                }
+
+            }
+            if (recv.Length >= 400 && recv.Substring(0, 5) == "FE FE" && recv.Substring(recv.Length - 5, 5) == "0A 0D")
+            {
+                displayLog(recv);
+                displayLog("Neighbours list index: --------------------------->" + dataReceivedCount);
+                string[] aRec = recv.Split(' ');
+                string serial = "";
+                string location = "";
+
+                for (int i = 12; i >= 7; i--)
+                {
+                    serial += aRec[i];
+                }
+
+                for (int i = 13; i <= 419; i++)
+                {
+                    if (i != 30 && i != 31 && i != 32 && i != 33 && i != 34 && i != 35 && i != 36 && i != 37 && i != 38)
+                    {
+                        location += aRec[i];
+                    }
+                }
+
                 AddDataToBatchHisNeighobur(serial, location);
                 Thread executeThread = new Thread(ExecuteBatchInsert);
                 executeThread.Start();
@@ -375,6 +565,7 @@ namespace WM03Soft
                 {
                     try
                     {
+                        displayLog("Dữ liệu 180" + recv);
                         string[] aRec = recv.Split(' ');
                         string serial = aRec[12] + aRec[11] + aRec[10] + aRec[9] + aRec[8] + aRec[7];
                         string dateTime = "20" + MyLib.HexStringToByte(aRec[18]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[17]).ToString().PadLeft(2, '0') + "-" + MyLib.HexStringToByte(aRec[16]).ToString().PadLeft(2, '0')
@@ -1078,33 +1269,38 @@ namespace WM03Soft
                     connection.Open();
 
                     // Chuỗi truy vấn để lấy thông tin vị trí của serial
-                    string query = "SELECT LOCATION FROM HIS_NEIGHOBUR WHERE SERIAL = @Serial";
+                    string locationQuery = "SELECT LOCATION FROM HIS_NEIGHOBUR WHERE SERIAL = @Serial";
 
-                    // Tạo đối tượng Command
-                    using (SQLiteCommand command = new SQLiteCommand(query, connection))
+                    // Tạo đối tượng Command để lấy thông tin vị trí
+                    using (SQLiteCommand locationCommand = new SQLiteCommand(locationQuery, connection))
                     {
                         // Thêm tham số Serial vào truy vấn
-                        command.Parameters.AddWithValue("@Serial", serial);
+                        locationCommand.Parameters.AddWithValue("@Serial", serial);
 
                         // Thực hiện truy vấn và đọc dữ liệu
-                        using (SQLiteDataReader reader = command.ExecuteReader())
+                        using (SQLiteDataReader locationReader = locationCommand.ExecuteReader())
                         {
-                            if (reader.Read())
+                            string location = null;
+
+                            if (locationReader.Read())
                             {
                                 // Lấy giá trị từ cột tương ứng trong kết quả truy vấn
-                                string location = reader.GetString(0);
-
-                                // Hiển thị thông tin trong MessageBox
-                                MessageBox.Show("Thông tin của serial: " + serial + "\nVị trí node: " + location);
+                                location = locationReader.GetString(0);
                             }
-                            else
+                                  
+
+                                    // Tạo thông báo chứa thông tin vị trí và CAR
+                                    string message = "Thông tin của serial: " + serial + "\n";
+
+                            if (!string.IsNullOrEmpty(location))
                             {
-                                // Serial không tồn tại trong bảng HIS_NEIGHOBUR
-                                MessageBox.Show("Không có thông tin vị trí cho serial này");
+                                message += "Vị trí node: " + location + "\n";
+                            }
+                                    // Hiển thị thông tin trong MessageBox
+                                    MessageBox.Show(message);
+                                }
                             }
                         }
-                    }
-                }
             }
             else
             {
@@ -1243,6 +1439,28 @@ namespace WM03Soft
             prgLoad.Visible = false;
             panel1.Enabled = true;
             guna2CustomGradientPanel1.Enabled = true;
+        }
+
+        private void guna2Button1_Click(object sender, EventArgs e)
+        {
+            dtgvNode.Rows.Clear();
+            this.dataReceivedCount = 0;
+            SendCommandAndLog(CommandId_ResponeAllNodeOnline);
+        }
+
+        private void guna2Button2_Click(object sender, EventArgs e)
+        {
+            dtgvNode.Rows.Clear();
+            this.dataReceivedCount = 0;
+            SendCommandAndLog(CommandId_ResponeAllNodeOffline);
+        }
+
+        private void guna2Button3_Click(object sender, EventArgs e)
+        {
+            dtgvNode.Rows.Clear();
+            this.dataReceivedCount = 0;
+
+            SendCommandAndLog(CommandId_ResponeBlackList);
         }
     }
 }

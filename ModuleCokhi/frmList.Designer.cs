@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmList));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.rdList = new System.Windows.Forms.RadioButton();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.rdNeighbohur = new System.Windows.Forms.RadioButton();
             this.rdInfomation = new System.Windows.Forms.RadioButton();
@@ -54,6 +55,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.rdList);
             this.panel1.Controls.Add(this.btnExportExcel);
             this.panel1.Controls.Add(this.rdNeighbohur);
             this.panel1.Controls.Add(this.rdInfomation);
@@ -74,15 +76,28 @@
             this.panel1.Size = new System.Drawing.Size(1422, 81);
             this.panel1.TabIndex = 0;
             // 
+            // rdList
+            // 
+            this.rdList.AutoSize = true;
+            this.rdList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.rdList.Location = new System.Drawing.Point(418, 11);
+            this.rdList.Name = "rdList";
+            this.rdList.Size = new System.Drawing.Size(166, 24);
+            this.rdList.TabIndex = 18;
+            this.rdList.TabStop = true;
+            this.rdList.Text = "Danh sách công tơ";
+            this.rdList.UseVisualStyleBackColor = true;
+            // 
             // btnExportExcel
             // 
             this.btnExportExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportExcel.Location = new System.Drawing.Point(916, 42);
+            this.btnExportExcel.Location = new System.Drawing.Point(1261, 44);
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(131, 36);
             this.btnExportExcel.TabIndex = 17;
             this.btnExportExcel.Text = "Xuất file excel";
             this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // rdNeighbohur
             // 
@@ -111,7 +126,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(536, 54);
+            this.label2.Location = new System.Drawing.Point(679, 52);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(39, 20);
             this.label2.TabIndex = 14;
@@ -120,7 +135,7 @@
             // dateTimeEnd
             // 
             this.dateTimeEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeEnd.Location = new System.Drawing.Point(600, 49);
+            this.dateTimeEnd.Location = new System.Drawing.Point(745, 52);
             this.dateTimeEnd.Name = "dateTimeEnd";
             this.dateTimeEnd.Size = new System.Drawing.Size(119, 26);
             this.dateTimeEnd.TabIndex = 13;
@@ -128,7 +143,7 @@
             // btnExport
             // 
             this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExport.Location = new System.Drawing.Point(916, 3);
+            this.btnExport.Location = new System.Drawing.Point(1261, 5);
             this.btnExport.Name = "btnExport";
             this.btnExport.Size = new System.Drawing.Size(131, 36);
             this.btnExport.TabIndex = 12;
@@ -151,7 +166,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(536, 15);
+            this.label1.Location = new System.Drawing.Point(679, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(27, 20);
             this.label1.TabIndex = 10;
@@ -161,7 +176,7 @@
             // 
             this.lbCount.AutoSize = true;
             this.lbCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbCount.Location = new System.Drawing.Point(1072, 31);
+            this.lbCount.Location = new System.Drawing.Point(1022, 26);
             this.lbCount.Name = "lbCount";
             this.lbCount.Size = new System.Drawing.Size(0, 25);
             this.lbCount.TabIndex = 9;
@@ -169,7 +184,7 @@
             // dateTimeStart
             // 
             this.dateTimeStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateTimeStart.Location = new System.Drawing.Point(600, 10);
+            this.dateTimeStart.Location = new System.Drawing.Point(745, 6);
             this.dateTimeStart.Name = "dateTimeStart";
             this.dateTimeStart.Size = new System.Drawing.Size(119, 26);
             this.dateTimeStart.TabIndex = 8;
@@ -177,7 +192,7 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(762, 20);
+            this.button1.Location = new System.Drawing.Point(885, 20);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(131, 36);
             this.button1.TabIndex = 7;
@@ -287,5 +302,6 @@
         private System.Windows.Forms.RadioButton rdNeighbohur;
         private System.Windows.Forms.RadioButton rdInfomation;
         private System.Windows.Forms.Button btnExportExcel;
+        private System.Windows.Forms.RadioButton rdList;
     }
 }

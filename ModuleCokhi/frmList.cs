@@ -61,6 +61,10 @@ namespace DCU_Cuong_Tool
                 {
                     query = "SELECT * FROM HIS_NEIGHOBUR WHERE datetime(CREATED) BETWEEN date('" + dateStart + "') AND date('" + dateEnd + "', '+1 day') ORDER BY ID DESC";
                 }
+                else if (rdList.Checked == true)
+                {
+                    query = "SELECT * FROM LIST_TRANSFORMERS ORDER BY ID DESC";
+                }
 
                 using (SQLiteDataAdapter adapter = new SQLiteDataAdapter(query, connection))
                 {
@@ -209,6 +213,11 @@ namespace DCU_Cuong_Tool
 
             return uniqueFilePath;
            
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+
         }
 
         //private void btnExportExcel_Click(object sender, EventArgs e)
