@@ -160,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="Resources\compare_119269.ico" />
     <None Include="Resources\location_icon-icons.com_50109.ico" />
     <None Include="Resources\ic-ad_97607.ico" />
     <None Include="Resources\graph-5_icon-icons.com_58023.ico" />

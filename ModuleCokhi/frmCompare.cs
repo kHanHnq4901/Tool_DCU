@@ -54,18 +54,19 @@ namespace DCU_Cuong_Tool
 
                 if (rbNodeOnline.Checked == true)
                 {
-                    queryleft = "SELECT SERIAL,LEVEL FROM HIS_ONLINE WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hourLeft + "%' ORDER BY ID DESC";
-                    queryRight = "SELECT SERIAL,LEVEL FROM HIS_ONLINE WHERE datetime(CREATED) LIKE '" + dateRight + " " + hourRight + "%' ORDER BY ID DESC";
+                    queryleft = "SELECT SERIAL, LEVEL FROM HIS_ONLINE WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hourLeft + ":00%' ORDER BY ID DESC";
+                    queryRight = "SELECT SERIAL, LEVEL FROM HIS_ONLINE WHERE datetime(CREATED) LIKE '" + dateRight + " " + hourRight + ":00%' ORDER BY ID DESC";
                 }
                 else if (rbNodeOffline.Checked == true)
                 {
-                    queryleft = "SELECT SERIAL,CONFIG FROM HIS_OFFLINE WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hourLeft + "%' ORDER BY ID DESC";
-                    queryRight = "SELECT SERIAL,CONFIG FROM HIS_OFFLINE WHERE datetime(CREATED) LIKE '" + dateRight + " " + hourRight + "%' ORDER BY ID DESC";
+                    queryleft = "SELECT HIS_OFFLINE.SERIAL, HIS_OFFLINE.CONFIG, LIST_TRANSFORMERS.CAR FROM HIS_OFFLINE JOIN LIST_TRANSFORMERS ON HIS_OFFLINE.SERIAL = LIST_TRANSFORMERS.SERIAL WHERE datetime(HIS_OFFLINE.CREATED) LIKE '" + dateLeft + " " + hourLeft + ":00%' ORDER BY HIS_OFFLINE.ID DESC";
+
+                    queryRight = "SELECT HIS_OFFLINE.SERIAL, HIS_OFFLINE.CONFIG, LIST_TRANSFORMERS.CAR FROM HIS_OFFLINE JOIN LIST_TRANSFORMERS ON HIS_OFFLINE.SERIAL = LIST_TRANSFORMERS.SERIAL WHERE datetime(HIS_OFFLINE.CREATED) LIKE '" + dateRight + " " + hourRight + ":00%' ORDER BY HIS_OFFLINE.ID DESC";
                 }
                 else if (rbNodeBlackList.Checked == true)
                 {
-                    queryleft = "SELECT * FROM HIS_BLACK_LIST WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hourLeft + "%' ORDER BY ID DESC";
-                    queryRight = "SELECT * FROM HIS_BLACK_LIST WHERE datetime(CREATED) LIKE '" + dateRight + " " + hourRight + "%' ORDER BY ID DESC";
+                    queryleft = "SELECT * FROM HIS_BLACK_LIST WHERE datetime(CREATED) LIKE '" + dateLeft + " " + hourLeft + ":00%' ORDER BY ID DESC";
+                    queryRight = "SELECT * FROM HIS_BLACK_LIST WHERE datetime(CREATED) LIKE '" + dateRight + " " + hourRight + ":00%' ORDER BY ID DESC";
                 }
                 else if (rdDaiLy.Checked == true)
                 {

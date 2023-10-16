@@ -27,6 +27,7 @@ namespace DCU_Cuong_Tool
         public frmList()
         {
             InitializeComponent();
+
         }
 
         private void LoadData()
@@ -215,10 +216,6 @@ namespace DCU_Cuong_Tool
            
         }
 
-        private void btnExportExcel_Click(object sender, EventArgs e)
-        {
-
-        }
 
         //private void btnExportExcel_Click(object sender, EventArgs e)
         //{

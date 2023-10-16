@@ -30,29 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
             this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.lbRatioBlackList = new System.Windows.Forms.Label();
             this.lbBlackList = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.lbRatiov180 = new System.Windows.Forms.Label();
             this.lbV180 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.lbRatioOffline = new System.Windows.Forms.Label();
             this.lbOffline = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbRatioOnline = new System.Windows.Forms.Label();
             this.lbOnline = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -65,12 +61,6 @@
             this.txtTimeGet = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.btnEnd = new System.Windows.Forms.Button();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.btnInfomation = new System.Windows.Forms.Button();
-            this.btnLocation = new System.Windows.Forms.Button();
-            this.btn_List = new System.Windows.Forms.Button();
-            this.btnChar = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -79,7 +69,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.btnRead = new System.Windows.Forms.Button();
-            this.btnClearLog = new System.Windows.Forms.Button();
             this.timer4 = new System.Windows.Forms.Timer(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -87,6 +76,10 @@
             this.pn2 = new Guna.UI.WinForms.GunaElipsePanel();
             this.prgLoad = new Guna.UI2.WinForms.Guna2ProgressIndicator();
             this.dtgvNode = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.txtSerialNode = new Guna.UI2.WinForms.Guna2TextBox();
@@ -99,20 +92,24 @@
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.panel8 = new System.Windows.Forms.Panel();
             this.btnReset = new Guna.UI2.WinForms.Guna2Button();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnEnd = new System.Windows.Forms.Button();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.btnInfomation = new System.Windows.Forms.Button();
+            this.btnLocation = new System.Windows.Forms.Button();
+            this.btn_List = new System.Windows.Forms.Button();
+            this.btnChar = new System.Windows.Forms.Button();
+            this.btnClearLog = new System.Windows.Forms.Button();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewImageColumn2 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gunaElipsePanel1.SuspendLayout();
             this.guna2Panel5.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.guna2Panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.guna2Panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.guna2Panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -125,6 +122,10 @@
             this.panel10.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // timer2
@@ -156,13 +157,6 @@
             this.guna2Panel5.FillColor = System.Drawing.Color.Silver;
             this.guna2Panel5.Name = "guna2Panel5";
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_gray;
-            resources.ApplyResources(this.pictureBox4, "pictureBox4");
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.TabStop = false;
-            // 
             // lbRatioBlackList
             // 
             resources.ApplyResources(this.lbRatioBlackList, "lbRatioBlackList");
@@ -188,13 +182,6 @@
             this.guna2Panel3.Controls.Add(this.label9);
             this.guna2Panel3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.guna2Panel3.Name = "guna2Panel3";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::DCU_Cuong_Tool.Properties.Resources.tick_good_accept_ok_complete_icon_208164;
-            resources.ApplyResources(this.pictureBox3, "pictureBox3");
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.TabStop = false;
             // 
             // lbRatiov180
             // 
@@ -223,13 +210,6 @@
             this.guna2Panel2.FillColor = System.Drawing.Color.IndianRed;
             this.guna2Panel2.Name = "guna2Panel2";
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_red;
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.TabStop = false;
-            // 
             // lbRatioOffline
             // 
             resources.ApplyResources(this.lbRatioOffline, "lbRatioOffline");
@@ -255,13 +235,6 @@
             this.guna2Panel1.Controls.Add(this.label3);
             this.guna2Panel1.FillColor = System.Drawing.Color.MediumSpringGreen;
             this.guna2Panel1.Name = "guna2Panel1";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_green;
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
             // 
             // lbRatioOnline
             // 
@@ -319,6 +292,7 @@
             // 
             resources.ApplyResources(this.panel1, "panel1");
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.btnEnd);
             this.panel1.Controls.Add(this.btnStart);
@@ -341,60 +315,6 @@
             this.panel5.Controls.Add(this.label6);
             resources.ApplyResources(this.panel5, "panel5");
             this.panel5.Name = "panel5";
-            // 
-            // btnEnd
-            // 
-            this.btnEnd.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.btnEnd, "btnEnd");
-            this.btnEnd.Image = global::DCU_Cuong_Tool.Properties.Resources._3706883_control_music_pause_stop_stop_music_108702;
-            this.btnEnd.Name = "btnEnd";
-            this.btnEnd.UseVisualStyleBackColor = false;
-            this.btnEnd.Click += new System.EventHandler(this.button2_Click);
-            // 
-            // btnStart
-            // 
-            this.btnStart.BackColor = System.Drawing.Color.Lime;
-            resources.ApplyResources(this.btnStart, "btnStart");
-            this.btnStart.Image = global::DCU_Cuong_Tool.Properties.Resources._3706872_control_music_play_play_music_play_sound_start_108717;
-            this.btnStart.Name = "btnStart";
-            this.btnStart.UseVisualStyleBackColor = false;
-            this.btnStart.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btnInfomation
-            // 
-            this.btnInfomation.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.btnInfomation, "btnInfomation");
-            this.btnInfomation.Image = global::DCU_Cuong_Tool.Properties.Resources.circle_customer_help_info_information_service_support_icon_123208;
-            this.btnInfomation.Name = "btnInfomation";
-            this.btnInfomation.UseVisualStyleBackColor = false;
-            this.btnInfomation.Click += new System.EventHandler(this.btnInfomation_Click);
-            // 
-            // btnLocation
-            // 
-            this.btnLocation.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.btnLocation, "btnLocation");
-            this.btnLocation.Image = global::DCU_Cuong_Tool.Properties.Resources.location_icon_icons_com_50109;
-            this.btnLocation.Name = "btnLocation";
-            this.btnLocation.UseVisualStyleBackColor = false;
-            this.btnLocation.Click += new System.EventHandler(this.btnLocation_Click);
-            // 
-            // btn_List
-            // 
-            this.btn_List.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.btn_List, "btn_List");
-            this.btn_List.Image = global::DCU_Cuong_Tool.Properties.Resources.ic_ad_97607;
-            this.btn_List.Name = "btn_List";
-            this.btn_List.UseVisualStyleBackColor = false;
-            this.btn_List.Click += new System.EventHandler(this.btnList_Click);
-            // 
-            // btnChar
-            // 
-            this.btnChar.BackColor = System.Drawing.SystemColors.Window;
-            resources.ApplyResources(this.btnChar, "btnChar");
-            this.btnChar.Image = global::DCU_Cuong_Tool.Properties.Resources.graph_5_icon_icons_com_58023;
-            this.btnChar.Name = "btnChar";
-            this.btnChar.UseVisualStyleBackColor = false;
-            this.btnChar.Click += new System.EventHandler(this.btnChar_Click);
             // 
             // btnClose
             // 
@@ -450,15 +370,6 @@
             this.btnRead.UseVisualStyleBackColor = false;
             this.btnRead.Click += new System.EventHandler(this.btnRead_Click);
             // 
-            // btnClearLog
-            // 
-            this.btnClearLog.BackColor = System.Drawing.Color.LightCoral;
-            resources.ApplyResources(this.btnClearLog, "btnClearLog");
-            this.btnClearLog.Image = global::DCU_Cuong_Tool.Properties.Resources.clear_icon_155649;
-            this.btnClearLog.Name = "btnClearLog";
-            this.btnClearLog.UseVisualStyleBackColor = false;
-            this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click);
-            // 
             // timer4
             // 
             this.timer4.Interval = 1000;
@@ -502,32 +413,32 @@
             // 
             // dtgvNode
             // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dtgvNode.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.White;
+            this.dtgvNode.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle19;
             resources.ApplyResources(this.dtgvNode, "dtgvNode");
             this.dtgvNode.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dtgvNode.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvNode.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle20.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvNode.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle20;
             this.dtgvNode.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewImageColumn2,
             this.dataGridViewTextBoxColumn2,
             this.Column1});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgvNode.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle21.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgvNode.DefaultCellStyle = dataGridViewCellStyle21;
             this.dtgvNode.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dtgvNode.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dtgvNode.Name = "dtgvNode";
@@ -556,6 +467,28 @@
             this.dtgvNode.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dtgvNode.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
             this.dtgvNode.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvNode_CellClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            resources.ApplyResources(this.dataGridViewTextBoxColumn1, "dataGridViewTextBoxColumn1");
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // dataGridViewImageColumn2
+            // 
+            resources.ApplyResources(this.dataGridViewImageColumn2, "dataGridViewImageColumn2");
+            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            resources.ApplyResources(this.dataGridViewTextBoxColumn2, "dataGridViewTextBoxColumn2");
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // Column1
+            // 
+            resources.ApplyResources(this.Column1, "Column1");
+            this.Column1.Name = "Column1";
             // 
             // guna2CustomGradientPanel1
             // 
@@ -682,33 +615,111 @@
             this.btnReset.Name = "btnReset";
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_gray;
+            resources.ApplyResources(this.pictureBox4, "pictureBox4");
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::DCU_Cuong_Tool.Properties.Resources.tick_good_accept_ok_complete_icon_208164;
+            resources.ApplyResources(this.pictureBox3, "pictureBox3");
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_red;
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_green;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.Window;
+            resources.ApplyResources(this.button1, "button1");
+            this.button1.Image = global::DCU_Cuong_Tool.Properties.Resources.compare_119269;
+            this.button1.Name = "button1";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // btnEnd
+            // 
+            this.btnEnd.BackColor = System.Drawing.SystemColors.Window;
+            resources.ApplyResources(this.btnEnd, "btnEnd");
+            this.btnEnd.Image = global::DCU_Cuong_Tool.Properties.Resources._3706883_control_music_pause_stop_stop_music_108702;
+            this.btnEnd.Name = "btnEnd";
+            this.btnEnd.UseVisualStyleBackColor = false;
+            this.btnEnd.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnStart
+            // 
+            this.btnStart.BackColor = System.Drawing.Color.Lime;
+            resources.ApplyResources(this.btnStart, "btnStart");
+            this.btnStart.Image = global::DCU_Cuong_Tool.Properties.Resources._3706872_control_music_play_play_music_play_sound_start_108717;
+            this.btnStart.Name = "btnStart";
+            this.btnStart.UseVisualStyleBackColor = false;
+            this.btnStart.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnInfomation
+            // 
+            this.btnInfomation.BackColor = System.Drawing.SystemColors.Window;
+            resources.ApplyResources(this.btnInfomation, "btnInfomation");
+            this.btnInfomation.Image = global::DCU_Cuong_Tool.Properties.Resources.circle_customer_help_info_information_service_support_icon_123208;
+            this.btnInfomation.Name = "btnInfomation";
+            this.btnInfomation.UseVisualStyleBackColor = false;
+            this.btnInfomation.Click += new System.EventHandler(this.btnInfomation_Click);
+            // 
+            // btnLocation
+            // 
+            this.btnLocation.BackColor = System.Drawing.SystemColors.Window;
+            resources.ApplyResources(this.btnLocation, "btnLocation");
+            this.btnLocation.Image = global::DCU_Cuong_Tool.Properties.Resources.location_icon_icons_com_50109;
+            this.btnLocation.Name = "btnLocation";
+            this.btnLocation.UseVisualStyleBackColor = false;
+            this.btnLocation.Click += new System.EventHandler(this.btnLocation_Click);
+            // 
+            // btn_List
+            // 
+            this.btn_List.BackColor = System.Drawing.SystemColors.Window;
+            resources.ApplyResources(this.btn_List, "btn_List");
+            this.btn_List.Image = global::DCU_Cuong_Tool.Properties.Resources.ic_ad_97607;
+            this.btn_List.Name = "btn_List";
+            this.btn_List.UseVisualStyleBackColor = false;
+            this.btn_List.Click += new System.EventHandler(this.btnList_Click);
+            // 
+            // btnChar
+            // 
+            this.btnChar.BackColor = System.Drawing.SystemColors.Window;
+            resources.ApplyResources(this.btnChar, "btnChar");
+            this.btnChar.Image = global::DCU_Cuong_Tool.Properties.Resources.graph_5_icon_icons_com_58023;
+            this.btnChar.Name = "btnChar";
+            this.btnChar.UseVisualStyleBackColor = false;
+            this.btnChar.Click += new System.EventHandler(this.btnChar_Click);
+            // 
+            // btnClearLog
+            // 
+            this.btnClearLog.BackColor = System.Drawing.Color.LightCoral;
+            resources.ApplyResources(this.btnClearLog, "btnClearLog");
+            this.btnClearLog.Image = global::DCU_Cuong_Tool.Properties.Resources.clear_icon_155649;
+            this.btnClearLog.Name = "btnClearLog";
+            this.btnClearLog.UseVisualStyleBackColor = false;
+            this.btnClearLog.Click += new System.EventHandler(this.btnClearLog_Click);
+            // 
             // dataGridViewImageColumn1
             // 
             resources.ApplyResources(this.dataGridViewImageColumn1, "dataGridViewImageColumn1");
             this.dataGridViewImageColumn1.Image = global::DCU_Cuong_Tool.Properties.Resources.zenmap_104119;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            resources.ApplyResources(this.dataGridViewTextBoxColumn1, "dataGridViewTextBoxColumn1");
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewImageColumn2
-            // 
-            resources.ApplyResources(this.dataGridViewImageColumn2, "dataGridViewImageColumn2");
-            this.dataGridViewImageColumn2.Name = "dataGridViewImageColumn2";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            resources.ApplyResources(this.dataGridViewTextBoxColumn2, "dataGridViewTextBoxColumn2");
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // Column1
-            // 
-            resources.ApplyResources(this.Column1, "Column1");
-            this.Column1.Name = "Column1";
             // 
             // frmMain
             // 
@@ -725,16 +736,12 @@
             this.gunaElipsePanel1.PerformLayout();
             this.guna2Panel5.ResumeLayout(false);
             this.guna2Panel5.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.guna2Panel3.ResumeLayout(false);
             this.guna2Panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.guna2Panel2.ResumeLayout(false);
             this.guna2Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -751,6 +758,10 @@
             this.panel10.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -827,6 +838,7 @@
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.Button button1;
     }
 }
 

@@ -196,30 +196,23 @@ namespace WM03Soft
                     // Sử dụng Invoke để truy cập thành phần UI từ luồng khác
                     lbOnline.Invoke((MethodInvoker)delegate
                     {
-                        // Lưu giữ giá trị trước đó của lbBlackList.Text
-                        string previousOnlineValue = lbOnline.Text;
-
-                        // Gán giá trị mới cho lbBlackList.Text
-                        lbOnline.Text = countString;
-
                         // Tính toán phần trăm chênh lệch
-                        double previousOnlineCount;
                         double currentOnlineCount;
                         double ratio;
 
-                        if (double.TryParse(previousOnlineValue, out previousOnlineCount) && double.TryParse(countString, out currentOnlineCount))
+                        if (double.TryParse(countString, out currentOnlineCount))
                         {
-                            double difference = currentOnlineCount - previousOnlineCount;
-                            ratio = (difference / previousOnlineCount) * 100;
+                            double difference = currentOnlineCount / 419;  // So sánh với giá trị 419
+                            ratio = difference * 100;  // Tính tỉ lệ chênh lệch so với giá trị 419
                         }
                         else
                         {
                             // Xử lý nếu không thể chuyển đổi thành số
                             ratio = 0;
                         }
-
+                        lbOnline.Text = countString.ToString();
                         // Hiển thị phần trăm chênh lệch trong lbRatioOnline.Text
-                        lbRatioOnline.Text = string.Format("{0:0.##}%", ratio);
+                        lbRatioOnline.Text = string.Format("{0:0.##}%", ratio); ;
                     });
 
                     // dataReceivedCount = 0;
@@ -294,28 +287,21 @@ namespace WM03Soft
                     // Sử dụng Invoke để truy cập thành phần UI từ luồng khác
                     lbOffline.Invoke((MethodInvoker)delegate
                     {
-                        // Lưu giữ giá trị trước đó của lbBlackList.Text
-                        string previousOfflineValue = lbOffline.Text;
-
-                        // Gán giá trị mới cho lbBlackList.Text
-                        lbOffline.Text = countString;
-
                         // Tính toán phần trăm chênh lệch
-                        double previousOfflineCount;
                         double currentOfflineCount;
                         double ratio;
 
-                        if (double.TryParse(previousOfflineValue, out previousOfflineCount) && double.TryParse(countString, out currentOfflineCount))
+                        if (double.TryParse(countString, out currentOfflineCount))
                         {
-                            double difference = currentOfflineCount - previousOfflineCount;
-                            ratio = (difference / previousOfflineCount) * 100;
+                            double difference = currentOfflineCount / 419;  // So sánh với giá trị 419
+                            ratio = difference * 100;  // Tính tỉ lệ chênh lệch so với giá trị 419
                         }
                         else
                         {
                             // Xử lý nếu không thể chuyển đổi thành số
                             ratio = 0;
                         }
-
+                        lbOffline.Text = countString.ToString();
                         // Hiển thị phần trăm chênh lệch trong lbRatioOffline.Text
                         lbRatioOffline.Text = string.Format("{0:0.##}%", ratio);
                     });
@@ -356,29 +342,24 @@ namespace WM03Soft
                         // Sử dụng Invoke để truy cập thành phần UI từ luồng khác
                     lbBlackList.Invoke((MethodInvoker)delegate
                     {
-                        // Lưu giữ giá trị trước đó của lbBlackList.Text
-                        string previousOfflineValue = lbBlackList.Text;
-
-                        // Gán giá trị mới cho lbBlackList.Text
                         lbBlackList.Text = countString;
 
                         // Tính toán phần trăm chênh lệch
-                        double previousBlackListCount;
                         double currentBlackListCount;
                         double ratio;
 
-                        if (double.TryParse(previousOfflineValue, out previousBlackListCount) && double.TryParse(countString, out currentBlackListCount))
+                        if (double.TryParse(countString, out currentBlackListCount))
                         {
-                            double difference = currentBlackListCount - previousBlackListCount;
-                            ratio = (difference / previousBlackListCount) * 100;
+                            double difference = currentBlackListCount / 419;  // So sánh với giá trị 419
+                            ratio = difference * 100;  // Tính tỉ lệ chênh lệch so với giá trị 419
                         }
                         else
                         {
                             // Xử lý nếu không thể chuyển đổi thành số
                             ratio = 0;
                         }
-
-                        // Hiển thị phần trăm chênh lệch trong lbRatioOffline.Text
+                        lbBlackList.Text = countString.ToString();
+                        // Hiển thị phần trăm chênh lệch trong lbRatioBlackList.Text
                         lbRatioBlackList.Text = string.Format("{0:0.##}%", ratio);
                     });
 
@@ -1412,12 +1393,6 @@ namespace WM03Soft
             btnEnd.Visible = false;
             displayLog("End" + " Kết thúc lấy dữ liệu tự động");
         }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            frmCompare fCompare = new frmCompare();
-            fCompare.Show();
-        }
         //Đóng tool
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -1461,6 +1436,12 @@ namespace WM03Soft
             this.dataReceivedCount = 0;
 
             SendCommandAndLog(CommandId_ResponeBlackList);
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            frmCompare fCompare = new frmCompare();
+            fCompare.Show();
         }
     }
 }
