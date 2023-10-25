@@ -529,10 +529,10 @@ namespace WM03Soft
 
                 for (int i = 13; i <= 419; i++)
                 {
-                    if (i != 30 && i != 31 && i != 32 && i != 33 && i != 34 && i != 35 && i != 36 && i != 37 && i != 38)
-                    {
+                    //if (i != 30 && i != 31 && i != 32 && i != 33 && i != 34 && i != 35 && i != 36 && i != 37 && i != 38)
+                    //{
                         location += aRec[i];
-                    }
+                    //}
                 }
 
                 AddDataToBatchHisNeighobur(serial, location);
@@ -562,7 +562,7 @@ namespace WM03Soft
                         AddDataToBatchHisDaiLy(serial, dateTime, dActive);
                         Thread executeThread = new Thread(ExecuteBatchInsert);
                         executeThread.Start();
-                        // clsSQLite.ExecuteSql("insert into HIS_DAILY (SERIAL, DATA_TIME, V180, CREATED) values (" + serial + ", '" + dateTime + "', " + dActive + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')");
+                        clsSQLite.ExecuteSql("insert into HIS_DAILY (SERIAL, DATA_TIME, V180, CREATED) values (" + serial + ", '" + dateTime + "', " + dActive + ", '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "')");
                     }
                     catch { }
                 }
@@ -1275,7 +1275,7 @@ namespace WM03Soft
 
                             if (!string.IsNullOrEmpty(location))
                             {
-                                message += "Vị trí node: " + location + "\n";
+                                message += "Vị trí node ở gần: " + location + "\n";
                             }
                                     // Hiển thị thông tin trong MessageBox
                                     MessageBox.Show(message);
