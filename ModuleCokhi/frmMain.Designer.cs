@@ -477,15 +477,15 @@
             // 
             // panel2
             // 
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.panel7);
             this.panel2.Controls.Add(this.pn2);
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.rtbOutput);
             resources.ApplyResources(this.panel7, "panel7");
+            this.panel7.Controls.Add(this.rtbOutput);
             this.panel7.Name = "panel7";
             // 
             // rtbOutput
@@ -592,20 +592,20 @@
             // 
             // guna2CustomGradientPanel1
             // 
+            resources.ApplyResources(this.guna2CustomGradientPanel1, "guna2CustomGradientPanel1");
             this.guna2CustomGradientPanel1.Controls.Add(this.panel11);
             this.guna2CustomGradientPanel1.Controls.Add(this.panel10);
             this.guna2CustomGradientPanel1.Controls.Add(this.panel8);
-            resources.ApplyResources(this.guna2CustomGradientPanel1, "guna2CustomGradientPanel1");
             this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             // 
             // panel11
             // 
+            resources.ApplyResources(this.panel11, "panel11");
             this.panel11.Controls.Add(this.btnReadInfomationNode);
             this.panel11.Controls.Add(this.guna2Button3);
             this.panel11.Controls.Add(this.guna2Button2);
             this.panel11.Controls.Add(this.btn_LocationSerial);
             this.panel11.Controls.Add(this.guna2Button1);
-            resources.ApplyResources(this.panel11, "panel11");
             this.panel11.Name = "panel11";
             // 
             // btnReadInfomationNode
@@ -670,9 +670,9 @@
             // 
             // panel10
             // 
+            resources.ApplyResources(this.panel10, "panel10");
             this.panel10.Controls.Add(this.txtSerialNode);
             this.panel10.Controls.Add(this.label10);
-            resources.ApplyResources(this.panel10, "panel10");
             this.panel10.Name = "panel10";
             // 
             // txtSerialNode
