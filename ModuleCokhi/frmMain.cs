@@ -1250,7 +1250,7 @@ namespace WM03Soft
                     connection.Open();
 
                     // Chuỗi truy vấn để lấy thông tin vị trí của serial
-                    string locationQuery = "SELECT LOCATION FROM HIS_NEIGHOBUR WHERE SERIAL = @Serial";
+                    string locationQuery = "SELECT LOCATION FROM HIS_NEIGHOBUR WHERE SERIAL = @Serial ORDER BY CREATED DESC LIMIT 1";
 
                     // Tạo đối tượng Command để lấy thông tin vị trí
                     using (SQLiteCommand locationCommand = new SQLiteCommand(locationQuery, connection))

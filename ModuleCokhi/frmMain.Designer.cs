@@ -30,33 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
-            this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.lbRatioBlackList = new System.Windows.Forms.Label();
-            this.lbBlackList = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.lbRatiov180 = new System.Windows.Forms.Label();
-            this.lbV180 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.lbRatioOffline = new System.Windows.Forms.Label();
-            this.lbOffline = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lbRatioOnline = new System.Windows.Forms.Label();
-            this.lbOnline = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel4 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label7 = new System.Windows.Forms.Label();
@@ -82,9 +60,6 @@
             this.btnRead = new System.Windows.Forms.Button();
             this.btnClearLog = new System.Windows.Forms.Button();
             this.timer4 = new System.Windows.Forms.Timer(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.rtbOutput = new System.Windows.Forms.RichTextBox();
             this.pn2 = new Guna.UI.WinForms.GunaElipsePanel();
             this.prgLoad = new Guna.UI2.WinForms.Guna2ProgressIndicator();
             this.dtgvNode = new Guna.UI2.WinForms.Guna2DataGridView();
@@ -94,6 +69,7 @@
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2CustomGradientPanel1 = new Guna.UI2.WinForms.Guna2CustomGradientPanel();
             this.panel11 = new System.Windows.Forms.Panel();
+            this.btnReset = new Guna.UI2.WinForms.Guna2Button();
             this.btnReadInfomationNode = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button3 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button2 = new Guna.UI2.WinForms.Guna2Button();
@@ -102,9 +78,40 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.txtSerialNode = new Guna.UI2.WinForms.Guna2TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.btnReset = new Guna.UI2.WinForms.Guna2Button();
+            this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
+            this.guna2Panel5 = new Guna.UI2.WinForms.Guna2Panel();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.lbRatioBlackList = new System.Windows.Forms.Label();
+            this.lbBlackList = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.guna2Panel3 = new Guna.UI2.WinForms.Guna2Panel();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.lbRatiov180 = new System.Windows.Forms.Label();
+            this.lbV180 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.lbRatioOffline = new System.Windows.Forms.Label();
+            this.lbOffline = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.guna2Panel1 = new Guna.UI2.WinForms.Guna2Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lbRatioOnline = new System.Windows.Forms.Label();
+            this.lbOnline = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.rtbOutput = new System.Windows.Forms.RichTextBox();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel1.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.pn2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvNode)).BeginInit();
+            this.guna2CustomGradientPanel1.SuspendLayout();
+            this.panel11.SuspendLayout();
+            this.panel10.SuspendLayout();
             this.gunaElipsePanel1.SuspendLayout();
             this.guna2Panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
@@ -114,18 +121,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.guna2Panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel1.SuspendLayout();
-            this.panel5.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel6.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.pn2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvNode)).BeginInit();
-            this.guna2CustomGradientPanel1.SuspendLayout();
-            this.panel11.SuspendLayout();
-            this.panel10.SuspendLayout();
-            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // timer2
@@ -133,156 +129,6 @@
             this.timer2.Enabled = true;
             this.timer2.Interval = 500;
             this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // gunaElipsePanel1
-            // 
-            this.gunaElipsePanel1.BackColor = System.Drawing.Color.Transparent;
-            this.gunaElipsePanel1.BaseColor = System.Drawing.SystemColors.ActiveCaption;
-            this.gunaElipsePanel1.Controls.Add(this.guna2Panel5);
-            this.gunaElipsePanel1.Controls.Add(this.guna2Panel3);
-            this.gunaElipsePanel1.Controls.Add(this.guna2Panel2);
-            this.gunaElipsePanel1.Controls.Add(this.guna2Panel1);
-            this.gunaElipsePanel1.Controls.Add(this.panel4);
-            resources.ApplyResources(this.gunaElipsePanel1, "gunaElipsePanel1");
-            this.gunaElipsePanel1.Name = "gunaElipsePanel1";
-            // 
-            // guna2Panel5
-            // 
-            resources.ApplyResources(this.guna2Panel5, "guna2Panel5");
-            this.guna2Panel5.BorderRadius = 10;
-            this.guna2Panel5.Controls.Add(this.pictureBox4);
-            this.guna2Panel5.Controls.Add(this.lbRatioBlackList);
-            this.guna2Panel5.Controls.Add(this.lbBlackList);
-            this.guna2Panel5.Controls.Add(this.label13);
-            this.guna2Panel5.FillColor = System.Drawing.Color.Silver;
-            this.guna2Panel5.Name = "guna2Panel5";
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_gray;
-            resources.ApplyResources(this.pictureBox4, "pictureBox4");
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.TabStop = false;
-            // 
-            // lbRatioBlackList
-            // 
-            resources.ApplyResources(this.lbRatioBlackList, "lbRatioBlackList");
-            this.lbRatioBlackList.Name = "lbRatioBlackList";
-            // 
-            // lbBlackList
-            // 
-            resources.ApplyResources(this.lbBlackList, "lbBlackList");
-            this.lbBlackList.Name = "lbBlackList";
-            // 
-            // label13
-            // 
-            resources.ApplyResources(this.label13, "label13");
-            this.label13.Name = "label13";
-            // 
-            // guna2Panel3
-            // 
-            resources.ApplyResources(this.guna2Panel3, "guna2Panel3");
-            this.guna2Panel3.BorderRadius = 10;
-            this.guna2Panel3.Controls.Add(this.pictureBox3);
-            this.guna2Panel3.Controls.Add(this.lbRatiov180);
-            this.guna2Panel3.Controls.Add(this.lbV180);
-            this.guna2Panel3.Controls.Add(this.label9);
-            this.guna2Panel3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.guna2Panel3.Name = "guna2Panel3";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::DCU_Cuong_Tool.Properties.Resources.tick_good_accept_ok_complete_icon_208164;
-            resources.ApplyResources(this.pictureBox3, "pictureBox3");
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.TabStop = false;
-            // 
-            // lbRatiov180
-            // 
-            resources.ApplyResources(this.lbRatiov180, "lbRatiov180");
-            this.lbRatiov180.Name = "lbRatiov180";
-            // 
-            // lbV180
-            // 
-            resources.ApplyResources(this.lbV180, "lbV180");
-            this.lbV180.Name = "lbV180";
-            // 
-            // label9
-            // 
-            resources.ApplyResources(this.label9, "label9");
-            this.label9.Name = "label9";
-            // 
-            // guna2Panel2
-            // 
-            resources.ApplyResources(this.guna2Panel2, "guna2Panel2");
-            this.guna2Panel2.BorderRadius = 10;
-            this.guna2Panel2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-            this.guna2Panel2.Controls.Add(this.pictureBox2);
-            this.guna2Panel2.Controls.Add(this.lbRatioOffline);
-            this.guna2Panel2.Controls.Add(this.lbOffline);
-            this.guna2Panel2.Controls.Add(this.label8);
-            this.guna2Panel2.FillColor = System.Drawing.Color.IndianRed;
-            this.guna2Panel2.Name = "guna2Panel2";
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_red;
-            resources.ApplyResources(this.pictureBox2, "pictureBox2");
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.TabStop = false;
-            // 
-            // lbRatioOffline
-            // 
-            resources.ApplyResources(this.lbRatioOffline, "lbRatioOffline");
-            this.lbRatioOffline.Name = "lbRatioOffline";
-            // 
-            // lbOffline
-            // 
-            resources.ApplyResources(this.lbOffline, "lbOffline");
-            this.lbOffline.Name = "lbOffline";
-            // 
-            // label8
-            // 
-            resources.ApplyResources(this.label8, "label8");
-            this.label8.Name = "label8";
-            // 
-            // guna2Panel1
-            // 
-            resources.ApplyResources(this.guna2Panel1, "guna2Panel1");
-            this.guna2Panel1.BorderRadius = 10;
-            this.guna2Panel1.Controls.Add(this.pictureBox1);
-            this.guna2Panel1.Controls.Add(this.lbRatioOnline);
-            this.guna2Panel1.Controls.Add(this.lbOnline);
-            this.guna2Panel1.Controls.Add(this.label3);
-            this.guna2Panel1.FillColor = System.Drawing.Color.MediumSpringGreen;
-            this.guna2Panel1.Name = "guna2Panel1";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_green;
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
-            // 
-            // lbRatioOnline
-            // 
-            resources.ApplyResources(this.lbRatioOnline, "lbRatioOnline");
-            this.lbRatioOnline.Name = "lbRatioOnline";
-            // 
-            // lbOnline
-            // 
-            resources.ApplyResources(this.lbOnline, "lbOnline");
-            this.lbOnline.Name = "lbOnline";
-            // 
-            // label3
-            // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
-            // 
-            // panel4
-            // 
-            resources.ApplyResources(this.panel4, "panel4");
-            this.panel4.Name = "panel4";
             // 
             // panel1
             // 
@@ -475,24 +321,6 @@
             this.timer4.Interval = 1000;
             this.timer4.Tick += new System.EventHandler(this.timer4_Tick);
             // 
-            // panel2
-            // 
-            resources.ApplyResources(this.panel2, "panel2");
-            this.panel2.Controls.Add(this.panel7);
-            this.panel2.Controls.Add(this.pn2);
-            this.panel2.Name = "panel2";
-            // 
-            // panel7
-            // 
-            resources.ApplyResources(this.panel7, "panel7");
-            this.panel7.Controls.Add(this.rtbOutput);
-            this.panel7.Name = "panel7";
-            // 
-            // rtbOutput
-            // 
-            resources.ApplyResources(this.rtbOutput, "rtbOutput");
-            this.rtbOutput.Name = "rtbOutput";
-            // 
             // pn2
             // 
             this.pn2.BackColor = System.Drawing.Color.Transparent;
@@ -513,32 +341,32 @@
             // 
             // dtgvNode
             // 
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
-            this.dtgvNode.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dtgvNode.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             resources.ApplyResources(this.dtgvNode, "dtgvNode");
             this.dtgvNode.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCellsExceptHeaders;
             this.dtgvNode.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dtgvNode.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dtgvNode.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dtgvNode.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewImageColumn2,
             this.dataGridViewTextBoxColumn2,
             this.Column1});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgvNode.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgvNode.DefaultCellStyle = dataGridViewCellStyle3;
             this.dtgvNode.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dtgvNode.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dtgvNode.Name = "dtgvNode";
@@ -592,21 +420,34 @@
             // 
             // guna2CustomGradientPanel1
             // 
-            resources.ApplyResources(this.guna2CustomGradientPanel1, "guna2CustomGradientPanel1");
             this.guna2CustomGradientPanel1.Controls.Add(this.panel11);
             this.guna2CustomGradientPanel1.Controls.Add(this.panel10);
-            this.guna2CustomGradientPanel1.Controls.Add(this.panel8);
+            resources.ApplyResources(this.guna2CustomGradientPanel1, "guna2CustomGradientPanel1");
             this.guna2CustomGradientPanel1.Name = "guna2CustomGradientPanel1";
             // 
             // panel11
             // 
-            resources.ApplyResources(this.panel11, "panel11");
+            this.panel11.Controls.Add(this.btnReset);
             this.panel11.Controls.Add(this.btnReadInfomationNode);
             this.panel11.Controls.Add(this.guna2Button3);
             this.panel11.Controls.Add(this.guna2Button2);
             this.panel11.Controls.Add(this.btn_LocationSerial);
             this.panel11.Controls.Add(this.guna2Button1);
+            resources.ApplyResources(this.panel11, "panel11");
             this.panel11.Name = "panel11";
+            // 
+            // btnReset
+            // 
+            this.btnReset.BorderRadius = 13;
+            this.btnReset.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnReset.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnReset.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnReset.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            resources.ApplyResources(this.btnReset, "btnReset");
+            this.btnReset.ForeColor = System.Drawing.Color.White;
+            this.btnReset.Image = global::DCU_Cuong_Tool.Properties.Resources.reset_undo_arrow_icon_149006;
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnReadInfomationNode
             // 
@@ -670,9 +511,9 @@
             // 
             // panel10
             // 
-            resources.ApplyResources(this.panel10, "panel10");
             this.panel10.Controls.Add(this.txtSerialNode);
             this.panel10.Controls.Add(this.label10);
+            resources.ApplyResources(this.panel10, "panel10");
             this.panel10.Name = "panel10";
             // 
             // txtSerialNode
@@ -696,24 +537,160 @@
             resources.ApplyResources(this.label10, "label10");
             this.label10.Name = "label10";
             // 
-            // panel8
+            // gunaElipsePanel1
             // 
-            this.panel8.Controls.Add(this.btnReset);
-            resources.ApplyResources(this.panel8, "panel8");
-            this.panel8.Name = "panel8";
+            this.gunaElipsePanel1.BackColor = System.Drawing.Color.Transparent;
+            this.gunaElipsePanel1.BaseColor = System.Drawing.SystemColors.ActiveCaption;
+            this.gunaElipsePanel1.Controls.Add(this.guna2Panel5);
+            this.gunaElipsePanel1.Controls.Add(this.guna2Panel3);
+            this.gunaElipsePanel1.Controls.Add(this.guna2Panel2);
+            this.gunaElipsePanel1.Controls.Add(this.guna2Panel1);
+            this.gunaElipsePanel1.Controls.Add(this.panel4);
+            resources.ApplyResources(this.gunaElipsePanel1, "gunaElipsePanel1");
+            this.gunaElipsePanel1.Name = "gunaElipsePanel1";
             // 
-            // btnReset
+            // guna2Panel5
             // 
-            this.btnReset.BorderRadius = 13;
-            this.btnReset.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnReset.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnReset.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnReset.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            resources.ApplyResources(this.btnReset, "btnReset");
-            this.btnReset.ForeColor = System.Drawing.Color.White;
-            this.btnReset.Image = global::DCU_Cuong_Tool.Properties.Resources.reset_undo_arrow_icon_149006;
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            resources.ApplyResources(this.guna2Panel5, "guna2Panel5");
+            this.guna2Panel5.BorderRadius = 10;
+            this.guna2Panel5.Controls.Add(this.pictureBox4);
+            this.guna2Panel5.Controls.Add(this.lbRatioBlackList);
+            this.guna2Panel5.Controls.Add(this.lbBlackList);
+            this.guna2Panel5.Controls.Add(this.label13);
+            this.guna2Panel5.FillColor = System.Drawing.Color.Silver;
+            this.guna2Panel5.Name = "guna2Panel5";
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_gray;
+            resources.ApplyResources(this.pictureBox4, "pictureBox4");
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.TabStop = false;
+            // 
+            // lbRatioBlackList
+            // 
+            resources.ApplyResources(this.lbRatioBlackList, "lbRatioBlackList");
+            this.lbRatioBlackList.Name = "lbRatioBlackList";
+            // 
+            // lbBlackList
+            // 
+            resources.ApplyResources(this.lbBlackList, "lbBlackList");
+            this.lbBlackList.Name = "lbBlackList";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // guna2Panel3
+            // 
+            resources.ApplyResources(this.guna2Panel3, "guna2Panel3");
+            this.guna2Panel3.BorderRadius = 10;
+            this.guna2Panel3.Controls.Add(this.pictureBox3);
+            this.guna2Panel3.Controls.Add(this.lbRatiov180);
+            this.guna2Panel3.Controls.Add(this.lbV180);
+            this.guna2Panel3.Controls.Add(this.label9);
+            this.guna2Panel3.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.guna2Panel3.Name = "guna2Panel3";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::DCU_Cuong_Tool.Properties.Resources.tick_good_accept_ok_complete_icon_208164;
+            resources.ApplyResources(this.pictureBox3, "pictureBox3");
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.TabStop = false;
+            // 
+            // lbRatiov180
+            // 
+            resources.ApplyResources(this.lbRatiov180, "lbRatiov180");
+            this.lbRatiov180.Name = "lbRatiov180";
+            // 
+            // lbV180
+            // 
+            resources.ApplyResources(this.lbV180, "lbV180");
+            this.lbV180.Name = "lbV180";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.Name = "label9";
+            // 
+            // guna2Panel2
+            // 
+            resources.ApplyResources(this.guna2Panel2, "guna2Panel2");
+            this.guna2Panel2.BorderRadius = 10;
+            this.guna2Panel2.BorderStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+            this.guna2Panel2.Controls.Add(this.pictureBox2);
+            this.guna2Panel2.Controls.Add(this.lbRatioOffline);
+            this.guna2Panel2.Controls.Add(this.lbOffline);
+            this.guna2Panel2.Controls.Add(this.label8);
+            this.guna2Panel2.FillColor = System.Drawing.Color.IndianRed;
+            this.guna2Panel2.Name = "guna2Panel2";
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_red;
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.TabStop = false;
+            // 
+            // lbRatioOffline
+            // 
+            resources.ApplyResources(this.lbRatioOffline, "lbRatioOffline");
+            this.lbRatioOffline.Name = "lbRatioOffline";
+            // 
+            // lbOffline
+            // 
+            resources.ApplyResources(this.lbOffline, "lbOffline");
+            this.lbOffline.Name = "lbOffline";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
+            // 
+            // guna2Panel1
+            // 
+            resources.ApplyResources(this.guna2Panel1, "guna2Panel1");
+            this.guna2Panel1.BorderRadius = 10;
+            this.guna2Panel1.Controls.Add(this.pictureBox1);
+            this.guna2Panel1.Controls.Add(this.lbRatioOnline);
+            this.guna2Panel1.Controls.Add(this.lbOnline);
+            this.guna2Panel1.Controls.Add(this.label3);
+            this.guna2Panel1.FillColor = System.Drawing.Color.MediumSpringGreen;
+            this.guna2Panel1.Name = "guna2Panel1";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::DCU_Cuong_Tool.Properties.Resources.button_blank_green;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
+            // 
+            // lbRatioOnline
+            // 
+            resources.ApplyResources(this.lbRatioOnline, "lbRatioOnline");
+            this.lbRatioOnline.Name = "lbRatioOnline";
+            // 
+            // lbOnline
+            // 
+            resources.ApplyResources(this.lbOnline, "lbOnline");
+            this.lbOnline.Name = "lbOnline";
+            // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // panel4
+            // 
+            resources.ApplyResources(this.panel4, "panel4");
+            this.panel4.Name = "panel4";
+            // 
+            // rtbOutput
+            // 
+            resources.ApplyResources(this.rtbOutput, "rtbOutput");
+            this.rtbOutput.Name = "rtbOutput";
             // 
             // dataGridViewImageColumn1
             // 
@@ -721,17 +698,36 @@
             this.dataGridViewImageColumn1.Image = global::DCU_Cuong_Tool.Properties.Resources.zenmap_104119;
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.rtbOutput);
+            resources.ApplyResources(this.panel2, "panel2");
+            this.panel2.Name = "panel2";
+            // 
             // frmMain
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pn2);
             this.Controls.Add(this.panel1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "frmMain";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.pn2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dtgvNode)).EndInit();
+            this.guna2CustomGradientPanel1.ResumeLayout(false);
+            this.panel11.ResumeLayout(false);
+            this.panel10.ResumeLayout(false);
+            this.panel10.PerformLayout();
             this.gunaElipsePanel1.ResumeLayout(false);
             this.gunaElipsePanel1.PerformLayout();
             this.guna2Panel5.ResumeLayout(false);
@@ -746,22 +742,7 @@
             this.guna2Panel1.ResumeLayout(false);
             this.guna2Panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            this.panel5.ResumeLayout(false);
-            this.panel5.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.pn2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dtgvNode)).EndInit();
-            this.guna2CustomGradientPanel1.ResumeLayout(false);
-            this.panel11.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            this.panel10.PerformLayout();
-            this.panel8.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -772,13 +753,7 @@
         private System.Windows.Forms.Button btnClearLog;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Timer timer4;
-        private Guna.UI.WinForms.GunaElipsePanel gunaElipsePanel1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
-        private System.Windows.Forms.Panel panel2;
-        private Guna.UI.WinForms.GunaElipsePanel pn2;
-        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
-        private System.Windows.Forms.Label label10;
-        private Guna.UI2.WinForms.Guna2TextBox txtSerialNode;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnRead;
@@ -791,9 +766,41 @@
         private System.Windows.Forms.TextBox txtDCUNo;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
-        private Guna.UI2.WinForms.Guna2DataGridView dtgvNode;
+        private System.Windows.Forms.RichTextBox rtbOutput;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtTimeGet;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnEnd;
+        private System.Windows.Forms.Button btnStart;
+        private Guna.UI.WinForms.GunaElipsePanel pn2;
         private Guna.UI2.WinForms.Guna2ProgressIndicator prgLoad;
-        private System.Windows.Forms.Panel panel4;
+        private Guna.UI2.WinForms.Guna2DataGridView dtgvNode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private Guna.UI2.WinForms.Guna2CustomGradientPanel guna2CustomGradientPanel1;
+        private System.Windows.Forms.Panel panel11;
+        private Guna.UI2.WinForms.Guna2Button btnReset;
+        private Guna.UI2.WinForms.Guna2Button btnReadInfomationNode;
+        private Guna.UI2.WinForms.Guna2Button guna2Button3;
+        private Guna.UI2.WinForms.Guna2Button guna2Button2;
+        private Guna.UI2.WinForms.Guna2Button btn_LocationSerial;
+        private Guna.UI2.WinForms.Guna2Button guna2Button1;
+        private System.Windows.Forms.Panel panel10;
+        private Guna.UI2.WinForms.Guna2TextBox txtSerialNode;
+        private System.Windows.Forms.Label label10;
+        private Guna.UI.WinForms.GunaElipsePanel gunaElipsePanel1;
+        private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.Label lbRatioBlackList;
+        private System.Windows.Forms.Label lbBlackList;
+        private System.Windows.Forms.Label label13;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel3;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.Label lbRatiov180;
@@ -809,36 +816,8 @@
         private System.Windows.Forms.Label lbRatioOnline;
         private System.Windows.Forms.Label lbOnline;
         private System.Windows.Forms.Label label3;
-        private Guna.UI2.WinForms.Guna2Panel guna2Panel5;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.Label lbRatioBlackList;
-        private System.Windows.Forms.Label lbBlackList;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.RichTextBox rtbOutput;
-        private Guna.UI2.WinForms.Guna2Button btnReset;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel11;
-        private Guna.UI2.WinForms.Guna2Button btnReadInfomationNode;
-        private Guna.UI2.WinForms.Guna2Button guna2Button3;
-        private Guna.UI2.WinForms.Guna2Button guna2Button2;
-        private Guna.UI2.WinForms.Guna2Button btn_LocationSerial;
-        private Guna.UI2.WinForms.Guna2Button guna2Button1;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtTimeGet;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnEnd;
-        private System.Windows.Forms.Button btnStart;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel2;
     }
 }
 
